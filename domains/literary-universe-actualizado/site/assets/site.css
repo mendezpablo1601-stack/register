@@ -1,0 +1,153 @@
+/* =====================================================
+   LITERARY UNIVERSE — shared site chrome
+   (hamburger menu + ambient audio toggle)
+   Included by every page: index.html + the 5 category pages
+===================================================== */
+
+:root{
+    --lu-gold: #d4af6a;
+    --lu-cream: #f4ead0;
+    --lu-ink: #05040a;
+}
+
+/* ---------- Hamburger + audio toggle (top-right cluster) ---------- */
+#lu-chrome{
+    position: fixed;
+    top: 26px;
+    right: 32px;
+    z-index: 500010;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+#lu-audio-toggle{
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(244,234,208,0.25);
+    background: rgba(10,8,18,0.55);
+    backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.25s ease, transform 0.2s ease;
+}
+#lu-audio-toggle:hover{ border-color: var(--lu-gold); transform: scale(1.06); }
+#lu-audio-toggle svg{ width: 18px; height: 18px; fill: var(--lu-cream); }
+#lu-audio-toggle .lu-wave{ transition: opacity 0.2s ease; }
+#lu-audio-toggle.muted .lu-wave{ opacity: 0.25; }
+
+#lu-hamburger{
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(244,234,208,0.25);
+    background: rgba(10,8,18,0.55);
+    backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: border-color 0.25s ease, transform 0.2s ease;
+}
+#lu-hamburger:hover{ border-color: var(--lu-gold); transform: scale(1.06); }
+
+/* Three lines that redraw themselves into a star-burst X — not a generic slide-morph */
+#lu-hamburger .lu-line{
+    position: absolute;
+    width: 18px; height: 1.5px;
+    background: var(--lu-cream);
+    border-radius: 2px;
+    transition: transform 0.45s cubic-bezier(.6,.2,.2,1), opacity 0.3s ease, width 0.35s ease;
+}
+#lu-hamburger .lu-line:nth-child(1){ transform: translateY(-5px); }
+#lu-hamburger .lu-line:nth-child(2){ transform: translateY(0); width: 12px; align-self: flex-end; }
+#lu-hamburger .lu-line:nth-child(3){ transform: translateY(5px); }
+
+#lu-hamburger.open .lu-line{ width: 18px; }
+#lu-hamburger.open .lu-line:nth-child(1){ transform: translateY(0) rotate(45deg); }
+#lu-hamburger.open .lu-line:nth-child(2){ opacity: 0; transform: translateY(0) scale(0); }
+#lu-hamburger.open .lu-line:nth-child(3){ transform: translateY(0) rotate(-45deg); }
+
+/* ---------- Fullscreen constellation menu ---------- */
+#lu-menu{
+    position: fixed; inset: 0; z-index: 500000;
+    background: radial-gradient(ellipse at 80% 20%, rgba(212,175,106,0.07), transparent 60%), rgba(4,3,9,0.97);
+    backdrop-filter: blur(10px);
+    display: flex;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+#lu-menu.open{ opacity: 1; visibility: visible; }
+
+#lu-menu-inner{
+    margin: auto; width: min(90vw, 720px);
+    padding: 60px 20px;
+}
+
+#lu-menu-primary{
+    list-style: none; margin: 0 0 56px; padding: 0;
+    display: flex; flex-direction: column; gap: 6px;
+}
+#lu-menu-primary li a{
+    font-family: 'Montserrat',sans-serif; font-style: italic; font-weight: 300;
+    font-size: clamp(32px, 6vw, 56px);
+    color: var(--lu-cream); text-decoration: none;
+    display: inline-block;
+    position: relative;
+    opacity: 0; transform: translateY(16px);
+    transition: color 0.25s ease;
+}
+#lu-menu.open #lu-menu-primary li a{
+    animation: lu-item-in 0.5s ease forwards;
+}
+#lu-menu-primary li a::after{
+    content: ''; position: absolute; left: 0; bottom: 2px; height: 1px; width: 0;
+    background: var(--lu-gold); transition: width 0.3s ease;
+}
+#lu-menu-primary li a:hover{ color: var(--lu-gold); }
+#lu-menu-primary li a:hover::after{ width: 100%; }
+
+#lu-menu-label{
+    font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 0.28em;
+    color: rgba(244,234,208,0.4); margin-bottom: 22px;
+}
+
+/* Category list drawn as a constellation: a thin connecting line behind colored star-nodes */
+#lu-menu-categories{
+    list-style: none; margin: 0; padding: 0;
+    position: relative;
+    display: flex; flex-direction: column; gap: 2px;
+}
+#lu-menu-categories::before{
+    content: '';
+    position: absolute; left: 6px; top: 10px; bottom: 10px; width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(244,234,208,0.18), transparent);
+}
+#lu-menu-categories li a{
+    display: flex; align-items: center; gap: 16px;
+    font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 15px;
+    letter-spacing: 0.04em;
+    color: rgba(244,234,208,0.75); text-decoration: none;
+    padding: 10px 0;
+    opacity: 0; transform: translateX(-10px);
+}
+#lu-menu.open #lu-menu-categories li a{ animation: lu-item-in-x 0.45s ease forwards; }
+#lu-menu-categories li a .lu-dot{
+    width: 7px; height: 7px; border-radius: 50%;
+    box-shadow: 0 0 10px 1px currentColor;
+    flex-shrink: 0; margin-left: 3px;
+}
+#lu-menu-categories li a:hover{ color: var(--lu-cream); padding-left: 6px; }
+#lu-menu-categories li a:hover .lu-dot{ transform: scale(1.3); }
+
+@keyframes lu-item-in{ to{ opacity: 1; transform: translateY(0); } }
+@keyframes lu-item-in-x{ to{ opacity: 1; transform: translateX(0); } }
+
+#lu-menu-close-hint{
+    position: absolute; bottom: 32px; left: 0; right: 0; text-align: center;
+    font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 0.22em;
+    color: rgba(244,234,208,0.3);
+}
+
+@media (max-width: 640px){
+    #lu-chrome{ top: 18px; right: 18px; }
+    #lu-menu-inner{ padding: 40px 8px; }
+}

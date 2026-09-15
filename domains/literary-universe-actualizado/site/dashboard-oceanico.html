@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Oceánico · Literary Universe</title>
+<meta name="description" content="Dashboard interactivo de conservación oceánica: clima, oxígeno, biodiversidad, contaminación química, manglares y plásticos, con datos reales.">
+<link rel="icon" type="image/png" href="star.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/dashboard-oceanico.css">
+<link rel="stylesheet" href="assets/scroll-animations.css">
+</head>
+<body class="do-body">
+
+<div class="do-top">
+    <a href="index.html" class="do-back">&larr; Universo</a>
+    <div class="do-title-block">
+        <span class="do-eyebrow">Vida Marina · Datos</span>
+        <h1>Dashboard Oceánico</h1>
+    </div>
+</div>
+
+<section class="do-hero">
+    <h2>El estado del océano, en cifras que se pueden verificar.</h2>
+    <p>Seis series de datos —clima, oxígeno, biodiversidad, contaminación química, manglares y plásticos fluviales— reunidas en un panel interactivo. Cada gráfico se genera a partir del mismo conjunto de datos que puedes descargar abajo.</p>
+    <div class="do-hero-actions">
+        <a class="do-btn do-btn-primary" href="assets/data/Ocean_Conservation_Dashboard.xlsx" download>⬇ Descargar dataset (.xlsx)</a>
+        <a class="do-btn do-btn-ghost" href="vida-marina.html">Ver Vida Marina →</a>
+    </div>
+</section>
+
+<div class="do-kpis">
+    <div class="do-kpi warn"><b>Calor del océano</b><span>+242 ZJ</span><small>1993 – 2025</small></div>
+    <div class="do-kpi warn"><b>Nivel del mar</b><span>+114.2 mm</span><small>1993 – 2025</small></div>
+    <div class="do-kpi warn"><b>Pérdida de O₂</b><span>−2.45 %</span><small>2025</small></div>
+    <div class="do-kpi"><b>Área anóxica</b><span>6.4 M km²</span><small>2025</small></div>
+    <div class="do-kpi"><b>Especies bajo presión</b><span data-kpi="especies-presion">—</span><small>Mamíferos, tiburones, tortugas, corales</small></div>
+    <div class="do-kpi warn"><b>Manglares perdidos</b><span data-kpi="manglares-perdida">—</span><small>2000 – 2025 (global)</small></div>
+</div>
+
+<nav class="do-tabs">
+    <button class="do-tab active" data-panel="panel-panorama">Panorama general</button>
+    <button class="do-tab" data-panel="panel-clima">Clima &amp; oxígeno</button>
+    <button class="do-tab" data-panel="panel-bio">Biodiversidad</button>
+    <button class="do-tab" data-panel="panel-quimica">Contaminación química</button>
+    <button class="do-tab" data-panel="panel-manglares">Manglares</button>
+    <button class="do-tab" data-panel="panel-rios">Plásticos y ríos</button>
+</nav>
+
+<div class="do-panels">
+
+    <!-- PANORAMA -->
+    <div class="do-panel active" id="panel-panorama">
+        <div class="do-panel-head">
+            <h3>Panorama general</h3>
+            <p>Entre 1993 y 2025 el océano acumuló 242 zettajulios de calor adicional y el nivel del mar subió 114.2 mm. Ambas curvas avanzan casi en paralelo: el calentamiento de las capas superiores es, hoy, el motor principal de la subida del mar.</p>
+        </div>
+        <div class="do-grid single">
+            <div class="do-card">
+                <h4>Nivel del mar y calor del océano</h4>
+                <div class="do-card-sub">1993 – 2025 · fuente: hoja 01_Clima</div>
+                <canvas id="chartPanorama" height="90"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- CLIMA + OXIGENO -->
+    <div class="do-panel" id="panel-clima">
+        <div class="do-panel-head">
+            <h3>Clima y oxígeno oceánico</h3>
+            <p>La pérdida de oxígeno se mide por décadas: entre 2000 y 2025 el océano perdió 2.45 % de su saturación de O₂ y el área con muy poco oxígeno (anóxica) casi se duplicó, de 4.2 a 6.4 millones de km².</p>
+        </div>
+        <div class="do-grid">
+            <div class="do-card">
+                <h4>Nivel del mar y calor del océano</h4>
+                <div class="do-card-sub">mm acumulados / zettajulios</div>
+                <canvas id="chartClima" height="230"></canvas>
+            </div>
+            <div class="do-card">
+                <h4>Pérdida de O₂ y área anóxica</h4>
+                <div class="do-card-sub">% de saturación / millones de km²</div>
+                <canvas id="chartOxigeno" height="230"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- BIODIVERSIDAD -->
+    <div class="do-panel" id="panel-bio">
+        <div class="do-panel-head">
+            <h3>Biodiversidad marina</h3>
+            <p>Las cuatro poblaciones catalogadas crecen en número de especies registradas desde 1990 hasta 2025, reflejo tanto de nuevas descripciones científicas como de especies que entran en categorías de riesgo. En total, 1.882 especies quedan catalogadas bajo algún grado de presión en 2025.</p>
+        </div>
+        <div class="do-grid">
+            <div class="do-card">
+                <h4>Evolución 1990 – 2025</h4>
+                <div class="do-card-sub">número de especies catalogadas</div>
+                <canvas id="chartBiodiversidad" height="230"></canvas>
+            </div>
+            <div class="do-card">
+                <h4>Especies bajo presión (2025)</h4>
+                <div class="do-card-sub">total: <span data-kpi="especies-presion">—</span></div>
+                <canvas id="chartEspecies" height="230"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTAMINACION -->
+    <div class="do-panel" id="panel-quimica">
+        <div class="do-panel-head">
+            <h3>Contaminación química</h3>
+            <p>Los metales pesados (plomo, mercurio, cadmio, arsénico) crecen de forma sostenida desde 1970. Los compuestos orgánicos persistentes (DDT y PCBs) van en sentido contrario, bajando desde su prohibición progresiva a partir de los años 70 — la única curva descendente del panel.</p>
+        </div>
+        <div class="do-grid single">
+            <div class="do-card">
+                <h4>Promedio de contaminantes en agua oceánica</h4>
+                <div class="do-card-sub">partes por billón (ppb) · 1970 – 2025</div>
+                <canvas id="chartContaminacion" height="100"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- MANGLARES -->
+    <div class="do-panel" id="panel-manglares">
+        <div class="do-panel-head">
+            <h3>Pérdida de manglares</h3>
+            <p>Sumando las seis regiones del dataset, la cobertura mundial de manglares cayó de 146,300 km² en el año 2000 a 121,500 km² en 2025: una pérdida neta calculada de <span data-kpi="manglares-perdida">—</span>. El Sudeste Asiático concentra la mayor pérdida absoluta.</p>
+        </div>
+        <div class="do-grid">
+            <div class="do-card">
+                <h4>Área de manglar por región</h4>
+                <div class="do-card-sub">km² · 2000 vs. 2025</div>
+                <canvas id="chartManglares" height="230"></canvas>
+            </div>
+            <div class="do-card">
+                <h4>Pérdida neta por región</h4>
+                <table class="do-table">
+                    <thead><tr><th>Región</th><th>2000</th><th>2025</th><th>Pérdida</th></tr></thead>
+                    <tbody id="manglaresBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIOS -->
+    <div class="do-panel" id="panel-rios">
+        <div class="do-panel-head">
+            <h3>Plásticos y ríos</h3>
+            <p>Los ocho ríos del dataset transportan juntos <span data-kpi="rios-total">—</span> de plástico al océano cada año, equivalentes a un <span data-kpi="rios-pct">—</span> de la descarga fluvial mundial estimada. El río Pasig, en Filipinas, aporta por sí solo más de un tercio del total.</p>
+        </div>
+        <div class="do-grid">
+            <div class="do-card">
+                <h4>Descarga estimada por río</h4>
+                <div class="do-card-sub">toneladas / año</div>
+                <canvas id="chartRios" height="230"></canvas>
+            </div>
+            <div class="do-card">
+                <h4>Detalle por río</h4>
+                <table class="do-table">
+                    <thead><tr><th>Río</th><th>Región</th><th>t/año</th><th>% global</th></tr></thead>
+                    <tbody id="riosBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="do-footer">
+    <span>Fuente de datos: <a href="assets/data/Ocean_Conservation_Dashboard.xlsx" download>Ocean_Conservation_Dashboard.xlsx</a> · Literary Universe, 2026.</span>
+    <span>Cifras de manglares, especies bajo presión y descarga fluvial calculadas a partir del propio dataset.</span>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="assets/dashboard-oceanico.js"></script>
+<script src="assets/site.js"></script>
+<script>
+    LiteraryUniverse.initChrome({ activeUrl: 'dashboard-oceanico.html', rootFreq: 98, chordRatios: [1, 1.5, 2, 2.5] });
+</script>
+<script src="assets/scroll-animations.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vida Marina · Literary Universe</title>
+<meta name="description" content="Vida Marina · Literary Universe: explora los océanos, sus especies y ecosistemas en una enciclopedia visual e interactiva.">
+<meta name="theme-color" content="#0077ff">
+<link rel="icon" type="image/png" href="star.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/vida-marina.css">
+<link rel="stylesheet" href="assets/vida-marina-fix.css">
+<style>
+    /* ============ INTEGRACIÓN CON EL UNIVERSO ============ */
+    #arrival-layer {
+        position: fixed; inset: 0; z-index: 99999;
+        background: radial-gradient(circle, #2e6fdb 0%, #001f3f 45%, #000 100%);
+        animation: lu-arrival 0.9s ease forwards;
+        pointer-events: none;
+    }
+    @keyframes lu-arrival {
+        0% { opacity: 1; transform: scale(1); }
+        60% { opacity: 1; transform: scale(1.5); }
+        100% { opacity: 0; transform: scale(2.2); }
+    }
+    .lu-back {
+        display: inline-flex !important; align-items: center; gap: 7px;
+        color: #2e6fdb !important;
+    }
+    .lu-universe-link {
+        display: inline-flex; align-items: center; gap: 6px;
+        text-decoration: none; color: #2e6fdb;
+        border: 1px solid #2e6fdb55; border-radius: 999px;
+        padding: 7px 16px; font-size: 10px; letter-spacing: 0.14em;
+        transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+        white-space: nowrap;
+    }
+    .lu-universe-link:hover { border-color: #2e6fdb; background: #2e6fdb1a; }
+
+/* ============ LECTURAS Y PREGUNTAS ============ */
+.lu-lecturas{position:relative;z-index:2;padding:96px 7vw 110px;background:#02131d;color:#e8fbff;font-family:"Montserrat",sans-serif;}
+.lu-lect-head-wrap{max-width:1200px;margin:0 auto 46px}
+.lu-kicker{font-size:10px;letter-spacing:4px;color:#6fc2ff;margin:0 0 16px;text-transform:uppercase}
+.lu-lect-title{font-family:"Montserrat",sans-serif;font-weight:600;font-size:clamp(32px,4.4vw,54px);line-height:1.08;margin:0 0 18px;color:#e8fbff}
+.lu-lect-title i,.lu-lect-title em{font-style:italic;color:#6fc2ff}
+.lu-lect-lead{font-size:16px;line-height:1.8;color:#9fb6c4;max-width:600px}
+.lu-lect-tabs{display:flex;flex-wrap:wrap;gap:10px;margin:0 auto 40px;max-width:1200px}
+.lu-lect-tab{cursor:pointer;border:1px solid #26475a;background:transparent;color:#9fb6c4;font:600 12px "Montserrat",sans-serif;letter-spacing:1px;padding:10px 18px;border-radius:999px;transition:.25s}
+.lu-lect-tab:hover{border-color:#6fc2ff;color:#e8fbff}
+.lu-lect-tab.active{background:#6fc2ff;border-color:#6fc2ff;color:#02131d}
+.lu-lect-panels{position:relative;max-width:1200px;margin:0 auto}
+.lu-lect-panel{display:none;border:1px solid #26475a;border-radius:14px;padding:34px clamp(24px,3.5vw,42px);background:#051c29}
+.lu-lect-panel.active{display:block}
+.lu-lect-head{display:flex;gap:20px;align-items:flex-start;margin-bottom:26px;border-bottom:1px solid #26475a;padding-bottom:22px}
+.lu-lect-num{font:600 30px "Montserrat",sans-serif;color:#6fc2ff;line-height:1}
+.lu-lect-head h4{font:600 22px "Montserrat",sans-serif;margin:0 0 6px;color:#e8fbff;line-height:1.25}
+.lu-lect-autor{font-size:12px;letter-spacing:1.5px;color:#9fb6c4;text-transform:uppercase}
+.lu-lang-toggle{display:flex;gap:8px;margin-bottom:22px}
+.lu-lang-btn{cursor:pointer;border:1px solid #26475a;background:transparent;color:#9fb6c4;font:600 10px "Montserrat",sans-serif;letter-spacing:1.5px;padding:7px 16px;border-radius:6px}
+.lu-lang-btn.active{background:#6fc2ff22;border-color:#6fc2ff;color:#6fc2ff}
+.lu-lect-text{display:none;color:#dff2f8;font-size:17px;line-height:1.9;max-width:700px}
+.lu-lect-text.active{display:block}
+.lu-lect-text h5{font:600 13px "Montserrat",sans-serif;letter-spacing:1.5px;text-transform:uppercase;color:#6fc2ff;margin:22px 0 10px}
+.lu-lect-text h5:first-child{margin-top:0}
+.lu-lect-text p{margin:0 0 14px}
+.lu-quiz{margin-top:34px;padding-top:30px;border-top:1px solid #26475a;margin-left:calc(-1 * clamp(24px,3.5vw,42px));margin-right:calc(-1 * clamp(24px,3.5vw,42px))}
+.lu-quiz-title{font:600 13px "Montserrat",sans-serif;letter-spacing:2px;text-transform:uppercase;color:#6fc2ff;margin:0 0 20px}
+.lu-q{margin-bottom:22px;padding-bottom:22px;border-bottom:1px dashed #26475a}
+.lu-q:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.lu-q-text{font:500 16px "Montserrat",sans-serif;color:#e8fbff;margin:0 0 12px;line-height:1.65;font-weight:600}
+.lu-q-opts{display:grid;gap:8px}
+.lu-q-opt{text-align:left;cursor:pointer;border:1px solid #26475a;background:#082738;color:#dff2f8;font:500 15px "Montserrat",sans-serif;padding:14px 16px;border-radius:8px;transition:.2s;line-height:1.6}
+.lu-q-opt:hover{border-color:#6fc2ff}
+.lu-q-opt.correct{border-color:#3fae7d;background:#3fae7d22;color:#e8fbff}
+.lu-q-opt.incorrect{border-color:#e05656;background:#e0565622;color:#e8fbff}
+.lu-q-opt[disabled]{cursor:default}
+.lu-q-feedback{font-size:12px;letter-spacing:.5px;margin:10px 0 0;min-height:16px;color:#6fc2ff}
+@media(max-width:760px){.lu-lecturas{padding:70px 6vw 80px}.lu-lect-panel{padding:24px 18px}.lu-quiz{margin-left:-18px;margin-right:-18px}.lu-lect-head{flex-direction:column;gap:6px}.lu-lect-text{font-size:15.5px;max-width:100%}.lu-q-text{font-size:15px}.lu-q-opt{font-size:14px;padding:12px 14px}.lu-lect-title{font-size:clamp(28px,7vw,40px)}}
+
+.media-video-wrap.kh-no-overlay:after{ display:none; }
+</style>
+<link rel="stylesheet" href="assets/experience-remaster.css">
+<link rel="stylesheet" href="assets/multimedia-experience.css">
+<link rel="stylesheet" href="assets/quiz-kahoot.css">
+<link rel="stylesheet" href="assets/scroll-animations.css">
+<link rel="stylesheet" href="assets/projector-readability.css">
+<link rel="stylesheet" href="assets/vida-marina-fix.css">
+</head>
+<body class="marine-remaster">
+
+<div id="arrival-layer"></div>
+
+<!--==================== FONDO ====================-->
+
+    <div class="paper-bg1"></div>
+
+    <div class="noise1"></div>
+
+    <div class="wave-bg1"></div>
+    <div class="ocean-wave1"></div>
+    <div class="ocean-wave2"></div>
+    <div class="ocean-wave3"></div>
+
+
+    <!-- TEXTO GIGANTE -->
+
+    <div class="ocean-text1">
+        OCEAN
+    </div>
+
+
+    <!-- CURSOR PERSONALIZADO -->
+
+    <div class="cursor1"></div>
+
+    <div class="cursor-dot1"></div>
+
+
+
+    <!--==================== HEADER ====================-->
+
+    <header class="HEADER1">
+
+
+        <nav class="navbar1">
+
+
+            <div class="logo1">
+
+                <span>
+                    OceanLife
+                </span>
+
+
+                <p>
+                    MARINE ENCYCLOPEDIA
+                </p>
+
+
+            </div>
+
+
+
+            <button class="menu-toggle1">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+
+
+            <ul class="nav-list1">
+
+                <li><a href="index.html" class="lu-back">&larr; Universo</a></li>
+
+
+
+                <li><a href="#inicio1">Inicio</a></li>
+
+                <li><a href="#oceano1">Océanos</a></li>
+
+                <li><a href="#especies1">Especies</a></li>
+
+                <li><a href="#lecturas">Lecturas</a></li>
+
+                <li><a href="#galeria1">Galería</a></li>
+
+                <li><a href="#contacto1">Contacto</a></li>
+
+
+            </ul>
+
+
+        </nav>
+
+
+    </header>
+
+
+
+
+    <!--==================== HERO ====================-->
+
+    <section class="hero1" id="inicio1">
+
+
+        <div class="hero-decoration-left1">
+
+            <span>
+                01
+            </span>
+
+        </div>
+
+
+
+        <div class="hero-content1 reveal1">
+            <h1 class="hero-title1">
+
+                Vida
+                <br>
+                marina
+
+            </h1>
+
+
+
+            <p class="hero-description1">
+
+                Explora el inmenso universo azul y descubre las especies,
+                ecosistemas y secretos que convierten al océano en el corazón
+                de nuestro planeta.
+
+            </p>
+
+
+
+            <div class="hero-buttons1">
+
+
+                <a href="#especies1" class="hero-button1">
+
+                    Explorar ahora
+
+                </a>
+
+
+                <a href="#galeria1" class="hero-button-secondary1">
+
+                    Ver galería
+
+                </a>
+
+
+            </div>
+
+
+
+
+            <div class="hero-info1">
+
+
+                <div>
+
+                    <h3>
+                        71%
+                    </h3>
+
+                    <span>
+                        Del planeta está cubierto por océanos.
+                    </span>
+
+
+                </div>
+
+
+
+                <div>
+
+                    <h3>
+                        8M+
+                    </h3>
+
+                    <span>
+                        Especies habitan los ecosistemas marinos.
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+        <div class="hero-image1 reveal1">
+
+
+            
+
+            <div class="hero-circle1"></div>
+
+
+            <div class="hero-card1">
+
+
+                <img src="https://images.unsplash.com/photo-1686430818776-78a93a1f4023?auto=format&fit=crop&w=1400&q=80" alt="Ballena">
+
+
+                <div class="hero-card-content1">
+
+
+                    <span>
+                        MAMÍFERO MARINO
+                    </span>
+
+
+                    <h2>
+                        Ballena Jorobada
+                    </h2>
+
+
+                    <p>
+                        Uno de los gigantes más impresionantes del océano,
+                        capaz de recorrer miles de kilómetros cada año.
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+        <div class="hero-scroll1">
+
+            <span>
+                SCROLL
+            </span>
+
+            <div class="line1"></div>
+
+        </div>
+
+
+
+    </section>
+
+
+
+
+
+    <!--==================== FRASE ====================-->
+
+    <section class="quote1">
+
+        <p>
+
+            "Cada ola guarda una historia y cada especie mantiene el equilibrio del océano."
+
+        </p>
+
+    </section>
+
+
+
+
+
+    <!--==================== EDITORIAL ====================-->
+
+    <section class="info-section1 reveal1" id="oceano1">
+
+
+        <div class="section-number1">
+
+            02
+
+        </div>
+
+
+
+        <div class="info-container1">
+
+
+            <div class="info-image1">
+
+
+                <img class="info-photo1" src="https://images.unsplash.com/photo-1548101675-9abe7a897745?auto=format&fit=crop&w=1400&q=80" alt="Océano">
+
+
+            </div>
+
+
+
+
+            <div class="info-content1">
+
+
+                <span class="section-tag1">
+
+                    EL OCÉANO
+
+                </span>
+
+
+
+                <h2 class="info-title1">
+
+                    El corazón azul
+                    <br>
+                    del planeta
+
+                </h2>
+
+
+
+                <p class="info-description1">
+
+                    Más del 70 % de la superficie terrestre está cubierta por agua.
+                    Los océanos producen gran parte del oxígeno que respiramos
+                    y regulan el clima global.
+
+                </p>
+
+
+
+                <p class="info-description1">
+
+                    En sus profundidades habitan millones de especies,
+                    muchas aún desconocidas para la ciencia.
+
+                </p>
+
+
+
+                <a href="#especies1" class="info-button1">
+
+                    Leer artículo
+
+                </a>
+
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+
+
+    <!--==================== ESTADÍSTICAS ====================-->
+
+    <section class="stats1 reveal1">
+
+
+        <div class="stat-box1">
+
+            <h2>
+                71%
+            </h2>
+
+            <span>
+                Superficie cubierta por océanos
+            </span>
+
+        </div>
+
+
+
+        <div class="stat-box1">
+
+            <h2>
+                3.5B
+            </h2>
+
+            <span>
+                Años de evolución marina
+            </span>
+
+        </div>
+
+
+
+        <div class="stat-box1">
+
+            <h2>
+                230K+
+            </h2>
+
+            <span>
+                Especies identificadas
+            </span>
+
+        </div>
+
+
+
+        <div class="stat-box1">
+
+            <h2>
+                80%
+            </h2>
+
+            <span>
+                Océano sin explorar
+            </span>
+
+        </div>
+
+
+    </section>
+    <!--==================== MOSAICO ====================-->
+
+    <section class="cards-section1 reveal1" id="especies1">
+
+
+        <div class="section-number1">
+
+            03
+
+        </div>
+
+
+
+        <div class="section-header1">
+
+
+            <span>
+
+                EXPLORA
+
+            </span>
+
+
+
+            <h2>
+
+                Habitantes
+                <br>
+                del océano
+
+            </h2>
+
+
+
+            <p>
+
+                Descubre algunas de las especies más sorprendentes
+                que viven bajo la superficie del mar.
+
+            </p>
+
+
+        </div>
+
+
+
+
+
+        <div class="cards-grid1">
+
+
+
+            <article class="card1 mosaic-main1">
+
+
+                <img src="https://images.unsplash.com/photo-1686430818776-78a93a1f4023?auto=format&fit=crop&w=1200&q=80" alt="Ballena">
+
+
+                <div class="card-overlay1">
+
+
+                    <span>
+
+                        MAMÍFERO
+
+                    </span>
+
+
+                    <h3>
+
+                        Ballena Jorobada
+
+                    </h3>
+
+
+                    <p>
+
+                        Uno de los gigantes del océano.
+
+                    </p>
+
+
+                </div>
+
+
+            </article>
+
+
+
+
+
+            <article class="card1 mosaic-left1">
+
+
+                <img src="https://images.unsplash.com/photo-1708649290066-5f617003b93f?auto=format&fit=crop&w=1200&q=80" alt="Corales">
+
+
+                <div class="card-overlay1">
+
+
+                    <span>
+
+                        ECOSISTEMA
+
+                    </span>
+
+
+                    <h3>
+
+                        Arrecifes
+
+                    </h3>
+
+
+                </div>
+
+
+            </article>
+
+
+
+
+
+            <article class="card1 mosaic-right1">
+
+
+                <img src="https://images.unsplash.com/photo-1696015675484-06b58159fc2d?auto=format&fit=crop&w=1200&q=80" alt="Tortuga">
+
+
+                <div class="card-overlay1">
+
+
+                    <span>
+
+                        ESPECIE
+
+                    </span>
+
+
+                    <h3>
+
+                        Tortuga Verde
+
+                    </h3>
+
+
+                </div>
+
+
+            </article>
+
+
+
+
+
+            <article class="card1 mosaic-wide1">
+
+
+                <img src="https://images.unsplash.com/photo-1726650683894-ce56dd72bdfd?auto=format&fit=crop&w=1200&q=80" alt="Medusa">
+
+
+                <div class="card-overlay1">
+
+
+                    <span>
+
+                        INVERTEBRADO
+
+                    </span>
+
+
+                    <h3>
+
+                        Medusas
+
+                    </h3>
+
+
+                </div>
+
+
+            </article>
+
+
+
+
+
+            <article class="card1 mosaic-small1">
+
+
+                <img src="https://images.unsplash.com/photo-1686080186823-f61c47ded839?auto=format&fit=crop&w=1200&q=80" alt="Delfín">
+
+
+                <div class="card-overlay1">
+
+
+                    <span>
+
+                        MAMÍFERO
+
+                    </span>
+
+
+                    <h3>
+
+                        Delfines
+
+                    </h3>
+
+
+                </div>
+
+
+            </article>
+
+
+
+
+
+            <article class="card1 mosaic-extra1">
+
+
+                <img src="https://images.unsplash.com/photo-1637308116533-08501939a944?auto=format&fit=crop&w=1200&q=80" alt="Pulpo">
+
+
+                <div class="card-overlay1">
+
+
+                    <span>
+
+                        MOLUSCO
+
+                    </span>
+
+
+                    <h3>
+
+                        Pulpos
+
+                    </h3>
+
+
+                </div>
+
+
+            </article>
+
+
+        </div>
+
+
+    </section>
+
+
+
+
+
+    <!--==================== FRASE FINAL ====================-->
+
+    <section class="quote-final1">
+
+
+        <h2>
+
+            "Proteger el océano es proteger el futuro de la humanidad."
+
+        </h2>
+
+
+    </section>
+
+
+
+
+
+
+    <!--==================== GALERÍA ====================-->
+
+    <section class="gallery1 reveal1" id="galeria1">
+
+
+        <div class="section-number1">
+
+            04
+
+        </div>
+
+
+
+        <div class="section-header1">
+
+
+            <span>
+
+                GALERÍA
+
+            </span>
+
+
+
+            <h2>
+
+                Belleza
+                <br>
+                Marina
+
+            </h2>
+
+
+
+            <p>
+
+                Un recorrido visual por algunos de los paisajes
+                y especies más impresionantes del océano.
+
+            </p>
+
+
+        </div>
+
+
+
+
+
+        <div class="gallery-grid1">
+
+
+
+            <div class="gallery-item1 gallery-large1">
+
+
+                <img src="https://images.unsplash.com/photo-1708649290066-5f617003b93f?auto=format&fit=crop&w=1200&q=80" alt="Arrecife">
+
+
+            </div>
+
+
+
+
+            <div class="gallery-item1">
+
+
+                <img src="https://images.unsplash.com/photo-1580193387439-ad5be7bf74d8?auto=format&fit=crop&w=1200&q=80" alt="Pez Tropical">
+
+
+            </div>
+
+
+
+
+            <div class="gallery-item1">
+
+
+                <img src="https://images.unsplash.com/photo-1696015675484-06b58159fc2d?auto=format&fit=crop&w=1200&q=80" alt="Tortuga">
+
+
+            </div>
+
+
+
+
+            <div class="gallery-item1 gallery-wide1">
+
+
+                <img src="https://images.unsplash.com/photo-1686430818776-78a93a1f4023?auto=format&fit=crop&w=1200&q=80" alt="Ballena">
+
+
+            </div>
+
+
+
+
+            <div class="gallery-item1">
+
+
+                <img src="https://images.unsplash.com/photo-1686080186823-f61c47ded839?auto=format&fit=crop&w=1200&q=80" alt="Delfín">
+
+
+            </div>
+
+
+
+
+            <div class="gallery-item1">
+
+
+                <img src="https://images.unsplash.com/photo-1637308116533-08501939a944?auto=format&fit=crop&w=1200&q=80" alt="Pulpo">
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </section>
+
+
+
+
+
+
+    <!--==================== BANNER ====================-->
+
+    <section class="banner1 reveal1">
+
+
+        <div class="banner-content1">
+
+
+            <span>
+
+                OCEANLIFE
+
+            </span>
+
+
+
+            <h2>
+
+                El océano no es un recurso infinito.
+                <br>
+                Es un tesoro que debemos proteger.
+
+            </h2>
+
+
+
+
+            <a href="#multimedia-vida-marina" class="banner-button1">
+
+                Descubre cómo ayudar
+
+            </a>
+
+
+
+        </div>
+
+
+    </section>
+
+
+
+
+
+
+
+    
+<section id="multimedia-vida-marina" class="media-zone multimedia-section" style="--media-accent:#24d7ff">
+  <div class="media-head">
+    <div><span class="media-badge" style="position:static;display:inline-block;margin-bottom:10px">EXPERIENCIA INTERACTIVA</span><h2>Ocean Explorer</h2></div>
+    <p>Desciende por capas del océano, descubre especies y juega mientras exploras.</p>
+  </div>
+  <div class="media-grid" style="grid-template-columns:1fr">
+    <article class="media-card wide">
+      <div class="media-video-wrap kh-no-overlay">
+        <video class="media-video" controls playsinline preload="metadata">
+          <source src="assets/media/vida-marina-pablo.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="media-body">
+        <h3>🎬 El impacto humano en el océano</h3>
+        <p>Un video corto sobre cómo la sobrepesca y el consumo desmedido afectan la vida marina.</p>
+      </div>
+    </article>
+  </div>
+  <div class="media-card" style="margin-top:18px">
+    <div class="game-shell">
+      <span class="media-badge" style="position:static;display:inline-block;margin-bottom:10px">MINIJUEGO</span>
+      <h3>🎮 OCEAN EXPLORER — reto interactivo</h3>
+      <div id="game-vida"></div>
+    </div>
+  </div>
+
+</section>
+
+<section id="lecturas" class="lu-lecturas">
+  <div class="lu-lect-head-wrap">
+    <p class="lu-kicker">BIBLIOTECA MARINA / TEXTOS</p>
+    <h2 class="lu-lect-title">Lecturas del<br><i>océano.</i></h2>
+    <p class="lu-lect-lead">Cinco obras clásicas sobre el mundo marino, en español e inglés, con preguntas de comprensión.</p>
+  </div>
+  <div class="lu-lect-tabs" role="tablist">
+    <button type="button" class="lu-lect-tab active" data-target="mar-1">01</button>
+<button type="button" class="lu-lect-tab" data-target="mar-2">02</button>
+<button type="button" class="lu-lect-tab" data-target="mar-3">03</button>
+<button type="button" class="lu-lect-tab" data-target="mar-4">04</button>
+<button type="button" class="lu-lect-tab" data-target="mar-5">05</button>
+  </div>
+  <div class="lu-lect-panels">
+    <article class="lu-lect-panel active" id="mar-1" role="tabpanel" data-lect="mar-1">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">01</span>
+    <div>
+      <h4>Veinte mil leguas de viaje submarino</h4>
+      <span class="lu-lect-autor">Autor: Julio Verne (1870)</span>
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><p>Esta novela es uno de los clásicos más importantes de la literatura de aventuras y ciencia ficción. La historia comienza cuando varios barcos informan sobre la presencia de un extraño monstruo marino que ataca embarcaciones en distintos océanos. Para investigar el misterio, el profesor Pierre Aronnax, un reconocido científico francés, se embarca junto con su ayudante Conseil y el arponero canadiense Ned Land.</p>
+<p>Pronto descubren que el supuesto monstruo es en realidad el Nautilus, un submarino muy avanzado para su época, dirigido por el enigmático capitán Nemo. Durante su viaje recorren los océanos Atlántico, Pacífico, Índico y el mar Mediterráneo, explorando arrecifes de coral, bosques submarinos, volcanes sumergidos y restos de antiguos naufragios.</p>
+<p>La novela describe con gran detalle la flora y la fauna marina, incluyendo tiburones, ballenas, calamares gigantes, peces tropicales y muchas otras especies. También presenta reflexiones sobre la conservación del océano, la ciencia y la relación entre el ser humano y la naturaleza.</p></div>
+  <div class="lu-lect-text" data-lang="en"><p>This novel is one of the most important classics of adventure and science fiction literature. The story begins when several ships report the presence of a mysterious sea monster attacking vessels in different oceans. To investigate the mystery, Professor Pierre Aronnax, a famous French scientist, embarks on an expedition with his assistant Conseil and the Canadian harpooner Ned Land.</p>
+<p>They soon discover that the supposed sea monster is actually the Nautilus, a highly advanced submarine commanded by the mysterious Captain Nemo. During their journey, they travel across the Atlantic, Pacific, Indian, and Mediterranean seas, exploring coral reefs, underwater forests, submerged volcanoes, and ancient shipwrecks.</p>
+<p>The novel describes marine plants and animals in great detail, including sharks, whales, giant squids, tropical fish, and many other species. It also presents reflections on ocean conservation, scientific discovery, and the relationship between humans and nature.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Qué descubren finalmente el profesor Aronnax y sus compañeros sobre el supuesto monstruo marino?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Que era una enorme ballena blanca.</button><button type="button" class="lu-q-opt" data-opt="B">B. Que era el submarino Nautilus, dirigido por el capitán Nemo.</button><button type="button" class="lu-q-opt" data-opt="C">C. Que era un volcán submarino.</button><button type="button" class="lu-q-opt" data-opt="D">D. Que era un grupo de tiburones.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. ¿Cuál es uno de los principales mensajes que transmite la novela?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. La importancia de conquistar todos los océanos.</button><button type="button" class="lu-q-opt" data-opt="B">B. La relación entre la ciencia, la conservación del océano y el respeto por la naturaleza.</button><button type="button" class="lu-q-opt" data-opt="C">C. La superioridad de la navegación militar.</button><button type="button" class="lu-q-opt" data-opt="D">D. La necesidad de explotar los recursos marinos.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) Who is the commander of the Nautilus?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Professor Aronnax.</button><button type="button" class="lu-q-opt" data-opt="B">B. Captain Nemo.</button><button type="button" class="lu-q-opt" data-opt="C">C. Ned Land.</button><button type="button" class="lu-q-opt" data-opt="D">D. Conseil.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">4. ¿Cómo se llama el submarino comandado por el capitán Nemo?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. El Nautilus</button><button type="button" class="lu-q-opt" data-opt="B">B. El Pequod</button><button type="button" class="lu-q-opt" data-opt="C">C. El Beagle</button><button type="button" class="lu-q-opt" data-opt="D">D. El Titán</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">5. ¿Qué géneros literarios combina principalmente esta novela?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Aventura y ciencia ficción</button><button type="button" class="lu-q-opt" data-opt="B">B. Poesía romántica</button><button type="button" class="lu-q-opt" data-opt="C">C. Comedia satírica</button><button type="button" class="lu-q-opt" data-opt="D">D. Terror gótico</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+<article class="lu-lect-panel" id="mar-2" role="tabpanel" data-lect="mar-2">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">02</span>
+    <div>
+      <h4>El mundo silencioso</h4>
+      <span class="lu-lect-autor">Autor: Jacques-Yves Cousteau (1953)</span>
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><p>Este libro fue escrito por el famoso explorador marino Jacques Cousteau, considerado uno de los padres del buceo moderno. En él relata sus primeras expediciones submarinas y explica cómo desarrolló, junto con Émile Gagnan, el regulador de aire que permitió a los buzos permanecer mucho más tiempo bajo el agua.</p>
+<p>A través de sus experiencias, Cousteau describe la extraordinaria diversidad de la vida marina. Habla sobre arrecifes de coral, peces de colores, tiburones, pulpos, tortugas, delfines y ballenas. También narra descubrimientos de barcos hundidos y paisajes submarinos nunca antes vistos por la mayoría de las personas.</p>
+<p>El libro combina aventura, ciencia y observación, mostrando la importancia de proteger los océanos frente a la contaminación y la sobreexplotación.</p></div>
+  <div class="lu-lect-text" data-lang="en"><p>This book was written by the famous marine explorer Jacques Cousteau, who is considered one of the pioneers of modern scuba diving. In it, he recounts his first underwater expeditions and explains how he developed, together with Émile Gagnan, the scuba regulator that allowed divers to stay underwater for much longer periods.</p>
+<p>Through his experiences, Cousteau describes the extraordinary diversity of marine life. He writes about coral reefs, colorful fish, sharks, octopuses, turtles, dolphins, and whales. He also tells the story of discovering sunken ships and underwater landscapes that had never been seen by most people.</p>
+<p>The book combines adventure, science, and observation while emphasizing the importance of protecting the oceans from pollution and overexploitation.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Cuál fue el mayor aporte de Jacques Cousteau?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Inventar el submarino.</button><button type="button" class="lu-q-opt" data-opt="B">B. Revolucionar la exploración submarina mediante nuevas tecnologías de buceo.</button><button type="button" class="lu-q-opt" data-opt="C">C. Descubrir el océano Pacífico.</button><button type="button" class="lu-q-opt" data-opt="D">D. Crear la oceanografía.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. ¿Qué promueve principalmente el libro?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. La explotación de los océanos.</button><button type="button" class="lu-q-opt" data-opt="B">B. La conservación y el estudio científico del mundo marino.</button><button type="button" class="lu-q-opt" data-opt="C">C. La pesca industrial.</button><button type="button" class="lu-q-opt" data-opt="D">D. La navegación militar.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) What invention allowed divers to stay underwater longer?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. The submarine.</button><button type="button" class="lu-q-opt" data-opt="B">B. The scuba regulator.</button><button type="button" class="lu-q-opt" data-opt="C">C. The compass.</button><button type="button" class="lu-q-opt" data-opt="D">D. The telescope.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">4. ¿Qué invento se asocia principalmente a Jacques Cousteau?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. El equipo de buceo autónomo moderno</button><button type="button" class="lu-q-opt" data-opt="B">B. El submarino nuclear</button><button type="button" class="lu-q-opt" data-opt="C">C. El radar</button><button type="button" class="lu-q-opt" data-opt="D">D. El telescopio</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">5. ¿Qué tipo de obra es "El mundo silencioso"?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Un relato de sus expediciones submarinas y descubrimientos científicos</button><button type="button" class="lu-q-opt" data-opt="B">B. Una novela de ciencia ficción</button><button type="button" class="lu-q-opt" data-opt="C">C. Un poema épico</button><button type="button" class="lu-q-opt" data-opt="D">D. Un manual de cocina</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+<article class="lu-lect-panel" id="mar-3" role="tabpanel" data-lect="mar-3">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">03</span>
+    <div>
+      <h4>La vida en el océano. Secretos y curiosidades del mundo marino</h4>
+      <span class="lu-lect-autor">Autor: Julia Rothman</span>
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><p>Este libro presenta información científica de forma sencilla e ilustrada. Explica cómo se formaron los océanos hace millones de años y cómo estos cubren aproximadamente el 71 % de la superficie terrestre.</p>
+<p>Describe los diferentes ecosistemas marinos, desde las playas y manglares hasta los arrecifes de coral y las profundidades abisales. También explica cómo viven animales como medusas, caballitos de mar, tiburones, rayas, ballenas, focas y pingüinos.</p>
+<p>Además, dedica varios capítulos a las corrientes oceánicas, el ciclo del agua, la contaminación por plásticos, el cambio climático y las acciones que las personas pueden realizar para conservar los ecosistemas marinos.</p></div>
+  <div class="lu-lect-text" data-lang="en"><p>This book presents scientific information in a simple and beautifully illustrated way. It explains how the oceans were formed millions of years ago and how they now cover about 71% of the Earth's surface.</p>
+<p>It describes different marine ecosystems, from beaches and mangrove forests to coral reefs and the deep ocean. The book also explains how animals such as jellyfish, seahorses, sharks, rays, whales, seals, and penguins live and adapt to their environments.</p>
+<p>In addition, several chapters focus on ocean currents, the water cycle, plastic pollution, climate change, and the actions people can take to help protect marine ecosystems.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Por qué los arrecifes de coral son fundamentales?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Porque producen petróleo.</button><button type="button" class="lu-q-opt" data-opt="B">B. Porque concentran una enorme biodiversidad.</button><button type="button" class="lu-q-opt" data-opt="C">C. Porque aumentan la salinidad.</button><button type="button" class="lu-q-opt" data-opt="D">D. Porque eliminan las corrientes.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. ¿Qué problema ambiental destaca el libro?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. La desertificación.</button><button type="button" class="lu-q-opt" data-opt="B">B. La contaminación por plásticos y el cambio climático.</button><button type="button" class="lu-q-opt" data-opt="C">C. La lluvia ácida únicamente.</button><button type="button" class="lu-q-opt" data-opt="D">D. La contaminación espacial.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) Approximately what percentage of Earth's surface is covered by oceans?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. 50%.</button><button type="button" class="lu-q-opt" data-opt="B">B. 71%.</button><button type="button" class="lu-q-opt" data-opt="C">C. 90%.</button><button type="button" class="lu-q-opt" data-opt="D">D. 30%.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">4. ¿Qué papel cumplen los arrecifes de coral en los ecosistemas marinos?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Sirven de refugio y alimento para gran cantidad de especies marinas</button><button type="button" class="lu-q-opt" data-opt="B">B. No tienen ninguna función ecológica</button><button type="button" class="lu-q-opt" data-opt="C">C. Solo sirven de decoración</button><button type="button" class="lu-q-opt" data-opt="D">D. Aceleran la contaminación del agua</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">5. ¿Qué actividad humana representa una amenaza para los océanos según el libro?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. La sobrepesca y la contaminación</button><button type="button" class="lu-q-opt" data-opt="B">B. La observación responsable de la fauna marina</button><button type="button" class="lu-q-opt" data-opt="C">C. La investigación científica</button><button type="button" class="lu-q-opt" data-opt="D">D. La protección de áreas marinas</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+<article class="lu-lect-panel" id="mar-4" role="tabpanel" data-lect="mar-4">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">04</span>
+    <div>
+      <h4>La isla de los delfines azules</h4>
+      <span class="lu-lect-autor">Autor: Scott O'Dell (1960)</span>
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><p>Esta novela está inspirada en una historia real ocurrida en una isla frente a la costa de California. La protagonista, Karana, queda completamente sola cuando su tribu abandona la isla sin poder llevarla consigo.</p>
+<p>Durante años aprende a sobrevivir gracias a los recursos que le ofrece el mar. Pesca, construye refugios, observa el comportamiento de los delfines, las focas, las aves marinas y las nutrias, y desarrolla un profundo respeto por la naturaleza.</p>
+<p>La obra destaca la importancia del equilibrio ecológico y muestra cómo el océano puede ser tanto una fuente de alimento como un espacio lleno de belleza y desafíos.</p></div>
+  <div class="lu-lect-text" data-lang="en"><p>This novel is based on a true story that took place on an island off the coast of California. The main character, Karana, is accidentally left alone when her tribe leaves the island without her.</p>
+<p>For many years, she learns to survive using the resources provided by the sea. She fishes, builds shelters, observes dolphins, seals, seabirds, and sea otters, and develops a deep respect for nature.</p>
+<p>The novel highlights the importance of ecological balance and shows how the ocean can be both a source of food and a place full of beauty and challenges.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿De qué depende principalmente la supervivencia de Karana?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. La tecnología.</button><button type="button" class="lu-q-opt" data-opt="B">B. Su conocimiento del entorno natural.</button><button type="button" class="lu-q-opt" data-opt="C">C. La ayuda militar.</button><button type="button" class="lu-q-opt" data-opt="D">D. La suerte.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. ¿Cuál es el mensaje principal del libro?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. La naturaleza debe ser dominada.</button><button type="button" class="lu-q-opt" data-opt="B">B. El respeto y la adaptación al medio ambiente permiten sobrevivir.</button><button type="button" class="lu-q-opt" data-opt="C">C. El aislamiento destruye toda esperanza.</button><button type="button" class="lu-q-opt" data-opt="D">D. La riqueza garantiza la supervivencia.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) What helps Karana survive on the island?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Modern technology.</button><button type="button" class="lu-q-opt" data-opt="B">B. The natural resources of the island and the sea.</button><button type="button" class="lu-q-opt" data-opt="C">C. Help from other tribes.</button><button type="button" class="lu-q-opt" data-opt="D">D. A large boat.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">4. ¿En qué se basa la historia de esta novela?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. En hechos reales ocurridos en una isla frente a la costa de California</button><button type="button" class="lu-q-opt" data-opt="B">B. En un mito griego</button><button type="button" class="lu-q-opt" data-opt="C">C. En una leyenda medieval europea</button><button type="button" class="lu-q-opt" data-opt="D">D. En una historia completamente inventada sin base real</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">5. ¿Qué habilidades debe desarrollar Karana para sobrevivir sola?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Cazar, construir refugio y aprovechar los recursos naturales de la isla</button><button type="button" class="lu-q-opt" data-opt="B">B. Ninguna, sobrevive sin esfuerzo</button><button type="button" class="lu-q-opt" data-opt="C">C. Solo esperar a ser rescatada sin actuar</button><button type="button" class="lu-q-opt" data-opt="D">D. Depender de otras personas en la isla</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+<article class="lu-lect-panel" id="mar-5" role="tabpanel" data-lect="mar-5">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">05</span>
+    <div>
+      <h4>Moby-Dick</h4>
+      <span class="lu-lect-autor">Autor: Herman Melville (1851)</span>
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><p>Esta famosa novela narra la historia del marinero Ismael, quien se embarca en el barco ballenero Pequod. Su capitán, Ahab, está obsesionado con encontrar y capturar a Moby Dick, una enorme ballena blanca que años atrás le arrancó una pierna.</p>
+<p>Mientras avanza la travesía, el lector conoce cómo era la vida de los marineros del siglo XIX, las técnicas de navegación y la caza de ballenas. El libro contiene extensas descripciones sobre distintas especies marinas, las características de los océanos y la importancia de las ballenas dentro del ecosistema.</p>
+<p>Además de ser una novela de aventuras, reflexiona sobre la ambición humana, el respeto por la naturaleza y las consecuencias de intentar dominarla.</p></div>
+  <div class="lu-lect-text" data-lang="en"><p>This famous novel tells the story of Ishmael, a sailor who joins the whaling ship Pequod. The ship's captain, Ahab, is obsessed with finding and capturing Moby Dick, the enormous white whale that had torn off one of his legs years before.</p>
+<p>As the voyage continues, readers learn about the lives of nineteenth-century sailors, navigation techniques, and the practice of whale hunting. The book contains detailed descriptions of different marine species, the characteristics of the oceans, and the important role whales play in the marine ecosystem.</p>
+<p>Besides being an adventure novel, Moby-Dick explores themes such as human ambition, respect for nature, and the consequences of trying to dominate it.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Qué simboliza principalmente la obsesión del capitán Ahab por capturar a Moby Dick?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. El deseo de expandir el comercio marítimo.</button><button type="button" class="lu-q-opt" data-opt="B">B. La lucha entre el ser humano y las fuerzas de la naturaleza, impulsada por la obsesión y la venganza.</button><button type="button" class="lu-q-opt" data-opt="C">C. La importancia de la navegación comercial.</button><button type="button" class="lu-q-opt" data-opt="D">D. La necesidad de proteger a las ballenas.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. Además de ser una novela de aventuras, Moby-Dick se caracteriza por:</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Presentar únicamente historias de piratas.</button><button type="button" class="lu-q-opt" data-opt="B">B. Incluir reflexiones sobre la naturaleza, la condición humana y descripciones detalladas de las ballenas y la vida en el océano.</button><button type="button" class="lu-q-opt" data-opt="C">C. Explicar exclusivamente técnicas de pesca.</button><button type="button" class="lu-q-opt" data-opt="D">D. Narrar únicamente acontecimientos históricos reales.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) What animal is Captain Ahab obsessed with hunting?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. A giant shark.</button><button type="button" class="lu-q-opt" data-opt="B">B. A white whale named Moby Dick.</button><button type="button" class="lu-q-opt" data-opt="C">C. A giant squid.</button><button type="button" class="lu-q-opt" data-opt="D">D. A dolphin.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">4. ¿Quién narra la historia de Moby-Dick?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Ismael</button><button type="button" class="lu-q-opt" data-opt="B">B. El capitán Ahab</button><button type="button" class="lu-q-opt" data-opt="C">C. Moby Dick</button><button type="button" class="lu-q-opt" data-opt="D">D. Un narrador ajeno a la tripulación</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">5. ¿Cómo se llama el barco ballenero en el que se embarca Ismael?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. El Pequod</button><button type="button" class="lu-q-opt" data-opt="B">B. El Nautilus</button><button type="button" class="lu-q-opt" data-opt="C">C. El Beagle</button><button type="button" class="lu-q-opt" data-opt="D">D. El Endurance</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+  </div>
+</section>
+
+<!--==================== FOOTER ====================-->
+
+    <footer class="footer1 reveal1" id="contacto1">
+
+
+        <div class="footer-top1">
+
+
+
+
+            <div class="footer-brand1">
+
+
+                <h2>
+
+                    OceanLife
+
+                </h2>
+
+
+
+                <p>
+
+                    Descubriendo el océano,
+                    <br>
+                    inspirando su conservación.
+
+                </p>
+
+
+            </div>
+
+
+
+
+
+
+            <div class="footer-about1">
+
+                <h3>Cuida el océano</h3>
+
+                <p>El 71&nbsp;% de nuestro planeta es agua. Reducir el plástico, apoyar la pesca responsable y compartir lo que aprendes aquí son gestos que marcan la diferencia.</p>
+
+                <a class="lu-universe-link" href="index.html">&#10022; VOLVER AL UNIVERSO</a>
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+        <div class="footer-line1"></div>
+
+
+
+
+
+        <div class="footer-bottom1">
+
+
+            <span>
+
+                © 2026 OceanLife · Todos los derechos reservados.
+
+            </span>
+
+
+
+            <span>
+
+                Explore · Protect · Inspire
+
+            </span>
+
+
+        </div>
+
+
+
+    </footer>
+
+
+
+
+
+
+<script src="assets/vida-marina.js"></script>
+<script>
+    const luArrival = document.getElementById('arrival-layer');
+    if (luArrival) luArrival.addEventListener('animationend', () => luArrival.remove());
+</script>
+<script src="assets/site.js"></script>
+<script>
+    LiteraryUniverse.initChrome({ activeUrl: 'vida-marina.html', rootFreq: 90, chordRatios: [1, 1.5, 2, 2.5] });
+</script>
+
+<script>
+
+(function(){
+  var section = document.getElementById('lecturas');
+  if(!section) return;
+  var tabs = section.querySelectorAll('.lu-lect-tab');
+  var panels = section.querySelectorAll('.lu-lect-panel');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.classList.remove('active'); });
+      panels.forEach(function(p){ p.classList.remove('active'); });
+      tab.classList.add('active');
+      var target = document.getElementById(tab.dataset.target);
+      if(target) target.classList.add('active');
+    });
+  });
+  section.querySelectorAll('.lu-lang-toggle').forEach(function(toggle){
+    var panel = toggle.closest('.lu-lect-panel');
+    var btns = toggle.querySelectorAll('.lu-lang-btn');
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        btns.forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        panel.querySelectorAll('.lu-lect-text').forEach(function(t){
+          t.classList.toggle('active', t.dataset.lang === btn.dataset.lang);
+        });
+      });
+    });
+  });
+  // Preguntas: manejadas por assets/quiz-kahoot.js (orden de respuestas aleatorio)
+})();
+
+</script>
+
+<script src="assets/vida-marina-remaster.js"></script>
+<script src="assets/vida-marina-experience.js"></script>
+<script src="assets/vida-marina-mini-game.js"></script>
+<script src="assets/multimedia-interactions.js"></script>
+<script src="assets/quiz-kahoot.js"></script>
+<script src="assets/scroll-animations.js" defer></script>
+</body>
+</html>

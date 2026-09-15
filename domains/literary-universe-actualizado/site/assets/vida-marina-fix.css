@@ -1,0 +1,66 @@
+/* =====================================================================
+   CORRECCIONES ESPECÍFICAS — VIDA MARINA / OCEANLIFE
+   Se carga después de vida-marina.css y projector-readability.css.
+===================================================================== */
+
+/* 1) Quitar el efecto de brillo/resplandor sobre la imagen principal:
+      solo debe quedar la fotografía, sin el halo encima. */
+.hero-image1::after{
+    display: none !important;
+    content: none !important;
+}
+
+/* 2) El menú deja de ponerse blanco al hacer scroll: mantiene el mismo
+      azul oscuro translúcido que tiene en reposo. */
+.HEADER1.scrolled1 .navbar1,
+body.marine-remaster .HEADER1.scrolled1 .navbar1{
+    background: rgba(1,14,26,.82) !important;
+    border-color: rgba(121,243,229,.2) !important;
+}
+
+/* 3) Colores de texto pasados a tonos azules legibles sobre fondo
+      oscuro (antes eran grises pensados para fondo claro). */
+body.marine-remaster .quote-final1 h2{
+    color:#dffcff !important;
+    text-shadow: 0 0 26px rgba(57,217,255,.18);
+}
+body.marine-remaster .hero-scroll1 span{ color:#9bb9c8 !important; }
+body.marine-remaster .line1{ background:#3a6b82 !important; }
+
+/* 4) Nuevo footer: mensaje de marca en vez del menú de anclas repetido */
+.footer-about1{
+    max-width: 420px;
+}
+.footer-about1 h3{
+    font-family:'Montserrat',sans-serif;
+    font-size: 26px;
+    margin-bottom: 12px;
+    color:#26475a;
+}
+body.marine-remaster .footer-about1 h3{ color:#dffcff; }
+.footer-about1 p{
+    color:#666;
+    line-height:1.8;
+    margin-bottom:16px;
+    font-size:16px;
+}
+body.marine-remaster .footer-about1 p{ color:#a9c4d0; }
+.footer-about1 .lu-universe-link{
+    display:inline-block;
+    padding:12px 22px;
+    border-radius:999px;
+    border:1px solid rgba(121,243,239,.4);
+    text-decoration:none;
+    font-weight:600;
+    letter-spacing:1px;
+    font-size:13px;
+    color:#2d5b73;
+    transition:.3s;
+}
+body.marine-remaster .footer-about1 .lu-universe-link{
+    color:#dffcff;
+    border-color: rgba(121,243,239,.35);
+}
+.footer-about1 .lu-universe-link:hover{
+    background: rgba(121,243,239,.12);
+}

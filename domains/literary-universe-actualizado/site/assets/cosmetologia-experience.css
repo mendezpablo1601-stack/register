@@ -1,0 +1,6 @@
+
+/* ===== COSMETOLOGÍA · BEAUTY LAB ===== */
+.beauty-aura{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 80% 18%,rgba(22,214,160,.16),transparent 28%),radial-gradient(circle at 15% 80%,rgba(70,255,190,.09),transparent 35%)}
+.beauty-orb{position:fixed;right:30px;top:30px;width:34px;height:34px;border-radius:50%;border:1px solid #16d6a077;z-index:9997;box-shadow:0 0 30px #16d6a044;animation:beautyPulse 2.8s infinite}
+@keyframes beautyPulse{50%{transform:scale(1.22);box-shadow:0 0 50px #16d6a088}}
+.beauty-frame{transition:.55s}.beauty-frame:hover{transform:translateY(-5px);filter:saturate(1.08)}

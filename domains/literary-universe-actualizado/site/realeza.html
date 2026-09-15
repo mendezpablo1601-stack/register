@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="theme-color" content="#6f3fa8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Realeza · Literary Universe</title>
+<meta name="description" content="Realeza · Literary Universe: AURELIA, un recorrido visual por castillos, dinastías, símbolos y el legado de las cortes europeas.">
+<link rel="icon" type="image/png" href="star.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/realeza.css">
+<link rel="stylesheet" href="assets/experience-system.css">
+<link rel="stylesheet" href="assets/realeza-experience.css">
+<style>
+    /* ============ INTEGRACIÓN CON EL UNIVERSO ============ */
+    #arrival-layer {
+        position: fixed; inset: 0; z-index: 99999;
+        background: radial-gradient(circle, #8e4fb0 0%, #d4af37 45%, #000 100%);
+        animation: lu-arrival 0.9s ease forwards;
+        pointer-events: none;
+    }
+    @keyframes lu-arrival {
+        0% { opacity: 1; transform: scale(1); }
+        60% { opacity: 1; transform: scale(1.5); }
+        100% { opacity: 0; transform: scale(2.2); }
+    }
+    .lu-back {
+        display: inline-flex !important; align-items: center; gap: 7px;
+        color: #8e4fb0 !important;
+    }
+    .lu-universe-link {
+        display: inline-flex; align-items: center; gap: 6px;
+        text-decoration: none; color: #8e4fb0;
+        border: 1px solid #8e4fb055; border-radius: 999px;
+        padding: 7px 16px; font-size: 10px; letter-spacing: 0.14em;
+        transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+        white-space: nowrap;
+    }
+    .lu-universe-link:hover { border-color: #8e4fb0; background: #8e4fb01a; }
+
+/* ============ LECTURAS Y PREGUNTAS ============ */
+.lu-lecturas{position:relative;z-index:2;padding:96px 7vw 110px;background:#0d0c0b;color:#eee8da;font-family:Montserrat,sans-serif;}
+.lu-lect-head-wrap{max-width:1200px;margin:0 auto 46px}
+.lu-kicker{font-size:10px;letter-spacing:4px;color:#c5a15b;margin:0 0 16px;text-transform:uppercase}
+.lu-lect-title{font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(32px,4.4vw,54px);line-height:1.08;margin:0 0 18px;color:#eee8da}
+.lu-lect-title i,.lu-lect-title em{font-style:italic;color:#c5a15b}
+.lu-lect-lead{font-size:16px;line-height:1.8;color:#aaa394;max-width:600px}
+.lu-lect-tabs{display:flex;flex-wrap:wrap;gap:10px;margin:0 auto 40px;max-width:1200px}
+.lu-lect-tab{cursor:pointer;border:1px solid rgba(229,211,164,.22);background:transparent;color:#aaa394;font:600 12px Montserrat,sans-serif;letter-spacing:1px;padding:10px 18px;border-radius:999px;transition:.25s}
+.lu-lect-tab:hover{border-color:#c5a15b;color:#eee8da}
+.lu-lect-tab.active{background:#c5a15b;border-color:#c5a15b;color:#15120d}
+.lu-lect-panels{position:relative;max-width:1200px;margin:0 auto}
+.lu-lect-panel{display:none;border:1px solid rgba(229,211,164,.22);border-radius:14px;padding:34px clamp(24px,3.5vw,42px);background:#141210}
+.lu-lect-panel.active{display:block}
+.lu-lect-head{display:flex;gap:20px;align-items:flex-start;margin-bottom:26px;border-bottom:1px solid rgba(229,211,164,.22);padding-bottom:22px}
+.lu-lect-num{font:600 30px Montserrat,sans-serif;color:#c5a15b;line-height:1}
+.lu-lect-head h4{font:600 22px Montserrat,sans-serif;margin:0 0 6px;color:#eee8da;line-height:1.25}
+.lu-lect-autor{font-size:12px;letter-spacing:1.5px;color:#aaa394;text-transform:uppercase}
+.lu-lang-toggle{display:flex;gap:8px;margin-bottom:22px}
+.lu-lang-btn{cursor:pointer;border:1px solid rgba(229,211,164,.22);background:transparent;color:#aaa394;font:600 10px Montserrat,sans-serif;letter-spacing:1.5px;padding:7px 16px;border-radius:6px}
+.lu-lang-btn.active{background:#c5a15b22;border-color:#c5a15b;color:#c5a15b}
+.lu-lect-text{display:none;color:#e3ddcf;font-size:17px;line-height:1.9;max-width:700px}
+.lu-lect-text.active{display:block}
+.lu-lect-text h5{font:600 13px Montserrat,sans-serif;letter-spacing:1.5px;text-transform:uppercase;color:#c5a15b;margin:22px 0 10px}
+.lu-lect-text h5:first-child{margin-top:0}
+.lu-lect-text p{margin:0 0 14px}
+.lu-quiz{margin-top:34px;padding-top:30px;border-top:1px solid rgba(229,211,164,.22);margin-left:calc(-1 * clamp(24px,3.5vw,42px));margin-right:calc(-1 * clamp(24px,3.5vw,42px))}
+.lu-quiz-title{font:600 13px Montserrat,sans-serif;letter-spacing:2px;text-transform:uppercase;color:#c5a15b;margin:0 0 20px}
+.lu-q{margin-bottom:22px;padding-bottom:22px;border-bottom:1px dashed rgba(229,211,164,.22)}
+.lu-q:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.lu-q-text{font:500 16px Montserrat,sans-serif;color:#eee8da;margin:0 0 12px;line-height:1.65;font-weight:600}
+.lu-q-opts{display:grid;gap:8px}
+.lu-q-opt{text-align:left;cursor:pointer;border:1px solid rgba(229,211,164,.22);background:#191612;color:#e3ddcf;font:500 15px Montserrat,sans-serif;padding:14px 16px;border-radius:8px;transition:.2s;line-height:1.6}
+.lu-q-opt:hover{border-color:#c5a15b}
+.lu-q-opt.correct{border-color:#3fae7d;background:#3fae7d22;color:#eee8da}
+.lu-q-opt.incorrect{border-color:#e05656;background:#e0565622;color:#eee8da}
+.lu-q-opt[disabled]{cursor:default}
+.lu-q-feedback{font-size:12px;letter-spacing:.5px;margin:10px 0 0;min-height:16px;color:#c5a15b}
+@media(max-width:760px){.lu-lecturas{padding:70px 6vw 80px}.lu-lect-panel{padding:24px 18px}.lu-quiz{margin-left:-18px;margin-right:-18px}.lu-lect-head{flex-direction:column;gap:6px}.lu-lect-text{font-size:15.5px;max-width:100%}.lu-q-text{font-size:15px}.lu-q-opt{font-size:14px;padding:12px 14px}.lu-lect-title{font-size:clamp(28px,7vw,40px)}}
+
+/* ============ GLOSARIO DE LA CORONA ============ */
+.royal-glossary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.royal-term{border:1px solid rgba(216,182,255,.22);border-radius:4px;padding:22px;background:rgba(255,255,255,.02);transition:.3s}
+.royal-term:hover{border-color:#b987ff;background:rgba(185,135,255,.06);transform:translateY(-3px)}
+.royal-icon{display:block;font-size:24px;margin-bottom:12px}
+.royal-term h4{margin:0 0 8px;font:22px Montserrat,sans-serif;color:#d8b6ff}
+.royal-term p{margin:0;font-size:12px;line-height:1.75;color:#c9c2d6}
+@media(max-width:900px){.royal-glossary{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.royal-glossary{grid-template-columns:1fr}}
+
+</style>
+<link rel="stylesheet" href="assets/multimedia-experience.css">
+<link rel="stylesheet" href="assets/quiz-kahoot.css">
+<link rel="stylesheet" href="assets/scroll-animations.css">
+<link rel="stylesheet" href="assets/projector-readability.css">
+</head>
+<body>
+
+<div id="arrival-layer"></div>
+
+<div class="grain"></div>
+
+<header class="nav">
+  <a class="brand" href="#inicio" aria-label="Aurelia inicio">
+    <span class="crest">♜</span>
+    <span><b>AURELIA</b><small>CRÓNICAS DE LA REALEZA</small></span>
+  </a>
+  <nav>
+    <a href="index.html" class="lu-back">← Universo</a>
+    <a class="active" href="#inicio">Inicio</a>
+    <a href="#biblioteca">Biblioteca</a>
+    <a href="#lecturas">Lecturas</a>
+  </nav>
+  <button class="sound" id="soundBtn" aria-label="Activar ambiente sonoro">◉ <span>AMBIENTE</span></button>
+</header>
+
+<main>
+<section id="inicio" class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-shade"></div>
+  <div class="hero-content">
+    <p class="eyebrow"><span></span> HISTORIA · PODER · LEGADO</p>
+    <h1>Donde la <em>corona</em><br>se convierte en historia.</h1>
+    <p class="intro">Un recorrido visual por castillos, dinastías, símbolos y ceremonias que dieron forma a las cortes de Europa.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#biblioteca">Entrar a la biblioteca <span>↗</span></a>
+      <a class="btn ghost" href="#aprender">Comenzar a aprender</a>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div><span>01</span><i></i><span>04</span></div>
+    <p>DESLIZA PARA DESCUBRIR</p>
+  </div>
+</section>
+
+<section class="manifesto">
+  <div class="section-label">01 / LA CORTE</div>
+  <div class="manifesto-copy">
+    <h2>La realeza no era<br><em>solo una corona.</em></h2>
+    <p>Era una arquitectura de poder: alianzas, rituales, territorios, arte y familias que construyeron relatos capaces de sobrevivir siglos.</p>
+  </div>
+  <div class="facts">
+    <article><strong>01</strong><span>DINASTÍAS</span><p>Linajes que definieron generaciones.</p></article>
+    <article><strong>02</strong><span>SÍMBOLOS</span><p>Coronas, escudos y ceremonias como lenguaje del poder.</p></article>
+    <article><strong>03</strong><span>LEGADO</span><p>Arquitectura, arte y tradiciones que aún permanecen.</p></article>
+  </div>
+</section>
+
+<section id="biblioteca" class="library">
+  <div class="library-head">
+    <div>
+      <div class="section-label">02 / BIBLIOTECA</div>
+      <h2>Galería de <em>reinos</em></h2>
+    </div>
+    <p>Una colección visual para explorar la atmósfera de los antiguos reinos.</p>
+  </div>
+  <div class="gallery">
+    <button class="card c1" data-title="Los dominios del lago" data-text="Castillos levantados junto al agua, donde la arquitectura defensiva también se convirtió en símbolo de prestigio.">
+      <img src="assets/realeza/castillo-lago.jpg" alt="Castillo junto a un lago">
+      <span class="number">01</span><span class="caption">Los dominios del lago</span><span class="arrow">↗</span>
+    </button>
+    <button class="card c2" data-title="La guardia del reino" data-text="Caballería, honor y servicio formaban parte del imaginario de las cortes medievales.">
+      <img src="assets/realeza/caballero-lavanda.jpg" alt="Caballero junto a una fogata">
+      <span class="number">02</span><span class="caption">La guardia del reino</span><span class="arrow">↗</span>
+    </button>
+    <button class="card c3" data-title="La ciudad de las catedrales" data-text="La arquitectura religiosa ocupó un lugar central en la vida política y cultural de muchos reinos europeos.">
+      <img src="assets/realeza/reino-catedral.jpg" alt="Ciudad medieval con catedral">
+      <span class="number">03</span><span class="caption">La ciudad sagrada</span><span class="arrow">↗</span>
+    </button>
+    <button class="card c4" data-title="Fortalezas del cielo" data-text="Torres, murallas y palacios transformaron las montañas en escenarios de poder y representación.">
+      <img src="assets/realeza/castillo-cielo.jpg" alt="Castillo elevado bajo el cielo">
+      <span class="number">04</span><span class="caption">Fortalezas del cielo</span><span class="arrow">↗</span>
+    </button>
+  </div>
+</section>
+
+<section id="aprender" class="learn">
+  <div class="learn-art">
+    <div class="seal">♜</div>
+    <p>ARCHIVO AURELIA<br><small>APRENDE · OBSERVA · CONECTA</small></p>
+  </div>
+  <div class="learn-content">
+    <div class="section-label">03 / APRENDER</div>
+    <h2>Lee entre las<br><em>líneas de la corona.</em></h2>
+    <p>La historia se entiende mejor cuando conectamos personas, lugares, símbolos y decisiones. Explora estas cápsulas y descubre cómo funcionaba el mundo de las cortes.</p>
+    <div class="lessons">
+      <details open><summary><span>01</span> ¿Cómo funcionaba una corte?</summary><p>La corte reunía a la familia gobernante, consejeros, funcionarios, artistas, diplomáticos y servidores. Era un centro político y cultural, no solamente un palacio.</p></details>
+      <details><summary><span>02</span> ¿Por qué eran importantes los matrimonios reales?</summary><p>Las uniones dinásticas podían reforzar alianzas entre territorios y familias. La política matrimonial fue una herramienta habitual de la diplomacia europea.</p></details>
+      <details><summary><span>03</span> ¿Qué comunicaban las coronas y escudos?</summary><p>Los símbolos ayudaban a representar autoridad, linaje, territorio y derechos. Colores, animales, formas y emblemas podían tener significados concretos.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="timeline">
+  <div class="section-label">04 / UNA MIRADA RÁPIDA</div>
+  <h2>El poder también<br><em>dejó huellas.</em></h2>
+  <div class="timeline-row">
+    <div><b>01</b><span>CASTILLO</span><p>Defensa y residencia.</p></div>
+    <i></i>
+    <div><b>02</b><span>CORTE</span><p>Política y ceremonial.</p></div>
+    <i></i>
+    <div><b>03</b><span>ARTE</span><p>Prestigio y memoria.</p></div>
+    <i></i>
+    <div><b>04</b><span>LEGADO</span><p>Historia que permanece.</p></div>
+  </div>
+</section>
+
+<section id="multimedia-realeza" class="media-zone multimedia-section" style="--media-accent:#b889ff">
+  <div class="media-head">
+    <div><span class="media-badge" style="position:static;display:inline-block;margin-bottom:10px">EXPERIENCIA INTERACTIVA</span><h2>Royal Experience</h2></div>
+    <p>Un recorrido por castillos, símbolos y desafíos con una estética de corte real.</p>
+  </div>
+  <div class="media-grid" style="grid-template-columns:1fr">
+    <article class="media-card wide">
+      <div class="media-video-wrap">
+        <span class="media-badge">MOTION VIDEO</span>
+        <iframe class="media-video" style="min-height:420px;border:0" src="https://www.youtube.com/embed/EBJOFF4JDaI" title="Edad Media: reyes, castillos y caballeros" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="media-body">
+        <h3>🎬 Reyes, castillos y caballeros</h3>
+        <p>Un recorrido audiovisual por la vida en los reinos medievales: castillos, cortes y caballeros.</p>
+      </div>
+    </article>
+  </div>
+  <div class="media-card" style="margin-top:18px;padding:clamp(24px,4vw,44px)">
+    <span class="media-badge" style="position:static;display:inline-block;margin-bottom:16px">GLOSARIO</span>
+    <h3 style="margin:0 0 8px">La corona, término a término</h3>
+    <p style="margin:0 0 28px;opacity:.72;max-width:640px">Seis palabras que aparecen una y otra vez en cualquier crónica real, y lo que en verdad significaban.</p>
+    <div class="royal-glossary">
+      <article class="royal-term"><span class="royal-icon">♛</span><h4>Corona</h4><p>Símbolo de soberanía. Su forma, joyas y metales comunicaban el rango exacto de quien la portaba.</p></article>
+      <article class="royal-term"><span class="royal-icon">🏛️</span><h4>Trono</h4><p>El asiento del poder, siempre elevado. Sentarse en él era, literalmente, ocupar el lugar de mando.</p></article>
+      <article class="royal-term"><span class="royal-icon">⚜️</span><h4>Blasón</h4><p>El escudo heráldico de una familia: un lenguaje visual de linaje, alianzas y territorio.</p></article>
+      <article class="royal-term"><span class="royal-icon">📯</span><h4>Cetro</h4><p>Bastón ceremonial que representaba la autoridad para gobernar y administrar justicia.</p></article>
+      <article class="royal-term"><span class="royal-icon">👑</span><h4>Regencia</h4><p>Gobierno temporal ejercido en nombre de un monarca menor de edad o ausente.</p></article>
+      <article class="royal-term"><span class="royal-icon">🕊️</span><h4>Coronación</h4><p>La ceremonia que transformaba a un heredero en soberano ante la corte y el pueblo.</p></article>
+    </div>
+  </div>
+
+</section>
+
+<section id="lecturas" class="lu-lecturas">
+  <div class="lu-lect-head-wrap">
+    <p class="lu-kicker">03 / TEXTOS Y PREGUNTAS</p>
+    <h2 class="lu-lect-title">Relatos de la<br><em>corte.</em></h2>
+    <p class="lu-lect-lead">Cuatro relatos originales sobre poder, lealtad y sabiduría, con preguntas de comprensión.</p>
+  </div>
+  <div class="lu-lect-tabs" role="tablist">
+    <button type="button" class="lu-lect-tab active" data-target="realeza-1">01</button>
+<button type="button" class="lu-lect-tab" data-target="realeza-2">02</button>
+<button type="button" class="lu-lect-tab" data-target="realeza-3">03</button>
+<button type="button" class="lu-lect-tab" data-target="realeza-4">04</button>
+  </div>
+  <div class="lu-lect-panels">
+    <article class="lu-lect-panel active" id="realeza-1" role="tabpanel" data-lect="realeza-1">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">01</span>
+    <div>
+      <h4>La corona de invierno</h4>
+      
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><p>El invierno había cubierto el reino de Valdoria con una gruesa capa de nieve. Los caminos estaban cerrados, las cosechas se habían perdido y el rey Edric agonizaba en su castillo. Sobre su cabeza descansaba la antigua Corona de Invierno, una joya que, según la tradición, solo podía ser llevada por quien gobernara con sabiduría y justicia.</p>
+<p>Mientras los nobles discutían quién debía suceder al rey, la joven princesa Elena recorría las aldeas para conocer las dificultades de su pueblo. Muchos pensaban que era demasiado joven para gobernar, pero ella comprendía que un verdadero líder debía escuchar antes de mandar.</p>
+<p>Cuando el rey murió, el consejo organizó una prueba para elegir al nuevo monarca. Los aspirantes demostraron su fuerza, riqueza e inteligencia, pero Elena fue la única que propuso repartir los alimentos almacenados en el castillo entre las familias que sufrían hambre.</p>
+<p>Los consejeros comprendieron que la verdadera fortaleza de un gobernante no estaba en la espada ni en el poder, sino en la capacidad de proteger a su pueblo. Así, la Corona de Invierno fue colocada sobre la cabeza de Elena, iniciando una nueva era de prosperidad.</p></div>
+  <div class="lu-lect-text" data-lang="en"><p>Winter had covered the kingdom of Valdoria with a thick blanket of snow. Roads were blocked, crops had failed, and King Edric lay dying in his castle. Upon his head rested the ancient Winter Crown, a symbol that, according to legend, could only be worn by a ruler who governed with wisdom and justice.</p>
+<p>While the nobles argued over who should inherit the throne, Princess Elena traveled through the villages to understand the struggles of her people. Many believed she was too young to rule, but she knew that a true leader must listen before giving orders.</p>
+<p>When the king died, the royal council organized a challenge to choose the next monarch. The candidates displayed their strength, wealth, and intelligence, but Elena was the only one who suggested sharing the castle's food supplies with the starving families.</p>
+<p>The council realized that true leadership was measured not by power, but by compassion. Elena was crowned Queen, and the kingdom entered a period of peace and prosperity.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="C">
+  <p class="lu-q-text">1. ¿Qué criterio determinó finalmente quién debía gobernar el reino de Valdoria?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. La riqueza del candidato.</button><button type="button" class="lu-q-opt" data-opt="B">B. La antigüedad de su linaje.</button><button type="button" class="lu-q-opt" data-opt="C">C. La capacidad de gobernar con justicia y priorizar el bienestar del pueblo.</button><button type="button" class="lu-q-opt" data-opt="D">D. La habilidad para ganar batallas.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. La decisión de Elena de repartir los alimentos almacenados en el castillo demuestra principalmente:</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Debilidad política.</button><button type="button" class="lu-q-opt" data-opt="B">B. Liderazgo basado en la empatía y la responsabilidad social.</button><button type="button" class="lu-q-opt" data-opt="C">C. Desinterés por las leyes.</button><button type="button" class="lu-q-opt" data-opt="D">D. Estrategia militar.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) Why was Princess Elena chosen to become queen?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Because she was the oldest member of the royal family.</button><button type="button" class="lu-q-opt" data-opt="B">B. Because she showed compassion and cared about her people's well-being.</button><button type="button" class="lu-q-opt" data-opt="C">C. Because she was the strongest candidate.</button><button type="button" class="lu-q-opt" data-opt="D">D. Because she won a battle.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">4. ¿Qué cualidad de Elena fue clave para ganarse la confianza del pueblo de Valdoria?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Su capacidad de repartir con justicia los recursos en tiempos de crisis</button><button type="button" class="lu-q-opt" data-opt="B">B. Su riqueza personal</button><button type="button" class="lu-q-opt" data-opt="C">C. Su habilidad para la guerra</button><button type="button" class="lu-q-opt" data-opt="D">D. Su indiferencia ante el pueblo</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">5. ¿Qué representa el invierno en la historia?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Una época de celebración</button><button type="button" class="lu-q-opt" data-opt="B">B. Un periodo de dificultad y prueba para el reino</button><button type="button" class="lu-q-opt" data-opt="C">C. Un símbolo de abundancia</button><button type="button" class="lu-q-opt" data-opt="D">D. Un evento sin importancia en la trama</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+<article class="lu-lect-panel" id="realeza-2" role="tabpanel" data-lect="realeza-2">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">02</span>
+    <div>
+      <h4>Intrigas de corte</h4>
+      
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><p>En el Palacio de Argenia, las apariencias engañaban. Durante el día, los nobles sonreían en los banquetes; por la noche, intercambiaban cartas secretas y planeaban alianzas para aumentar su influencia.</p>
+<p>El consejero real descubrió que algunos miembros de la corte pretendían convencer al príncipe de iniciar una guerra innecesaria para obtener beneficios personales. Mientras tanto, otros conspiraban para desacreditar a quienes defendían la paz.</p>
+<p>La joven escribana Isabel encontró documentos que demostraban la conspiración. En lugar de destruir las pruebas por miedo, decidió entregarlas al rey.</p>
+<p>Tras una investigación, el monarca destituyó a los responsables y reorganizó el consejo. Desde entonces comprendió que el mayor peligro para un reino no siempre provenía de enemigos externos, sino de la ambición de quienes vivían dentro del propio palacio.</p></div>
+  <div class="lu-lect-text" data-lang="en"><p>In the Palace of Argenia, appearances were deceiving. By day, the nobles smiled during banquets; by night, they exchanged secret letters and formed alliances to increase their influence.</p>
+<p>The royal adviser discovered that several courtiers wanted to persuade the prince to start an unnecessary war for their own benefit. Others tried to discredit anyone who defended peace.</p>
+<p>A young royal scribe named Isabel found documents proving the conspiracy. Instead of destroying the evidence out of fear, she presented it to the king.</p>
+<p>After an investigation, the king removed the conspirators from power and reorganized his council. He realized that the greatest threats to a kingdom often came from ambition within the palace itself.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Cuál era el objetivo principal de los conspiradores dentro del Palacio de Argenia?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Fortalecer la economía del reino.</button><button type="button" class="lu-q-opt" data-opt="B">B. Convencer al príncipe de iniciar una guerra para obtener beneficios personales.</button><button type="button" class="lu-q-opt" data-opt="C">C. Defender las fronteras del reino.</button><button type="button" class="lu-q-opt" data-opt="D">D. Organizar una alianza comercial.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. ¿Qué representa Isabel dentro de la historia?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. La ambición política.</button><button type="button" class="lu-q-opt" data-opt="B">B. La honestidad y el compromiso con la verdad.</button><button type="button" class="lu-q-opt" data-opt="C">C. La corrupción administrativa.</button><button type="button" class="lu-q-opt" data-opt="D">D. La debilidad del gobierno.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) What did Isabel do after finding evidence of the conspiracy?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. She hid the documents.</button><button type="button" class="lu-q-opt" data-opt="B">B. She gave the evidence to the king.</button><button type="button" class="lu-q-opt" data-opt="C">C. She joined the conspirators.</button><button type="button" class="lu-q-opt" data-opt="D">D. She left the palace.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">4. ¿Qué estrategia utilizaban los conspiradores para no ser descubiertos?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Actuar con total transparencia ante el rey</button><button type="button" class="lu-q-opt" data-opt="B">B. Aparentar lealtad de día mientras conspiraban en secreto por la noche</button><button type="button" class="lu-q-opt" data-opt="C">C. Anunciar públicamente sus planes</button><button type="button" class="lu-q-opt" data-opt="D">D. Evitar cualquier contacto con la corte</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">5. ¿Qué cualidad demuestra Isabel al investigar la conspiración?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Cobardía</button><button type="button" class="lu-q-opt" data-opt="B">B. Astucia y valentía</button><button type="button" class="lu-q-opt" data-opt="C">C. Indiferencia</button><button type="button" class="lu-q-opt" data-opt="D">D. Desconfianza hacia el rey</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+<article class="lu-lect-panel" id="realeza-3" role="tabpanel" data-lect="realeza-3">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">03</span>
+    <div>
+      <h4>El heredero silencioso</h4>
+      
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><p>El príncipe Adrián era muy diferente a los antiguos herederos del reino. Mientras otros buscaban reconocimiento, él prefería escuchar a los sabios, recorrer los mercados y aprender de campesinos y artesanos.</p>
+<p>Su silencio hizo que muchos nobles lo consideraran débil. Sin embargo, Adrián utilizaba cada conversación para comprender mejor los problemas del reino.</p>
+<p>Cuando una gran sequía amenazó las cosechas, reunió a agricultores, ingenieros y comerciantes para diseñar nuevos sistemas de riego. Gracias a su capacidad para escuchar antes de actuar, el reino evitó una grave crisis.</p>
+<p>El pueblo comprendió entonces que el silencio no era señal de debilidad, sino una herramienta para tomar decisiones más acertadas.</p></div>
+  <div class="lu-lect-text" data-lang="en"><p>Prince Adrian was very different from previous heirs to the throne. While others sought fame, he preferred listening to scholars, visiting markets, and learning from farmers and craftsmen.</p>
+<p>Because of his quiet nature, many nobles believed he was weak. In reality, Adrian used every conversation to understand his kingdom better.</p>
+<p>When a severe drought threatened the harvests, he gathered farmers, engineers, and merchants to develop new irrigation systems. Thanks to his willingness to listen before acting, the kingdom avoided disaster.</p>
+<p>The people finally understood that silence was not weakness but a sign of wisdom.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Qué simboliza el silencio del príncipe Adrián a lo largo de la historia?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Falta de inteligencia.</button><button type="button" class="lu-q-opt" data-opt="B">B. Prudencia, observación y capacidad de análisis.</button><button type="button" class="lu-q-opt" data-opt="C">C. Miedo a gobernar.</button><button type="button" class="lu-q-opt" data-opt="D">D. Desinterés por el reino.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. ¿Cómo logró Adrián evitar la crisis provocada por la sequía?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Solicitando ayuda militar a otros reinos.</button><button type="button" class="lu-q-opt" data-opt="B">B. Reuniendo a agricultores, ingenieros y comerciantes para desarrollar soluciones conjuntas.</button><button type="button" class="lu-q-opt" data-opt="C">C. Aumentando los impuestos.</button><button type="button" class="lu-q-opt" data-opt="D">D. Vendiendo las reservas del reino.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) Why did many nobles underestimate Prince Adrian?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Because he was too young.</button><button type="button" class="lu-q-opt" data-opt="B">B. Because they believed his silence meant weakness.</button><button type="button" class="lu-q-opt" data-opt="C">C. Because he wanted to leave the kingdom.</button><button type="button" class="lu-q-opt" data-opt="D">D. Because he disliked the people.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">4. ¿Qué actitud diferenciaba al príncipe Adrián de los demás herederos?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Buscar reconocimiento y honores constantemente</button><button type="button" class="lu-q-opt" data-opt="B">B. Preferir escuchar y aprender del pueblo antes que ser reconocido</button><button type="button" class="lu-q-opt" data-opt="C">C. Evitar por completo a los sabios del reino</button><button type="button" class="lu-q-opt" data-opt="D">D. Desinteresarse totalmente del futuro del reino</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">5. ¿Qué lección deja principalmente la historia de Adrián?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Que el poder solo se gana con la fuerza</button><button type="button" class="lu-q-opt" data-opt="B">B. Que la sabiduría y la humildad pueden ser más valiosas que la apariencia de poder</button><button type="button" class="lu-q-opt" data-opt="C">C. Que los herederos no deben preocuparse por el pueblo</button><button type="button" class="lu-q-opt" data-opt="D">D. Que la sequía no afecta a los reinos</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+<article class="lu-lect-panel" id="realeza-4" role="tabpanel" data-lect="realeza-4">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">04</span>
+    <div>
+      <h4>Cortesanas y conspiradores</h4>
+      
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><p>La corte del reino de Esthal era conocida por su elegancia, pero también por sus secretos. Entre bailes, recepciones y ceremonias, algunos nobles organizaban reuniones clandestinas para controlar las decisiones del rey.</p>
+<p>Las damas de la corte, a quienes muchos subestimaban, observaban atentamente todo lo que ocurría. Una de ellas, llamada Sofía, descubrió que un grupo de conspiradores planeaba manipular los impuestos para enriquecerse.</p>
+<p>Con inteligencia y discreción, reunió pruebas y las entregó a la reina. Gracias a esa información, la conspiración fue detenida antes de causar una crisis económica.</p>
+<p>Desde entonces, la reina comprendió que el verdadero poder no siempre pertenecía a quienes hablaban más fuerte, sino a quienes sabían observar, pensar y actuar con prudencia.</p></div>
+  <div class="lu-lect-text" data-lang="en"><p>The royal court of Esthal was famous for its elegance, but also for its secrets. Behind grand balls and ceremonies, several nobles secretly planned to control the king's decisions.</p>
+<p>The ladies of the court, often underestimated, carefully observed everything around them. One of them, Sofia, discovered that a group of conspirators intended to manipulate taxes for their own enrichment.</p>
+<p>Using intelligence and discretion, she gathered evidence and presented it to the queen. Thanks to her actions, the conspiracy was stopped before it caused an economic crisis.</p>
+<p>From that day on, the queen understood that true power does not always belong to those who speak the loudest, but to those who observe carefully, think wisely, and act with courage.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Qué descubrió Sofía mientras observaba las actividades de la corte?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Un plan para invadir otro reino.</button><button type="button" class="lu-q-opt" data-opt="B">B. Una conspiración para manipular los impuestos y enriquecerse.</button><button type="button" class="lu-q-opt" data-opt="C">C. Un tesoro escondido bajo el palacio.</button><button type="button" class="lu-q-opt" data-opt="D">D. Un acuerdo secreto con un reino vecino.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. ¿Cuál es la principal enseñanza que deja la historia?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. El verdadero poder pertenece únicamente a los reyes.</button><button type="button" class="lu-q-opt" data-opt="B">B. La inteligencia, la observación y la integridad pueden cambiar el destino de un reino.</button><button type="button" class="lu-q-opt" data-opt="C">C. Las conspiraciones siempre terminan con éxito.</button><button type="button" class="lu-q-opt" data-opt="D">D. La nobleza nunca comete errores.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) What helped Sofia stop the conspiracy?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Her physical strength.</button><button type="button" class="lu-q-opt" data-opt="B">B. Her intelligence, careful observation, and courage.</button><button type="button" class="lu-q-opt" data-opt="C">C. The king's army.</button><button type="button" class="lu-q-opt" data-opt="D">D. A foreign kingdom.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">4. ¿Qué contraste se presenta entre la corte de Esthal y sus verdaderas intenciones?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Elegancia y aparente armonía frente a secretos y conspiraciones ocultas</button><button type="button" class="lu-q-opt" data-opt="B">B. Pobreza extrema frente a total sinceridad</button><button type="button" class="lu-q-opt" data-opt="C">C. Un reino sin ningún tipo de ceremonia</button><button type="button" class="lu-q-opt" data-opt="D">D. Ausencia total de nobles</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">5. ¿Qué papel cumple Sofía dentro de la historia?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Es quien organiza la conspiración</button><button type="button" class="lu-q-opt" data-opt="B">B. Es quien observa y descubre la verdad detrás de las apariencias</button><button type="button" class="lu-q-opt" data-opt="C">C. Es la reina del reino</button><button type="button" class="lu-q-opt" data-opt="D">D. No tiene ninguna relevancia en la trama</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-brand">AURELIA</div>
+  <p>Una biblioteca visual para descubrir la historia de la realeza.</p>
+  <a href="#inicio">VOLVER ARRIBA ↑</a>
+  <a class="lu-universe-link" href="index.html">✦ VOLVER AL UNIVERSO</a>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <button class="close" id="close">×</button>
+    <img id="modalImg" src="" alt="">
+    <div class="modal-info"><span id="modalNum"></span><h3 id="modalTitle"></h3><p id="modalText"></p></div>
+  </div>
+</div>
+
+
+<script src="assets/realeza.js"></script>
+<script>
+    const luArrival = document.getElementById('arrival-layer');
+    if (luArrival) luArrival.addEventListener('animationend', () => luArrival.remove());
+</script>
+<script src="assets/site.js"></script>
+<script>
+    LiteraryUniverse.initChrome({ activeUrl: 'realeza.html', rootFreq: 98, chordRatios: [1, 1.2, 1.5, 1.875] });
+</script>
+
+<script>
+
+(function(){
+  var section = document.getElementById('lecturas');
+  if(!section) return;
+  var tabs = section.querySelectorAll('.lu-lect-tab');
+  var panels = section.querySelectorAll('.lu-lect-panel');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.classList.remove('active'); });
+      panels.forEach(function(p){ p.classList.remove('active'); });
+      tab.classList.add('active');
+      var target = document.getElementById(tab.dataset.target);
+      if(target) target.classList.add('active');
+    });
+  });
+  section.querySelectorAll('.lu-lang-toggle').forEach(function(toggle){
+    var panel = toggle.closest('.lu-lect-panel');
+    var btns = toggle.querySelectorAll('.lu-lang-btn');
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        btns.forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        panel.querySelectorAll('.lu-lect-text').forEach(function(t){
+          t.classList.toggle('active', t.dataset.lang === btn.dataset.lang);
+        });
+      });
+    });
+  });
+  // Preguntas: manejadas por assets/quiz-kahoot.js (orden de respuestas aleatorio)
+})();
+
+</script>
+
+<script src="assets/realeza-experience.js"></script>
+<script src="assets/experience-router.js"></script>
+<script src="assets/multimedia-interactions.js"></script>
+<script src="assets/quiz-kahoot.js"></script>
+<script src="assets/scroll-animations.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual Corporativo · Literary Universe</title>
+<meta name="description" content="Manual de identidad corporativa de Literary Universe: logotipo, colores, tipografía, tono de voz y valores de marca.">
+<link rel="icon" type="image/png" href="star.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+    --mc-bg:#0b0616;
+    --mc-bg2:#160b2c;
+    --mc-purple:#4b2a86;
+    --mc-violet:#a24bac;
+    --mc-blue:#3c5cb3;
+    --mc-green:#40b93c;
+    --mc-orange:#f5781d;
+    --mc-red:#e11d25;
+    --mc-gold:#d4af6a;
+    --mc-cream:#efe7f0;
+}
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+    margin:0;
+    background:
+        radial-gradient(ellipse at 20% -10%, rgba(162,75,172,0.20), transparent 55%),
+        radial-gradient(ellipse at 100% 20%, rgba(60,92,179,0.16), transparent 50%),
+        var(--mc-bg);
+    color: rgba(239,231,240,0.86);
+    font-family:'Montserrat',sans-serif;
+    overflow-x:hidden;
+}
+a{ color:inherit; text-decoration:none; }
+::selection{ background: var(--mc-violet); color:#fff; }
+
+.mc-topbar{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 5vw;
+    background:linear-gradient(180deg, rgba(11,6,22,0.92), rgba(11,6,22,0));
+    backdrop-filter:blur(6px);
+}
+.mc-back{
+    font-size:11px; letter-spacing:0.12em;
+    color: rgba(239,231,240,0.7);
+    border:1px solid rgba(212,175,106,0.4);
+    padding:8px 16px; border-radius:999px;
+    transition:border-color .2s ease, color .2s ease;
+}
+.mc-back:hover{ border-color:var(--mc-gold); color:var(--mc-gold); }
+.mc-topbar .mc-brand{ font-style:italic; font-weight:300; font-size:14px; color:var(--mc-cream); letter-spacing:.04em; }
+
+/* ===== HERO ===== */
+.mc-hero{
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding:120px 6vw 80px;
+    position:relative;
+}
+.mc-hero-star{
+    width:min(230px, 34vw); height:auto;
+    filter:drop-shadow(0 0 40px rgba(162,75,172,0.55));
+    margin-bottom:18px;
+}
+.mc-kicker{
+    font-size:11px; letter-spacing:0.32em; color: rgba(239,231,240,0.55);
+    margin-bottom:18px;
+}
+.mc-hero h1{
+    margin:0;
+    font-weight:800;
+    font-size:clamp(46px, 9vw, 108px);
+    line-height:0.92;
+    letter-spacing:0.01em;
+    background:linear-gradient(100deg, #8a5a24, var(--mc-gold), #f4e3ab, var(--mc-gold), #8a5a24);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.mc-hero h2{
+    margin:10px 0 0;
+    font-weight:300; font-style:italic;
+    font-size:clamp(20px, 3.4vw, 34px);
+    color:var(--mc-cream);
+    letter-spacing:0.05em;
+}
+.mc-hero p.mc-tagline{
+    margin:22px 0 0; max-width:520px;
+    font-size:13px; letter-spacing:0.08em; text-transform:uppercase;
+    color: rgba(239,231,240,0.55);
+}
+
+.mc-quicknav{
+    display:flex; flex-wrap:wrap; gap:8px; justify-content:center;
+    max-width:760px; margin:44px auto 0;
+}
+.mc-quicknav a{
+    font-size:10.5px; letter-spacing:0.08em;
+    padding:8px 14px; border-radius:999px;
+    border:1px solid rgba(239,231,240,0.16);
+    color: rgba(239,231,240,0.7);
+    transition: border-color .2s ease, color .2s ease, background .2s ease;
+    white-space:nowrap;
+}
+.mc-quicknav a:hover{ border-color:var(--mc-gold); color:var(--mc-gold); background:rgba(212,175,106,0.08); }
+
+/* ===== SECTION SHELL ===== */
+.mc-section{
+    max-width:880px;
+    margin:0 auto;
+    padding:100px 6vw 20px;
+    scroll-margin-top:70px;
+}
+.mc-section-head{
+    display:flex; align-items:baseline; gap:16px;
+    margin-bottom:34px;
+}
+.mc-num{
+    font-size:13px; font-weight:700; letter-spacing:0.1em;
+    color: var(--mc-bg);
+    background: var(--mc-gold);
+    padding:4px 10px; border-radius:6px;
+    flex-shrink:0;
+}
+.mc-section-head h2{
+    margin:0; font-weight:600; font-size:clamp(26px,4vw,38px);
+    color:var(--mc-cream);
+}
+.mc-section-head .mc-eyebrow{
+    display:block; font-size:11px; font-weight:400; letter-spacing:.06em;
+    color: rgba(239,231,240,0.5); margin-top:4px;
+}
+.mc-rule{
+    height:3px; width:120px; margin:0 0 38px;
+    background:linear-gradient(90deg, var(--mc-violet), var(--mc-blue), var(--mc-green), var(--mc-orange), var(--mc-red));
+    border-radius:3px;
+}
+.mc-lead{ font-size:16px; line-height:1.85; color:rgba(239,231,240,0.82); max-width:64ch; }
+
+/* ===== 02 IDENTIDAD ===== */
+.mc-identity-wrap{ position:relative; padding:10px 0 30px; }
+.mc-identity-star{
+    position:absolute; top:-40px; right:-60px; width:360px; max-width:60vw;
+    opacity:0.14; pointer-events:none; z-index:0;
+}
+.mc-identity-grid{ position:relative; z-index:1; display:grid; gap:20px; }
+.mc-id-card{
+    display:flex; gap:18px; align-items:flex-start;
+    padding:22px 24px; border-radius:16px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.08);
+}
+.mc-id-emoji{ font-size:28px; line-height:1; }
+.mc-id-card h3{ margin:0 0 8px; font-size:14px; letter-spacing:0.12em; color:var(--mc-gold); }
+.mc-id-card p{ margin:0; font-size:14.5px; line-height:1.7; color:rgba(239,231,240,0.78); }
+
+/* ===== 03 LOGOTIPO ===== */
+.mc-logo-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.mc-logo-card{
+    border-radius:18px; padding:34px 18px 22px; text-align:center;
+    border:1px solid rgba(255,255,255,0.08);
+}
+.mc-logo-card.original{ background:radial-gradient(circle at 50% 30%, rgba(162,75,172,0.18), transparent 70%), rgba(255,255,255,0.03); }
+.mc-logo-card.negro{ background:#0f0f10; }
+.mc-logo-card.blanco{ background:#0c0c0c; }
+.mc-logo-card img{ width:100%; max-width:150px; height:auto; margin:0 auto 18px; display:block; }
+.mc-logo-card.negro img{ filter:grayscale(1) brightness(0.55) contrast(1.15); }
+.mc-logo-card.blanco img{ filter:grayscale(1) brightness(0) invert(1); }
+.mc-logo-card span{ font-size:11px; letter-spacing:0.14em; color:rgba(239,231,240,0.55); }
+.mc-logo-note{ margin-top:26px; font-size:13.5px; line-height:1.8; color:rgba(239,231,240,0.6); }
+
+/* ===== 04 COLORES ===== */
+.mc-color-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.mc-swatch{ border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.02); }
+.mc-swatch-fill{ height:84px; }
+.mc-swatch-info{ padding:12px 14px; }
+.mc-swatch-info b{ display:block; font-size:13px; letter-spacing:.03em; color:var(--mc-cream); }
+.mc-swatch-info small{ display:block; font-size:10.5px; color:rgba(239,231,240,0.5); margin-top:3px; letter-spacing:.02em; }
+.mc-swatch-info button{
+    margin-top:8px; font:9.5px 'Montserrat',sans-serif; letter-spacing:.1em;
+    background:none; border:1px solid rgba(255,255,255,0.16); color:rgba(239,231,240,0.6);
+    border-radius:999px; padding:4px 10px; cursor:pointer; transition:.2s;
+}
+.mc-swatch-info button:hover{ border-color:var(--mc-gold); color:var(--mc-gold); }
+
+/* ===== 05 TIPOGRAFIA ===== */
+.mc-type-block{ margin-bottom:34px; }
+.mc-type-label{ font-size:11px; letter-spacing:.14em; color:rgba(239,231,240,0.5); margin-bottom:10px; }
+.mc-type-sample-title{ font-size:clamp(30px,5vw,46px); color:var(--mc-cream); margin:0 0 10px; }
+.mc-type-sample-title.regular{ font-weight:400; }
+.mc-type-sample-title.medium{ font-weight:500; }
+.mc-type-chars{ font-size:14px; letter-spacing:.03em; color:rgba(239,231,240,0.6); line-height:1.9; word-break:break-word; }
+
+/* ===== 06 USOS INCORRECTOS ===== */
+.mc-wrong-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.mc-wrong-card{
+    position:relative; border-radius:16px; padding:26px 14px 18px;
+    border:1px solid rgba(225,29,37,0.25); background:rgba(225,29,37,0.05);
+    text-align:center; overflow:hidden;
+}
+.mc-wrong-card .mc-x{
+    position:absolute; top:10px; right:12px; font-size:13px; color:var(--mc-red);
+}
+.mc-wrong-stage{ height:90px; display:flex; align-items:center; justify-content:center; margin-bottom:14px; }
+.mc-wrong-stage img{ width:60px; height:60px; object-fit:contain; }
+.mc-w-deform img{ transform:scaleX(1.7) skewY(14deg); }
+.mc-w-opacity img{ opacity:0.22; }
+.mc-w-recolor img{ filter:hue-rotate(150deg) saturate(4); }
+.mc-w-rotate img{ transform:rotate(52deg); }
+.mc-w-bg{ background-image:repeating-linear-gradient(45deg, rgba(212,175,106,0.35) 0 8px, rgba(75,42,134,0.5) 8px 16px); border-radius:10px; }
+.mc-w-extra{ position:relative; }
+.mc-w-extra span.deco{ position:absolute; font-size:26px; }
+.mc-w-extra span.deco:nth-child(1){ top:-4px; left:8px; }
+.mc-w-extra span.deco:nth-child(2){ bottom:-2px; right:10px; }
+.mc-wrong-card p{ margin:0; font-size:12px; letter-spacing:.04em; color:rgba(239,231,240,0.7); }
+
+/* ===== 07 APLICACIONES ===== */
+.mc-merch-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.mc-merch-card{ border-radius:16px; overflow:hidden; background:#fff; border:1px solid rgba(255,255,255,0.08); }
+.mc-merch-card img{ width:100%; height:150px; object-fit:contain; display:block; background:#fff; padding:10px; }
+.mc-merch-label{ padding:10px 12px; background:rgba(255,255,255,0.04); }
+.mc-merch-label b{ font-size:9.5px; letter-spacing:.12em; color:var(--mc-gold); }
+.mc-merch-label span{ display:block; font-size:12.5px; color:var(--mc-cream); margin-top:2px; }
+
+/* ===== 08 / 09 icon cards ===== */
+.mc-icon-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.mc-icon-card{ border-radius:16px; padding:20px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); text-align:center; }
+.mc-icon-card img{ width:52px; height:52px; object-fit:contain; margin-bottom:14px; }
+.mc-icon-card h4{ margin:0 0 8px; font-size:12.5px; letter-spacing:.1em; color:var(--mc-gold); }
+.mc-icon-card p{ margin:0; font-size:12.5px; line-height:1.6; color:rgba(239,231,240,0.68); }
+
+/* ===== 10 CONTACTO ===== */
+.mc-team{ list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+.mc-team li{
+    display:flex; align-items:center; gap:12px;
+    padding:14px 18px; border-radius:12px;
+    background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08);
+    font-size:14px; color:var(--mc-cream);
+}
+.mc-team li .mc-dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.mc-download{
+    display:inline-flex; align-items:center; gap:10px;
+    margin-top:30px; padding:13px 26px; border-radius:999px;
+    background:var(--mc-gold); color:#160b2c; font-weight:700;
+    font-size:12.5px; letter-spacing:.08em;
+    transition:filter .2s ease;
+}
+.mc-download:hover{ filter:brightness(1.1); }
+
+.mc-footer{
+    text-align:center; padding:70px 6vw 60px; margin-top:60px;
+    border-top:1px solid rgba(255,255,255,0.08);
+    font-size:11px; letter-spacing:.1em; color:rgba(239,231,240,0.4);
+}
+.mc-footer a{ color:var(--mc-gold); }
+
+@media (max-width:760px){
+    .mc-logo-grid, .mc-color-grid, .mc-wrong-grid, .mc-merch-grid, .mc-icon-grid{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:480px){
+    .mc-logo-grid, .mc-color-grid, .mc-wrong-grid, .mc-merch-grid, .mc-icon-grid{ grid-template-columns:1fr; }
+    .mc-identity-star{ display:none; }
+}
+</style>
+<link rel="stylesheet" href="assets/scroll-animations.css">
+</head>
+<body>
+
+<div class="mc-topbar">
+    <span class="mc-brand">✦ Literary Universe</span>
+    <a class="mc-back" href="index.html">VOLVER AL UNIVERSO</a>
+</div>
+
+<!-- HERO -->
+<section class="mc-hero">
+    <img class="mc-hero-star" src="star.png" alt="Logotipo Literary Universe">
+    <div class="mc-kicker">IDENTIDAD DE MARCA</div>
+    <h1>MANUAL</h1>
+    <h2>Corporativo</h2>
+    <p class="mc-tagline">Nuestra identidad, nuestra esencia</p>
+    <nav class="mc-quicknav">
+        <a href="#intro">01 Introducción</a>
+        <a href="#identidad">02 Identidad</a>
+        <a href="#logotipo">03 Logotipo</a>
+        <a href="#colores">04 Colores</a>
+        <a href="#tipografia">05 Tipografía</a>
+        <a href="#usos">06 Usos incorrectos</a>
+        <a href="#aplicaciones">07 Aplicaciones</a>
+        <a href="#tono">08 Tono</a>
+        <a href="#valores">09 Valores</a>
+        <a href="#contacto">10 Contacto</a>
+    </nav>
+</section>
+
+<!-- 01 INTRODUCCION -->
+<section class="mc-section" id="intro">
+    <div class="mc-section-head">
+        <span class="mc-num">01</span>
+        <h2>Introducción<span class="mc-eyebrow">Quiénes somos</span></h2>
+    </div>
+    <div class="mc-rule"></div>
+    <p class="mc-lead">Bienvenido. Literary Universe reúne una identidad visual inspirada en el arte, la realeza, el automovilismo, la biología marina y la cosmetología, creando un universo de creatividad, conocimiento e inspiración.</p>
+</section>
+
+<!-- 02 IDENTIDAD CORPORATIVA -->
+<section class="mc-section" id="identidad">
+    <div class="mc-section-head">
+        <span class="mc-num">02</span>
+        <h2>Identidad corporativa<span class="mc-eyebrow">Nuestra esencia</span></h2>
+    </div>
+    <div class="mc-rule"></div>
+    <div class="mc-identity-wrap">
+        <img class="mc-identity-star" src="star.png" alt="">
+        <div class="mc-identity-grid">
+            <div class="mc-id-card">
+                <div class="mc-id-emoji">🚩</div>
+                <div>
+                    <h3>MISIÓN</h3>
+                    <p>Generar valor y soluciones innovadoras que impacten positivamente en las personas y en la sociedad.</p>
+                </div>
+            </div>
+            <div class="mc-id-card">
+                <div class="mc-id-emoji">👁️</div>
+                <div>
+                    <h3>VISIÓN</h3>
+                    <p>Ser reconocidos por nuestra excelencia, liderazgo e innovación a nivel nacional e internacional.</p>
+                </div>
+            </div>
+            <div class="mc-id-card">
+                <div class="mc-id-emoji">🎯</div>
+                <div>
+                    <h3>PROPÓSITO</h3>
+                    <p>Inspirar, conectar y crear experiencias que dejan huella y generan bienestar.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 03 LOGOTIPO -->
+<section class="mc-section" id="logotipo">
+    <div class="mc-section-head">
+        <span class="mc-num">03</span>
+        <h2>Logotipo<span class="mc-eyebrow">Uso y aplicaciones</span></h2>
+    </div>
+    <div class="mc-rule"></div>
+    <div class="mc-logo-grid">
+        <div class="mc-logo-card original">
+            <img src="star.png" alt="Logotipo original a color">
+            <span>ORIGINAL</span>
+        </div>
+        <div class="mc-logo-card negro">
+            <img src="star.png" alt="Logotipo en negro">
+            <span>NEGRO</span>
+        </div>
+        <div class="mc-logo-card blanco">
+            <img src="star.png" alt="Logotipo en blanco">
+            <span>BLANCO</span>
+        </div>
+    </div>
+    <p class="mc-logo-note">Usa la versión a color sobre fondos oscuros o neutros, la versión negra sobre fondos claros y la versión blanca sobre fondos oscuros o fotográficos donde el color completo pierda contraste.</p>
+</section>
+
+<!-- 04 COLORES -->
+<section class="mc-section" id="colores">
+    <div class="mc-section-head">
+        <span class="mc-num">04</span>
+        <h2>Colores corporativos<span class="mc-eyebrow">Paleta de color</span></h2>
+    </div>
+    <div class="mc-rule"></div>
+    <div class="mc-color-grid" id="mc-swatches">
+        <div class="mc-swatch">
+            <div class="mc-swatch-fill" style="background:#A24BAC"></div>
+            <div class="mc-swatch-info">
+                <b>Púrpura</b>
+                <small>CMYK 38, 73, 0, 0</small>
+                <button data-hex="#A24BAC" type="button">#A24BAC</button>
+            </div>
+        </div>
+        <div class="mc-swatch">
+            <div class="mc-swatch-fill" style="background:#3C5CB3"></div>
+            <div class="mc-swatch-info">
+                <b>Azul</b>
+                <small>CMYK 36, 65, 0, 0</small>
+                <button data-hex="#3C5CB3" type="button">#3C5CB3</button>
+            </div>
+        </div>
+        <div class="mc-swatch">
+            <div class="mc-swatch-fill" style="background:#40B93C"></div>
+            <div class="mc-swatch-info">
+                <b>Verde</b>
+                <small>CMYK 75, 0, 100, 0</small>
+                <button data-hex="#40B93C" type="button">#40B93C</button>
+            </div>
+        </div>
+        <div class="mc-swatch">
+            <div class="mc-swatch-fill" style="background:#F5781D"></div>
+            <div class="mc-swatch-info">
+                <b>Naranja</b>
+                <small>CMYK 0, 57, 95, 0</small>
+                <button data-hex="#F5781D" type="button">#F5781D</button>
+            </div>
+        </div>
+        <div class="mc-swatch">
+            <div class="mc-swatch-fill" style="background:#422B86"></div>
+            <div class="mc-swatch-info">
+                <b>Violeta</b>
+                <small>CMYK 89, 100, 9, 2</small>
+                <button data-hex="#422B86" type="button">#422B86</button>
+            </div>
+        </div>
+        <div class="mc-swatch">
+            <div class="mc-swatch-fill" style="background:#E11D25"></div>
+            <div class="mc-swatch-info">
+                <b>Rojo</b>
+                <small>CMYK 5, 100, 100, 1</small>
+                <button data-hex="#E11D25" type="button">#E11D25</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 05 TIPOGRAFIA -->
+<section class="mc-section" id="tipografia">
+    <div class="mc-section-head">
+        <span class="mc-num">05</span>
+        <h2>Tipografía<span class="mc-eyebrow">Tipografías institucionales</span></h2>
+    </div>
+    <div class="mc-rule"></div>
+    <div class="mc-type-block">
+        <div class="mc-type-label">TÍTULOS PRINCIPALES</div>
+        <div class="mc-type-sample-title medium">Montserrat Medium</div>
+        <div class="mc-type-chars">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>1234567890</div>
+    </div>
+    <div class="mc-type-block">
+        <div class="mc-type-label">TEXTO SECUNDARIO</div>
+        <div class="mc-type-sample-title regular">Montserrat Regular</div>
+        <div class="mc-type-chars">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>1234567890</div>
+    </div>
+</section>
+
+<!-- 06 USOS INCORRECTOS -->
+<section class="mc-section" id="usos">
+    <div class="mc-section-head">
+        <span class="mc-num">06</span>
+        <h2>Usos incorrectos<span class="mc-eyebrow">Lo que debemos evitar</span></h2>
+    </div>
+    <div class="mc-rule"></div>
+    <div class="mc-wrong-grid">
+        <div class="mc-wrong-card">
+            <span class="mc-x">✕</span>
+            <div class="mc-wrong-stage mc-w-deform"><img src="star.png" alt=""></div>
+            <p>No deformar</p>
+        </div>
+        <div class="mc-wrong-card">
+            <span class="mc-x">✕</span>
+            <div class="mc-wrong-stage mc-w-opacity"><img src="star.png" alt=""></div>
+            <p>No colocar opacidad</p>
+        </div>
+        <div class="mc-wrong-card">
+            <span class="mc-x">✕</span>
+            <div class="mc-wrong-stage mc-w-recolor"><img src="star.png" alt=""></div>
+            <p>No cambiar los colores</p>
+        </div>
+        <div class="mc-wrong-card">
+            <span class="mc-x">✕</span>
+            <div class="mc-wrong-stage mc-w-rotate"><img src="star.png" alt=""></div>
+            <p>No girar</p>
+        </div>
+        <div class="mc-wrong-card">
+            <span class="mc-x">✕</span>
+            <div class="mc-wrong-stage mc-w-bg"><img src="star.png" alt=""></div>
+            <p>No agregar fondos</p>
+        </div>
+        <div class="mc-wrong-card">
+            <span class="mc-x">✕</span>
+            <div class="mc-wrong-stage mc-w-extra">
+                <span class="deco">✨</span><img src="star.png" alt=""><span class="deco">⚡</span>
+            </div>
+            <p>No agregar elementos</p>
+        </div>
+    </div>
+</section>
+
+<!-- 07 APLICACIONES -->
+<section class="mc-section" id="aplicaciones">
+    <div class="mc-section-head">
+        <span class="mc-num">07</span>
+        <h2>Aplicaciones<span class="mc-eyebrow">Piezas de merchandising</span></h2>
+    </div>
+    <div class="mc-rule"></div>
+    <div class="mc-merch-grid">
+        <div class="mc-merch-card"><img src="assets/manual/merch-sudadera.png" alt="Sudadera con logotipo"><div class="mc-merch-label"><b>01</b><span>Sudadera</span></div></div>
+        <div class="mc-merch-card"><img src="assets/manual/merch-botella.png" alt="Botella reutilizable con logotipo"><div class="mc-merch-label"><b>02</b><span>Botella reutilizable</span></div></div>
+        <div class="mc-merch-card"><img src="assets/manual/merch-taza.png" alt="Taza con logotipo"><div class="mc-merch-label"><b>03</b><span>Taza</span></div></div>
+        <div class="mc-merch-card"><img src="assets/manual/merch-funda.png" alt="Funda de celular con logotipo"><div class="mc-merch-label"><b>04</b><span>Funda de celular</span></div></div>
+        <div class="mc-merch-card"><img src="assets/manual/merch-gorra.png" alt="Gorra con logotipo"><div class="mc-merch-label"><b>05</b><span>Gorra</span></div></div>
+        <div class="mc-merch-card"><img src="assets/manual/merch-llavero.png" alt="Llavero con logotipo"><div class="mc-merch-label"><b>06</b><span>Llavero</span></div></div>
+    </div>
+</section>
+
+<!-- 08 TONO DE COMUNICACION -->
+<section class="mc-section" id="tono">
+    <div class="mc-section-head">
+        <span class="mc-num">08</span>
+        <h2>Tono de comunicación<span class="mc-eyebrow">Cómo nos expresamos</span></h2>
+    </div>
+    <div class="mc-rule"></div>
+    <div class="mc-icon-grid">
+        <div class="mc-icon-card">
+            <img src="assets/manual/icon-cercano.png" alt="">
+            <h4>CERCANO</h4>
+            <p>Nos comunicamos de manera clara, amable y accesible, fomentando relaciones basadas en la confianza, la empatía y el respeto mutuo.</p>
+        </div>
+        <div class="mc-icon-card">
+            <img src="assets/manual/icon-inspirador.png" alt="">
+            <h4>INSPIRADOR</h4>
+            <p>Impulsamos nuevas ideas y motivamos a las personas a alcanzar su máximo potencial mediante la creatividad y el aprendizaje constante.</p>
+        </div>
+        <div class="mc-icon-card">
+            <img src="assets/manual/icon-profesional.png" alt="">
+            <h4>PROFESIONAL</h4>
+            <p>Actuamos con responsabilidad, compromiso y excelencia, ofreciendo soluciones confiables y manteniendo altos estándares de calidad.</p>
+        </div>
+    </div>
+</section>
+
+<!-- 09 VALORES CORPORATIVOS -->
+<section class="mc-section" id="valores">
+    <div class="mc-section-head">
+        <span class="mc-num">09</span>
+        <h2>Valores corporativos<span class="mc-eyebrow">Nuestros principios</span></h2>
+    </div>
+    <div class="mc-rule"></div>
+    <div class="mc-icon-grid">
+        <div class="mc-icon-card"><img src="assets/manual/icon-integridad.png" alt=""><h4>INTEGRIDAD</h4><p>Actuamos con honestidad.</p></div>
+        <div class="mc-icon-card"><img src="assets/manual/icon-innovacion.png" alt=""><h4>INNOVACIÓN</h4><p>Creamos nuevas ideas.</p></div>
+        <div class="mc-icon-card"><img src="assets/manual/icon-excelencia.png" alt=""><h4>EXCELENCIA</h4><p>Buscamos la calidad.</p></div>
+        <div class="mc-icon-card"><img src="assets/manual/icon-respeto.png" alt=""><h4>RESPETO</h4><p>Valoramos a las personas.</p></div>
+        <div class="mc-icon-card"><img src="assets/manual/icon-trabajo-equipo.png" alt=""><h4>TRABAJO EN EQUIPO</h4><p>Colaboramos para crecer.</p></div>
+        <div class="mc-icon-card"><img src="assets/manual/icon-compromiso.png" alt=""><h4>COMPROMISO</h4><p>Cumplimos con responsabilidad.</p></div>
+    </div>
+</section>
+
+<!-- 10 CONTACTO -->
+<section class="mc-section" id="contacto">
+    <div class="mc-section-head">
+        <span class="mc-num">10</span>
+        <h2>Contacto<span class="mc-eyebrow">Información institucional</span></h2>
+    </div>
+    <div class="mc-rule"></div>
+    <p class="mc-lead" style="margin-bottom:22px">Equipo que integra Literary Universe.</p>
+    <ul class="mc-team">
+        <li><span class="mc-dot" style="background:var(--mc-red)"></span>Omar Yesith Gelvez Caceres</li>
+        <li><span class="mc-dot" style="background:var(--mc-orange)"></span>Daniela Maria Hernandez Crespo</li>
+        <li><span class="mc-dot" style="background:var(--mc-blue)"></span>Pablo Sneider Mendez Castro</li>
+        <li><span class="mc-dot" style="background:var(--mc-violet)"></span>Geymy Andreina Camero Montañez</li>
+        <li><span class="mc-dot" style="background:var(--mc-green)"></span>Karen Dayana Hurtado Martinez</li>
+    </ul>
+    <a class="mc-download" href="assets/manual/manual-corporativo.pdf" download>⬇ DESCARGAR MANUAL EN PDF</a>
+</section>
+
+<footer class="mc-footer">
+    © 2026 Literary Universe · <a href="index.html">Volver al universo</a>
+</footer>
+
+<script>
+document.querySelectorAll('.mc-swatch-info button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+        var hex = btn.getAttribute('data-hex');
+        var original = btn.textContent;
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(hex).then(function(){
+                btn.textContent = 'COPIADO ✓';
+                setTimeout(function(){ btn.textContent = original; }, 1200);
+            });
+        }
+    });
+});
+</script>
+<script src="assets/scroll-animations.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mecánica · Literary Universe</title>
+<meta name="description" content="Mecánica · Literary Universe: vehículos de alto rendimiento, sistemas automotrices y un laboratorio interactivo sobre el mundo del motor.">
+<meta name="theme-color" content="#c0392b">
+<link rel="icon" type="image/png" href="star.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/mecanica.css">
+<style>
+    /* ============ INTEGRACIÓN CON EL UNIVERSO ============ */
+    #arrival-layer {
+        position: fixed; inset: 0; z-index: 99999;
+        background: radial-gradient(circle, #c0392b 0%, #7a0000 45%, #000 100%);
+        animation: lu-arrival 0.9s ease forwards;
+        pointer-events: none;
+    }
+    @keyframes lu-arrival {
+        0% { opacity: 1; transform: scale(1); }
+        60% { opacity: 1; transform: scale(1.5); }
+        100% { opacity: 0; transform: scale(2.2); }
+    }
+    .lu-back {
+        display: inline-flex !important; align-items: center; gap: 7px;
+        color: #c0392b !important;
+    }
+    .lu-universe-link {
+        display: inline-flex; align-items: center; gap: 6px;
+        text-decoration: none; color: #c0392b;
+        border: 1px solid #c0392b55; border-radius: 999px;
+        padding: 7px 16px; font-size: 10px; letter-spacing: 0.14em;
+        transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+        white-space: nowrap;
+    }
+    .lu-universe-link:hover { border-color: #c0392b; background: #c0392b1a; }
+
+/* ============ LECTURAS Y PREGUNTAS ============ */
+.lu-lecturas{position:relative;z-index:2;padding:96px 7vw 110px;background:#080808;color:#ffffff;font-family:"Montserrat",sans-serif;}
+.lu-lect-head-wrap{max-width:1200px;margin:0 auto 46px}
+.lu-kicker{font-size:10px;letter-spacing:4px;color:#c0392b;margin:0 0 16px;text-transform:uppercase}
+.lu-lect-title{font-family:"Montserrat",sans-serif;font-weight:700;font-size:clamp(32px,4.4vw,54px);line-height:1.08;margin:0 0 18px;color:#ffffff}
+.lu-lect-title i,.lu-lect-title em{font-style:italic;color:#c0392b}
+.lu-lect-lead{font-size:16px;line-height:1.8;color:#9aa0a6;max-width:600px}
+.lu-lect-tabs{display:flex;flex-wrap:wrap;gap:10px;margin:0 auto 40px;max-width:1200px}
+.lu-lect-tab{cursor:pointer;border:1px solid #2a2a2a;background:transparent;color:#9aa0a6;font:600 12px "Montserrat",sans-serif;letter-spacing:1px;padding:10px 18px;border-radius:999px;transition:.25s}
+.lu-lect-tab:hover{border-color:#c0392b;color:#ffffff}
+.lu-lect-tab.active{background:#c0392b;border-color:#c0392b;color:#ffffff}
+.lu-lect-panels{position:relative;max-width:1200px;margin:0 auto}
+.lu-lect-panel{display:none;border:1px solid #2a2a2a;border-radius:14px;padding:34px clamp(24px,3.5vw,42px);background:#0f0f0f}
+.lu-lect-panel.active{display:block}
+.lu-lect-head{display:flex;gap:20px;align-items:flex-start;margin-bottom:26px;border-bottom:1px solid #2a2a2a;padding-bottom:22px}
+.lu-lect-num{font:600 30px "Montserrat",sans-serif;color:#c0392b;line-height:1}
+.lu-lect-head h4{font:600 22px "Montserrat",sans-serif;margin:0 0 6px;color:#ffffff;line-height:1.25}
+.lu-lect-autor{font-size:12px;letter-spacing:1.5px;color:#9aa0a6;text-transform:uppercase}
+.lu-lang-toggle{display:flex;gap:8px;margin-bottom:22px}
+.lu-lang-btn{cursor:pointer;border:1px solid #2a2a2a;background:transparent;color:#9aa0a6;font:600 10px "Montserrat",sans-serif;letter-spacing:1.5px;padding:7px 16px;border-radius:6px}
+.lu-lang-btn.active{background:#c0392b22;border-color:#c0392b;color:#c0392b}
+.lu-lect-text{display:none;color:#e2e5e8;font-size:17px;line-height:1.9;max-width:700px}
+.lu-lect-text.active{display:block}
+.lu-lect-text h5{font:600 13px "Montserrat",sans-serif;letter-spacing:1.5px;text-transform:uppercase;color:#c0392b;margin:22px 0 10px}
+.lu-lect-text h5:first-child{margin-top:0}
+.lu-lect-text p{margin:0 0 14px}
+.lu-quiz{margin-top:34px;padding-top:30px;border-top:1px solid #2a2a2a;margin-left:calc(-1 * clamp(24px,3.5vw,42px));margin-right:calc(-1 * clamp(24px,3.5vw,42px))}
+.lu-quiz-title{font:600 13px "Montserrat",sans-serif;letter-spacing:2px;text-transform:uppercase;color:#c0392b;margin:0 0 20px}
+.lu-q{margin-bottom:22px;padding-bottom:22px;border-bottom:1px dashed #2a2a2a}
+.lu-q:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.lu-q-text{font:500 16px "Montserrat",sans-serif;color:#ffffff;margin:0 0 12px;line-height:1.65;font-weight:600}
+.lu-q-opts{display:grid;gap:8px}
+.lu-q-opt{text-align:left;cursor:pointer;border:1px solid #2a2a2a;background:#161616;color:#e2e5e8;font:500 15px "Montserrat",sans-serif;padding:14px 16px;border-radius:8px;transition:.2s;line-height:1.6}
+.lu-q-opt:hover{border-color:#c0392b}
+.lu-q-opt.correct{border-color:#3fae7d;background:#3fae7d22;color:#ffffff}
+.lu-q-opt.incorrect{border-color:#e05656;background:#e0565622;color:#ffffff}
+.lu-q-opt[disabled]{cursor:default}
+.lu-q-feedback{font-size:12px;letter-spacing:.5px;margin:10px 0 0;min-height:16px;color:#c0392b}
+@media(max-width:760px){.lu-lecturas{padding:70px 6vw 80px}.lu-lect-panel{padding:24px 18px}.lu-quiz{margin-left:-18px;margin-right:-18px}.lu-lect-head{flex-direction:column;gap:6px}.lu-lect-text{font-size:15.5px;max-width:100%}.lu-q-text{font-size:15px}.lu-q-opt{font-size:14px;padding:12px 14px}.lu-lect-title{font-size:clamp(28px,7vw,40px)}}
+
+/* ============ MINIJUEGO EMBEBIDO (Formula) ============ */
+.game-embed-frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#050609;border:1px solid rgba(255,255,255,.12)}
+.game-embed-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#050609}
+.game-embed-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.game-embed-actions .media-btn{margin-top:0;text-decoration:none;display:inline-block}
+@media(max-width:760px){.game-embed-frame{aspect-ratio:3/4}}
+</style>
+<link rel="stylesheet" href="assets/experience-remaster.css">
+<link rel="stylesheet" href="assets/multimedia-experience.css">
+<link rel="stylesheet" href="assets/quiz-kahoot.css">
+<link rel="stylesheet" href="assets/scroll-animations.css">
+<link rel="stylesheet" href="assets/projector-readability.css">
+</head>
+<body class="mechanic-remaster">
+
+<div id="arrival-layer"></div>
+
+<header class="HEADER2">
+    <nav class="navbar2">
+        <div class="logo2">
+            <span class="logo-text2">
+                RIMBERIO TALLER
+            </span>
+        </div>
+        <ul class="nav-list2">
+            <li class="nav-item2">
+                <a href="index.html" class="lu-back">← Universo</a>
+            </li>
+            <li class="nav-item2">
+                <a href="#inicio" class="nav-link2">Inicio</a>
+            </li>
+            <li class="nav-item2">
+                <a href="#sistemas" class="nav-link2">Sistemas</a>
+            </li>
+            <li class="nav-item2">
+                <a href="#servicios" class="nav-link2">El taller</a>
+            </li>
+            <li class="nav-item2">
+                <a href="#multimedia-mecanica" class="nav-link2">Experiencia</a>
+            </li>
+            <li class="nav-item2">
+                <a href="#lecturas" class="nav-link2">Lecturas</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<!--================ HERO =================-->
+
+<section class="hero2" id="inicio">
+
+    <div class="hero-overlay2"></div>
+
+    <div class="hero-shape2"></div>
+
+    <div class="hero-content2">
+
+        <p class="hero-subtitle2">
+
+            TALLER TÉCNICO ·
+
+        </p>
+
+        <h1 class="hero-title2">
+
+            El lenguaje <br>
+
+            de la máquina
+
+        </h1>
+
+        <p class="hero-description2">
+
+            Entender un motor es leer un sistema: cada pieza cumple una función, cada falla cuenta una historia. Un recorrido técnico por la mecánica automotriz, sus sistemas y sus oficios.
+
+        </p>
+
+        <div class="hero-buttons2">
+
+            <a href="#sistemas" class="hero-button-primary2">
+
+                Explorar sistemas
+
+            </a>
+
+            <a href="#nosotros" class="hero-button-secondary2">
+
+                Sobre el taller
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-scroll2">
+
+        ↓ Scroll
+
+    </div>
+
+</section>
+<!--================ FEATURED CARS =================-->
+<section class="featured-section2" id="sistemas">
+    <div class="section-header2">
+        <span class="section-subtitle2">
+            ANATOMÍA DEL VEHÍCULO
+        </span>
+        <h2 class="section-title2">
+            Tres sistemas, un mismo propósito
+        </h2>
+    </div>
+    <div class="cars-grid2">
+        <article class="car-card2">
+            <div class="car-image2"></div>
+            <div class="car-content2">
+                <h3 class="car-title2">
+                    Sistema de motor
+                </h3>
+                <p class="car-description2">
+                    Convierte energía química en movimiento. Combustión, compresión, admisión y escape trabajando en un ciclo constante y preciso.
+                </p>
+                <a href="#lecturas" class="car-button2">
+                    Leer ficha técnica →
+                </a>
+            </div>
+        </article>
+        <article class="car-card2">
+            <div class="car-image2"></div>
+            <div class="car-content2">
+                <h3 class="car-title2">
+                    Suspensión y dirección
+                </h3>
+                <p class="car-description2">
+                    Absorben el terreno y traducen cada giro del volante en una trayectoria estable, precisa y segura.
+                </p>
+                <a href="#lecturas" class="car-button2">
+                    Leer ficha técnica →
+                </a>
+            </div>
+        </article>
+        <article class="car-card2">
+            <div class="car-image2"></div>
+            <div class="car-content2">
+                <h3 class="car-title2">
+                    Frenos y transmisión
+                </h3>
+                <p class="car-description2">
+                    Controlan la potencia entregada y la capacidad de detenerla: el equilibrio entre avanzar y frenar con seguridad.
+                </p>
+                <a href="#lecturas" class="car-button2">
+                    Leer ficha técnica →
+                </a>
+            </div>
+        </article>
+    </div>
+</section>
+<!--================ ABOUT =================-->
+<section class="about-section2" id="nosotros">
+    <div class="about-container2">
+        <div class="about-content2">
+            <span class="about-subtitle2">
+                EL TALLER
+            </span>
+            <h2 class="about-title2">
+                Aprender haciendo
+            </h2>
+            <p class="about-description2">
+                RIMBERIO nació como un taller de barrio y se convirtió en un espacio donde se enseña mecánica de verdad: diagnóstico, reparación y el porqué de cada sistema, no solo el cómo.
+            </p>
+            <a href="#lecturas" class="about-button2">
+                Ver fichas técnicas
+            </a>
+        </div>
+        <div class="about-stats2">
+            <div class="about-card2">
+                <h3 class="about-number2">
+                    15+
+                </h3>
+                <p class="about-label2">
+                    Años de oficio
+                </p>
+            </div>
+            <div class="about-card2">
+                <h3 class="about-number2">
+                    600+
+                </h3>
+                <p class="about-label2">
+                    Diagnósticos realizados
+                </p>
+            </div>
+            <div class="about-card2">
+                <h3 class="about-number2">
+                    98%
+                </h3>
+                <p class="about-label2">
+                    Reparaciones sin reincidencia
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================ SERVICES =================-->
+<section class="services-section2" id="servicios">
+    <div class="services-header2">
+        <span class="services-subtitle2">
+            EN EL TALLER
+        </span>
+        <h2 class="services-title2">
+            Lo que se hace aquí
+        </h2>
+    </div>
+    <div class="services-grid2">
+        <article class="services-card2">
+            <div class="services-icon2">
+                🔎
+            </div>
+            <h3 class="services-name2">
+                Diagnóstico
+            </h3>
+            <p class="services-text2">
+                Escuchar el motor, leer los códigos, encontrar la causa antes que el síntoma.
+            </p>
+        </article>
+        <article class="services-card2">
+            <div class="services-icon2">
+                🔧
+            </div>
+            <h3 class="services-name2">
+                Mantenimiento preventivo
+            </h3>
+            <p class="services-text2">
+                Revisiones periódicas que evitan que una falla pequeña se convierta en una grande.
+            </p>
+        </article>
+        <article class="services-card2">
+            <div class="services-icon2">
+                🛠️
+            </div>
+            <h3 class="services-name2">
+                Restauración
+            </h3>
+            <p class="services-text2">
+                Devolver a un vehículo su funcionamiento original, pieza por pieza.
+            </p>
+        </article>
+        <article class="services-card2">
+            <div class="services-icon2">
+                🎓
+            </div>
+            <h3 class="services-name2">
+                Formación técnica
+            </h3>
+            <p class="services-text2">
+                Talleres para quienes quieren entender la mecánica desde cero, con las manos en el motor.
+            </p>
+        </article>
+    </div>
+</section>
+
+<section id="multimedia-mecanica" class="media-zone multimedia-section" style="--media-accent:#d92727">
+  <div class="media-head">
+    <div><span class="media-badge" style="position:static;display:inline-block;margin-bottom:10px">EXPERIENCIA INTERACTIVA</span><h2>Garage Motion Lab</h2></div>
+    <p>Velocidad, máquinas y retos interactivos en un espacio diseñado para explorar sin páginas vacías.</p>
+  </div>
+  <div class="media-grid" style="grid-template-columns:1fr">
+    <article class="media-card wide">
+      <div class="media-video-wrap">
+        <span class="media-badge">MOTION VIDEO</span>
+        <iframe class="media-video" style="min-height:420px;border:0" src="https://www.youtube.com/embed/sRMBq--LVjk" title="¿Cómo funciona el motor de combustión interna?" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="media-body">
+        <h3>🎬 ¿Cómo funciona el motor de combustión interna?</h3>
+        <p>Video educativo sobre el motor de combustión interna: pistones, bielas, bujías e inyectores explicados paso a paso.</p>
+      </div>
+    </article>
+  </div>
+  <div class="media-card" style="margin-top:18px">
+    <div class="game-shell">
+      <span class="media-badge" style="position:static;display:inline-block;margin-bottom:10px">MINIJUEGO</span>
+      <h3>🎮 GARAGE MOTION LAB — reto interactivo</h3>
+      <div id="game-mecanica"></div>
+    </div>
+  </div>
+</section>
+
+<section id="lecturas" class="lu-lecturas">
+  <div class="lu-lect-head-wrap">
+    <p class="lu-kicker">TALLER TÉCNICO / TEXTOS</p>
+    <h2 class="lu-lect-title">Sistemas del<br>automóvil.</h2>
+    <p class="lu-lect-lead">Fichas técnicas bilingües con preguntas de comprensión sobre cada sistema del vehículo.</p>
+  </div>
+  <div class="lu-lect-tabs" role="tablist">
+    <button type="button" class="lu-lect-tab active" data-target="mec-1">01</button>
+<button type="button" class="lu-lect-tab" data-target="mec-2">02</button>
+<button type="button" class="lu-lect-tab" data-target="mec-3">03</button>
+<button type="button" class="lu-lect-tab" data-target="mec-4">04</button>
+  </div>
+  <div class="lu-lect-panels">
+    <article class="lu-lect-panel active" id="mec-1" role="tabpanel" data-lect="mec-1">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">01</span>
+    <div>
+      <h4>El motor de combustión interna</h4>
+      
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><p>El motor de combustión interna es el componente principal de la mayoría de los automóviles modernos. Su función consiste en transformar la energía química del combustible en energía mecánica capaz de mover las ruedas del vehículo. Este proceso ocurre mediante la combustión controlada de una mezcla de aire y combustible dentro de los cilindros del motor.</p>
+<p>El funcionamiento del motor se basa en cuatro tiempos: admisión, compresión, combustión y escape. Durante la admisión, el cilindro recibe la mezcla de aire y combustible. En la compresión, el pistón reduce el volumen de la mezcla para aumentar su presión. Posteriormente, una chispa producida por la bujía provoca la explosión que empuja el pistón hacia abajo, generando la energía necesaria para mover el cigüeñal. Finalmente, en el tiempo de escape, los gases resultantes de la combustión son expulsados.</p>
+<p>El mantenimiento adecuado del motor, incluyendo cambios de aceite, filtros y bujías, permite mejorar su rendimiento, reducir el consumo de combustible y prolongar su vida útil.</p></div>
+  <div class="lu-lect-text" data-lang="en"><p>The internal combustion engine is the main component of most modern automobiles. Its function is to convert the chemical energy of fuel into mechanical energy capable of moving the vehicle's wheels. This process occurs through the controlled combustion of a mixture of air and fuel inside the engine's cylinders.</p>
+<p>The engine operates in four stages: intake, compression, combustion, and exhaust. During intake, the cylinder receives the air-fuel mixture. During compression, the piston reduces the mixture's volume, increasing its pressure. Next, a spark from the spark plug ignites the mixture, pushing the piston downward and generating the energy needed to rotate the crankshaft. Finally, during the exhaust stage, the combustion gases are expelled.</p>
+<p>Proper engine maintenance, including regular oil, filter, and spark plug changes, improves performance, reduces fuel consumption, and extends the engine's lifespan.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Cuál es la función principal del motor de combustión interna?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Almacenar el combustible del vehículo.</button><button type="button" class="lu-q-opt" data-opt="B">B. Transformar la energía química del combustible en energía mecánica para mover el automóvil.</button><button type="button" class="lu-q-opt" data-opt="C">C. Reducir la velocidad del vehículo.</button><button type="button" class="lu-q-opt" data-opt="D">D. Enfriar el sistema eléctrico.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. ¿Qué ocurre durante la etapa de combustión del motor?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Se expulsa el aceite usado.</button><button type="button" class="lu-q-opt" data-opt="B">B. La bujía enciende la mezcla de aire y combustible, generando la fuerza que mueve el pistón.</button><button type="button" class="lu-q-opt" data-opt="C">C. El combustible regresa al tanque.</button><button type="button" class="lu-q-opt" data-opt="D">D. El cigüeñal deja de girar.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) What is the main function of an internal combustion engine?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. To cool the engine.</button><button type="button" class="lu-q-opt" data-opt="B">B. To convert fuel into mechanical energy that moves the vehicle.</button><button type="button" class="lu-q-opt" data-opt="C">C. To stop the car.</button><button type="button" class="lu-q-opt" data-opt="D">D. To charge the battery.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">4. ¿Cuál es el orden correcto de los cuatro tiempos del motor?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Escape, compresión, admisión, combustión</button><button type="button" class="lu-q-opt" data-opt="B">B. Admisión, compresión, combustión, escape</button><button type="button" class="lu-q-opt" data-opt="C">C. Combustión, admisión, escape, compresión</button><button type="button" class="lu-q-opt" data-opt="D">D. Compresión, escape, admisión, combustión</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="C">
+  <p class="lu-q-text">5. ¿Qué elemento produce la chispa que enciende la mezcla aire-combustible?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. El cigüeñal</button><button type="button" class="lu-q-opt" data-opt="B">B. El filtro de aire</button><button type="button" class="lu-q-opt" data-opt="C">C. La bujía</button><button type="button" class="lu-q-opt" data-opt="D">D. El radiador</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+<article class="lu-lect-panel" id="mec-2" role="tabpanel" data-lect="mec-2">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">02</span>
+    <div>
+      <h4>El sistema de frenos</h4>
+      
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><p>El sistema de frenos es uno de los mecanismos de seguridad más importantes de un automóvil. Su función principal es disminuir la velocidad o detener completamente el vehículo cuando el conductor presiona el pedal del freno.</p>
+<p>En la mayoría de los vehículos modernos se utilizan frenos de disco en las ruedas delanteras y, en muchos casos, también en las traseras. Cuando el conductor pisa el pedal, el líquido de frenos transmite la presión hasta las pinzas, que comprimen las pastillas contra el disco y generan la fricción necesaria para detener el automóvil.</p>
+<p>Los sistemas actuales también incorporan tecnologías como el sistema ABS, que evita el bloqueo de las ruedas durante un frenado brusco y permite mantener el control del vehículo.</p>
+<p>Revisar periódicamente el estado de las pastillas, discos y líquido de frenos es fundamental para garantizar la seguridad de los ocupantes.</p></div>
+  <div class="lu-lect-text" data-lang="en"><p>The braking system is one of the most important safety mechanisms in a vehicle. Its main function is to reduce speed or stop the vehicle when the driver presses the brake pedal.</p>
+<p>Most modern vehicles use disc brakes on the front wheels and often on the rear wheels as well. When the driver presses the brake pedal, brake fluid transfers the pressure to the calipers, which press the brake pads against the disc to create the friction needed to stop the vehicle.</p>
+<p>Modern braking systems also include technologies such as ABS, which prevents wheel lock during emergency braking and helps maintain vehicle control.</p>
+<p>Regular inspection of brake pads, discs, and brake fluid is essential for safe driving.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Cuál es la función principal del sistema de frenos?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Aumentar la velocidad del automóvil.</button><button type="button" class="lu-q-opt" data-opt="B">B. Disminuir la velocidad o detener el vehículo de forma segura.</button><button type="button" class="lu-q-opt" data-opt="C">C. Mejorar el rendimiento del motor.</button><button type="button" class="lu-q-opt" data-opt="D">D. Reducir el consumo de combustible.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. ¿Cuál es la principal ventaja del sistema ABS?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Aumenta la potencia del motor.</button><button type="button" class="lu-q-opt" data-opt="B">B. Evita que las ruedas se bloqueen durante un frenado brusco.</button><button type="button" class="lu-q-opt" data-opt="C">C. Reduce el peso del vehículo.</button><button type="button" class="lu-q-opt" data-opt="D">D. Incrementa la velocidad máxima.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) What does the ABS braking system help prevent?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Engine overheating.</button><button type="button" class="lu-q-opt" data-opt="B">B. Wheel lock during hard braking.</button><button type="button" class="lu-q-opt" data-opt="C">C. Fuel leaks.</button><button type="button" class="lu-q-opt" data-opt="D">D. Tire inflation problems.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">4. ¿Qué función cumple el líquido de frenos en el sistema?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Enfriar el motor</button><button type="button" class="lu-q-opt" data-opt="B">B. Transmitir la fuerza del pedal a las pastillas mediante presión hidráulica</button><button type="button" class="lu-q-opt" data-opt="C">C. Lubricar la transmisión</button><button type="button" class="lu-q-opt" data-opt="D">D. Encender la mezcla de combustible</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">5. ¿Qué componente entra en contacto directo con el disco para frenar el vehículo?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Las pastillas de freno</button><button type="button" class="lu-q-opt" data-opt="B">B. El cigüeñal</button><button type="button" class="lu-q-opt" data-opt="C">C. El amortiguador</button><button type="button" class="lu-q-opt" data-opt="D">D. La correa de distribución</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+<article class="lu-lect-panel" id="mec-3" role="tabpanel" data-lect="mec-3">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">03</span>
+    <div>
+      <h4>El sistema de transmisión</h4>
+      
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><p>La transmisión es el conjunto de componentes encargado de llevar la potencia generada por el motor hasta las ruedas. Su función es adaptar la fuerza y la velocidad del motor según las condiciones de conducción.</p>
+<p>Existen transmisiones manuales y automáticas. En una transmisión manual, el conductor selecciona las marchas mediante la palanca de cambios y el embrague. En una transmisión automática, el sistema realiza los cambios de velocidad sin intervención directa del conductor, utilizando mecanismos hidráulicos o electrónicos.</p>
+<p>El correcto funcionamiento de la transmisión depende del buen estado del aceite lubricante, los engranajes y otros componentes internos. Un mantenimiento adecuado reduce el desgaste y mejora la eficiencia del vehículo.</p></div>
+  <div class="lu-lect-text" data-lang="en"><p>The transmission is the system responsible for transferring the engine's power to the wheels. Its function is to adjust the engine's force and speed according to driving conditions.</p>
+<p>There are manual and automatic transmissions. In a manual transmission, the driver selects gears using the gear lever and clutch. In an automatic transmission, the system changes gears without direct driver input through hydraulic or electronic mechanisms.</p>
+<p>Proper transmission performance depends on the condition of the transmission fluid, gears, and other internal components. Regular maintenance reduces wear and improves vehicle efficiency.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Cuál es la función principal de la transmisión?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Enfriar el motor.</button><button type="button" class="lu-q-opt" data-opt="B">B. Transmitir la potencia del motor a las ruedas y adaptar la velocidad.</button><button type="button" class="lu-q-opt" data-opt="C">C. Filtrar el combustible.</button><button type="button" class="lu-q-opt" data-opt="D">D. Controlar la suspensión.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. ¿Qué diferencia existe entre una transmisión manual y una automática?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. La manual realiza los cambios por sí sola.</button><button type="button" class="lu-q-opt" data-opt="B">B. La manual requiere que el conductor utilice el embrague y la palanca de cambios.</button><button type="button" class="lu-q-opt" data-opt="C">C. La automática no tiene engranajes.</button><button type="button" class="lu-q-opt" data-opt="D">D. Ambas funcionan exactamente igual.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) What is the purpose of the transmission in a vehicle?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. To cool the engine.</button><button type="button" class="lu-q-opt" data-opt="B">B. To transfer engine power to the wheels.</button><button type="button" class="lu-q-opt" data-opt="C">C. To produce electricity.</button><button type="button" class="lu-q-opt" data-opt="D">D. To clean the fuel.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">4. ¿Cuál es la función principal de la caja de cambios?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Adaptar la potencia y velocidad del motor a las necesidades de conducción</button><button type="button" class="lu-q-opt" data-opt="B">B. Enfriar los frenos</button><button type="button" class="lu-q-opt" data-opt="C">C. Filtrar el aceite del motor</button><button type="button" class="lu-q-opt" data-opt="D">D. Generar la chispa de encendido</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="C">
+  <p class="lu-q-text">5. En una transmisión manual, ¿qué pedal se utiliza para cambiar de marcha?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. El acelerador</button><button type="button" class="lu-q-opt" data-opt="B">B. El freno</button><button type="button" class="lu-q-opt" data-opt="C">C. El embrague</button><button type="button" class="lu-q-opt" data-opt="D">D. El claxon</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+<article class="lu-lect-panel" id="mec-4" role="tabpanel" data-lect="mec-4">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">04</span>
+    <div>
+      <h4>El sistema de suspensión y dirección</h4>
+      
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><p>La suspensión y la dirección trabajan conjuntamente para proporcionar estabilidad, comodidad y control durante la conducción. La suspensión absorbe los impactos producidos por las irregularidades del terreno mediante amortiguadores, resortes y otros componentes.</p>
+<p>La dirección permite orientar las ruedas delanteras para cambiar la trayectoria del vehículo. Actualmente, muchos automóviles utilizan dirección asistida hidráulica o eléctrica, lo que reduce el esfuerzo necesario para girar el volante.</p>
+<p>Cuando la suspensión o la dirección presentan fallas, pueden aparecer vibraciones, desgaste irregular de los neumáticos y pérdida de estabilidad, aumentando el riesgo de accidentes. Por ello, es importante revisar periódicamente estos sistemas y sustituir las piezas desgastadas cuando sea necesario.</p></div>
+  <div class="lu-lect-text" data-lang="en"><p>The suspension and steering systems work together to provide stability, comfort, and control while driving. The suspension absorbs impacts caused by uneven roads through shock absorbers, springs, and other components.</p>
+<p>The steering system allows the front wheels to change direction. Today, many vehicles use hydraulic or electric power steering, making the steering wheel easier to turn.</p>
+<p>When the suspension or steering system fails, vibrations, uneven tire wear, and reduced stability may occur, increasing the risk of accidents. Regular inspections and timely replacement of worn components are essential for safe vehicle operation.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Cuál es la función principal del sistema de suspensión?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Aumentar la potencia del motor.</button><button type="button" class="lu-q-opt" data-opt="B">B. Absorber los impactos del camino y proporcionar estabilidad y comodidad.</button><button type="button" class="lu-q-opt" data-opt="C">C. Controlar el consumo de combustible.</button><button type="button" class="lu-q-opt" data-opt="D">D. Encender el vehículo.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. ¿Qué puede ocurrir si la suspensión o la dirección presentan fallas?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. El automóvil consume menos combustible.</button><button type="button" class="lu-q-opt" data-opt="B">B. Se producen vibraciones, desgaste irregular de los neumáticos y pérdida de estabilidad.</button><button type="button" class="lu-q-opt" data-opt="C">C. El motor desarrolla más potencia.</button><button type="button" class="lu-q-opt" data-opt="D">D. El sistema de frenos deja de funcionar.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) Which system helps the driver control the direction of the vehicle?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Fuel system.</button><button type="button" class="lu-q-opt" data-opt="B">B. Steering system.</button><button type="button" class="lu-q-opt" data-opt="C">C. Exhaust system.</button><button type="button" class="lu-q-opt" data-opt="D">D. Cooling system.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">4. ¿Cuál es una función principal del sistema de suspensión?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Absorber las irregularidades del terreno y mantener el contacto de las llantas con el pavimento</button><button type="button" class="lu-q-opt" data-opt="B">B. Aumentar la velocidad máxima del motor</button><button type="button" class="lu-q-opt" data-opt="C">C. Reducir el consumo de combustible</button><button type="button" class="lu-q-opt" data-opt="D">D. Encender las luces del vehículo</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">5. ¿Qué componente permite al conductor girar las ruedas delanteras?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. El volante y la caja de dirección</button><button type="button" class="lu-q-opt" data-opt="B">B. El amortiguador trasero</button><button type="button" class="lu-q-opt" data-opt="C">C. El silenciador</button><button type="button" class="lu-q-opt" data-opt="D">D. El radiador</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+  </div>
+</section>
+<!--================ FOOTER =================-->
+<footer class="footer2">
+    <div class="footer-container2">
+        <div class="footer-brand2">
+            <h2 class="footer-logo2">
+                RIMBERIO
+            </h2>
+            <p class="footer-description2">
+                Taller & Escuela de Mecánica
+            </p>
+        </div>
+        <div class="footer-menu2">
+            <a href="#inicio" class="footer-link2">
+                Inicio
+            </a>
+            <a href="#sistemas" class="footer-link2">
+                Sistemas
+            </a>
+            <a href="#servicios" class="footer-link2">
+                Servicios
+            </a>
+            <a href="#multimedia-mecanica" class="footer-link2">
+                Experiencia
+            </a>
+            <a href="#lecturas" class="footer-link2">
+                Lecturas
+            </a>
+        </div>
+        <a class="lu-universe-link" href="index.html">✦ VOLVER AL UNIVERSO</a>
+        <div class="footer-copy2">
+            © 2026 Rimberio. Todos los derechos reservados.
+        </div>
+    </div>
+</footer>
+
+<script>
+    const luArrival = document.getElementById('arrival-layer');
+    if (luArrival) luArrival.addEventListener('animationend', () => luArrival.remove());
+</script>
+<script src="assets/site.js"></script>
+<script>
+    LiteraryUniverse.initChrome({ activeUrl: 'mecanica.html', rootFreq: 82, chordRatios: [1, 1.25, 1.5, 2] });
+</script>
+
+<script>
+
+(function(){
+  var section = document.getElementById('lecturas');
+  if(!section) return;
+  var tabs = section.querySelectorAll('.lu-lect-tab');
+  var panels = section.querySelectorAll('.lu-lect-panel');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.classList.remove('active'); });
+      panels.forEach(function(p){ p.classList.remove('active'); });
+      tab.classList.add('active');
+      var target = document.getElementById(tab.dataset.target);
+      if(target) target.classList.add('active');
+    });
+  });
+  section.querySelectorAll('.lu-lang-toggle').forEach(function(toggle){
+    var panel = toggle.closest('.lu-lect-panel');
+    var btns = toggle.querySelectorAll('.lu-lang-btn');
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        btns.forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        panel.querySelectorAll('.lu-lect-text').forEach(function(t){
+          t.classList.toggle('active', t.dataset.lang === btn.dataset.lang);
+        });
+      });
+    });
+  });
+  // Preguntas: manejadas por assets/quiz-kahoot.js (orden de respuestas aleatorio)
+})();
+
+</script>
+
+<script src="assets/mecanica-remaster.js"></script>
+<script src="assets/mecanica-experience.js"></script>
+<script src="assets/mecanica-mini-game.js"></script>
+<script src="assets/multimedia-interactions.js"></script>
+<script src="assets/quiz-kahoot.js"></script>
+<script src="assets/scroll-animations.js" defer></script>
+</body>
+</html>

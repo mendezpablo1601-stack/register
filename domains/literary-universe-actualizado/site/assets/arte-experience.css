@@ -1,0 +1,7 @@
+
+/* ===== ARTE · GALERÍA VIVA ===== */
+.arte-experience-bg{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 18% 20%,rgba(231,123,47,.12),transparent 30%),radial-gradient(circle at 80% 70%,rgba(151,77,34,.11),transparent 35%)}
+.arte-palette{display:flex;gap:8px;position:fixed;left:22px;top:20px;z-index:9997}
+.arte-palette b{width:12px;height:12px;border-radius:50%;border:1px solid #fff8;box-shadow:0 0 12px #000}
+.arte-palette b:nth-child(1){background:#e77b2f}.arte-palette b:nth-child(2){background:#9b4d22}.arte-palette b:nth-child(3){background:#e9b44c}.arte-palette b:nth-child(4){background:#f2dfc4}
+.arte-frame{outline:1px solid transparent;transition:.5s}.arte-frame:hover{outline-color:rgba(231,123,47,.35);box-shadow:0 25px 70px rgba(0,0,0,.35)}

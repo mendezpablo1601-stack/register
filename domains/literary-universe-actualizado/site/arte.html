@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="theme-color" content="#9b4d22">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arte · Literary Universe</title>
+<meta name="description" content="Arte · Literary Universe: una experiencia editorial sobre las obras que transforman la oscuridad, la memoria y la imaginación en imágenes.">
+<link rel="icon" type="image/png" href="star.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/arte.css">
+<link rel="stylesheet" href="assets/experience-system.css">
+<link rel="stylesheet" href="assets/arte-experience.css">
+<style>
+    /* ============ INTEGRACIÓN CON EL UNIVERSO ============ */
+    #arrival-layer {
+        position: fixed; inset: 0; z-index: 99999;
+        background: radial-gradient(circle, #a9702f 0%, #ef476f 45%, #000 100%);
+        animation: lu-arrival 0.9s ease forwards;
+        pointer-events: none;
+    }
+    @keyframes lu-arrival {
+        0% { opacity: 1; transform: scale(1); }
+        60% { opacity: 1; transform: scale(1.5); }
+        100% { opacity: 0; transform: scale(2.2); }
+    }
+    .lu-back {
+        display: inline-flex !important; align-items: center; gap: 7px;
+        color: #a9702f !important;
+    }
+    .lu-universe-link {
+        display: inline-flex; align-items: center; gap: 6px;
+        text-decoration: none; color: #a9702f;
+        border: 1px solid #a9702f55; border-radius: 999px;
+        padding: 7px 16px; font-size: 10px; letter-spacing: 0.14em;
+        transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+        white-space: nowrap;
+    }
+    .lu-universe-link:hover { border-color: #a9702f; background: #a9702f1a; }
+
+/* ============ LECTURAS Y PREGUNTAS ============ */
+.lu-lecturas{position:relative;z-index:2;padding:96px 7vw 110px;background:#0a0a09;color:#e9e4d9;font-family:"Montserrat",sans-serif;}
+.lu-lect-head-wrap{max-width:1200px;margin:0 auto 46px}
+.lu-kicker{font-size:10px;letter-spacing:4px;color:#d4b67a;margin:0 0 16px;text-transform:uppercase}
+.lu-lect-title{font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(32px,4.4vw,54px);line-height:1.08;margin:0 0 18px;color:#e9e4d9}
+.lu-lect-title i,.lu-lect-title em{font-style:italic;color:#d4b67a}
+.lu-lect-lead{font-size:16px;line-height:1.8;color:#9e9b93;max-width:600px}
+.lu-lect-tabs{display:flex;flex-wrap:wrap;gap:10px;margin:0 auto 40px;max-width:1200px}
+.lu-lect-tab{cursor:pointer;border:1px solid #292824;background:transparent;color:#9e9b93;font:600 12px "Montserrat",sans-serif;letter-spacing:1px;padding:10px 18px;border-radius:999px;transition:.25s}
+.lu-lect-tab:hover{border-color:#d4b67a;color:#e9e4d9}
+.lu-lect-tab.active{background:#d4b67a;border-color:#d4b67a;color:#0a0a09}
+.lu-lect-panels{position:relative;max-width:1200px;margin:0 auto}
+.lu-lect-panel{display:none;border:1px solid #292824;border-radius:14px;padding:34px clamp(24px,3.5vw,42px);background:#0d0d0c}
+.lu-lect-panel.active{display:block}
+.lu-lect-head{display:flex;gap:20px;align-items:flex-start;margin-bottom:26px;border-bottom:1px solid #292824;padding-bottom:22px}
+.lu-lect-num{font:600 30px "Montserrat",sans-serif;color:#d4b67a;line-height:1}
+.lu-lect-head h4{font:600 22px "Montserrat",sans-serif;margin:0 0 6px;color:#e9e4d9;line-height:1.25}
+.lu-lect-autor{font-size:12px;letter-spacing:1.5px;color:#9e9b93;text-transform:uppercase}
+.lu-lang-toggle{display:flex;gap:8px;margin-bottom:22px}
+.lu-lang-btn{cursor:pointer;border:1px solid #292824;background:transparent;color:#9e9b93;font:600 10px "Montserrat",sans-serif;letter-spacing:1.5px;padding:7px 16px;border-radius:6px}
+.lu-lang-btn.active{background:#d4b67a22;border-color:#d4b67a;color:#d4b67a}
+.lu-lect-text{display:none;color:#dbd6c8;font-size:17px;line-height:1.9;max-width:700px}
+.lu-lect-text.active{display:block}
+.lu-lect-text h5{font:600 13px "Montserrat",sans-serif;letter-spacing:1.5px;text-transform:uppercase;color:#d4b67a;margin:22px 0 10px}
+.lu-lect-text h5:first-child{margin-top:0}
+.lu-lect-text p{margin:0 0 14px}
+.lu-quiz{margin-top:34px;padding-top:30px;border-top:1px solid #292824;margin-left:calc(-1 * clamp(24px,3.5vw,42px));margin-right:calc(-1 * clamp(24px,3.5vw,42px))}
+.lu-quiz-title{font:600 13px "Montserrat",sans-serif;letter-spacing:2px;text-transform:uppercase;color:#d4b67a;margin:0 0 20px}
+.lu-q{margin-bottom:22px;padding-bottom:22px;border-bottom:1px dashed #292824}
+.lu-q:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.lu-q-text{font:500 16px "Montserrat",sans-serif;color:#e9e4d9;margin:0 0 12px;line-height:1.65;font-weight:600}
+.lu-q-opts{display:grid;gap:8px}
+.lu-q-opt{text-align:left;cursor:pointer;border:1px solid #292824;background:#131311;color:#dbd6c8;font:500 15px "Montserrat",sans-serif;padding:14px 16px;border-radius:8px;transition:.2s;line-height:1.6}
+.lu-q-opt:hover{border-color:#d4b67a}
+.lu-q-opt.correct{border-color:#3fae7d;background:#3fae7d22;color:#e9e4d9}
+.lu-q-opt.incorrect{border-color:#e05656;background:#e0565622;color:#e9e4d9}
+.lu-q-opt[disabled]{cursor:default}
+.lu-q-feedback{font-size:12px;letter-spacing:.5px;margin:10px 0 0;min-height:16px;color:#d4b67a}
+@media(max-width:760px){.lu-lecturas{padding:70px 6vw 80px}.lu-lect-panel{padding:24px 18px}.lu-quiz{margin-left:-18px;margin-right:-18px}.lu-lect-head{flex-direction:column;gap:6px}.lu-lect-text{font-size:15.5px;max-width:100%}.lu-q-text{font-size:15px}.lu-q-opt{font-size:14px;padding:12px 14px}.lu-lect-title{font-size:clamp(28px,7vw,40px)}}
+
+/* ============ Art Studio Live — lienzo ampliado ============ */
+#game-arte .ag-screen{height:560px}
+.ag-toolbar{display:flex;flex-direction:column;gap:14px;margin-top:14px;padding:16px 18px;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(255,255,255,.03)}
+.ag-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.ag-group{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ag-swatch{width:26px;height:26px;border-radius:50%;border:2px solid rgba(255,255,255,.18);cursor:pointer;padding:0;transition:.2s}
+.ag-swatch:hover{transform:scale(1.15)}
+.ag-swatch.active{border-color:#e9e4d9;box-shadow:0 0 0 3px rgba(212,182,122,.4)}
+.ag-custom{display:flex;align-items:center;gap:10px;padding-left:14px;border-left:1px solid rgba(255,255,255,.14)}
+.ag-custom-label{font-size:12px;color:#9e9b93}
+.ag-custom input[type="color"]{width:36px;height:36px;border:2px solid rgba(255,255,255,.18);border-radius:50%;padding:0;cursor:pointer;background:none;overflow:hidden}
+.ag-custom input[type="color"]::-webkit-color-swatch-wrapper{padding:0}
+.ag-custom input[type="color"]::-webkit-color-swatch{border:0;border-radius:50%}
+.ag-tool{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);color:#e9e4d9;font:500 13px "Montserrat",sans-serif;letter-spacing:.2px;padding:9px 16px;border-radius:999px;cursor:pointer;transition:.2s;white-space:nowrap}
+.ag-tool:hover{border-color:#d4b67a;color:#d4b67a}
+.ag-tool.active{background:#d4b67a;border-color:#d4b67a;color:#0a0a09;font-weight:600}
+.ag-clear{border:1px solid rgba(255,255,255,.2);background:transparent;color:#e9e4d9;font:500 13px "Montserrat",sans-serif;padding:9px 16px;border-radius:999px;cursor:pointer;transition:.2s;white-space:nowrap}
+.ag-clear:hover{border-color:#e05656;color:#e05656}
+@media(max-width:760px){#game-arte .ag-screen{height:420px}.ag-toolbar{padding:12px}.ag-row{gap:10px}.ag-tool,.ag-clear{font-size:12px;padding:8px 12px}.ag-custom{padding-left:10px}}
+
+</style>
+<link rel="stylesheet" href="assets/multimedia-experience.css">
+<link rel="stylesheet" href="assets/quiz-kahoot.css">
+<link rel="stylesheet" href="assets/projector-readability.css">
+</head>
+<body>
+
+<div id="arrival-layer"></div>
+
+<header class="top">
+  <a href="#inicio" class="logo">ATELIER<span>·</span>NOCTURNO</a>
+  <nav>
+    <a href="index.html" class="lu-back">← Universo</a>
+    <a href="#inicio">Inicio</a>
+    <a href="#obras">Obras</a>
+    <a href="#mirada">La mirada</a>
+    <a href="#lecturas">Lecturas</a>
+  </nav>
+  <button id="theme">◐ <span>CAMBIAR LUZ</span></button>
+</header>
+
+<main id="inicio">
+<section class="opening">
+  <div class="opening-title">
+    <p class="kicker">ARCHIVO VISUAL / 001</p>
+    <h1>El arte<br><i>no duerme.</i></h1>
+    <p class="lead">Una experiencia editorial dedicada a las obras que transforman la oscuridad, la memoria y la imaginación en imágenes. Cada pieza reunida aquí invita a mirar más despacio: a preguntarse qué cuenta el color, qué oculta la sombra y qué queda pensando el espectador después de ver la obra.</p>
+    <a class="discover" href="#obras">Explorar la colección <b>↓</b></a>
+  </div>
+  <div class="opening-image">
+    <img src="assets/arte/arte-1.jpg" alt="Obra artística nocturna">
+    <div class="image-note">01 — ATMÓSFERA</div>
+  </div>
+  <div class="vertical">A · R · T · E &nbsp; / &nbsp; MATERIA · TIEMPO · EMOCIÓN</div>
+</section>
+
+<section id="obras" class="collection">
+  <aside>
+    <p class="kicker">COLECCIÓN 01</p>
+    <h2>Cuatro<br><i>visiones.</i></h2>
+    <p>El arte puede inquietar, narrar, revelar o simplemente dejarnos contemplando. Cada una de las cuatro obras de esta colección aborda un mismo tema desde un lenguaje visual distinto: la muerte, el juego, el cielo nocturno y la tristeza detrás de una sonrisa.</p>
+    <div class="counter"><strong id="count">01</strong><span>/ 04</span></div>
+  </aside>
+
+  <div class="works">
+    <button class="work w1" data-img="assets/arte/arte-3.jpg" data-title="El pacto de la sombra" data-desc="Una escena teatral y oscura donde la figura humana dialoga con una presencia fantástica.">
+      <img src="assets/arte/arte-3.jpg" alt="Escena artística con criatura y personaje">
+      <span>01</span><b>El pacto de la sombra</b><em>↗</em>
+    </button>
+    <button class="work w2" data-img="assets/arte/arte-4.jpg" data-title="El artista y su doble" data-desc="Un retrato cargado de tensión en el que la creación parece observar a quien la crea.">
+      <img src="assets/arte/arte-4.jpg" alt="Retrato de artista">
+      <span>02</span><b>El artista y su doble</b><em>↗</em>
+    </button>
+    <button class="work w3" data-img="assets/arte/arte-2.jpg" data-title="La máscara del poder" data-desc="Color, vestuario y expresión construyen una escena sobre identidad, autoridad y representación.">
+      <img src="assets/arte/arte-2.jpg" alt="Figura vestida de rojo">
+      <span>03</span><b>La máscara del poder</b><em>↗</em>
+    </button>
+    <button class="work w4" data-img="assets/arte/arte-1.jpg" data-title="Noche estrellada" data-desc="Un paisaje de pinceladas intensas donde cielo, arquitectura y agua forman una sola atmósfera.">
+      <img src="assets/arte/arte-1.jpg" alt="Paisaje nocturno estrellado">
+      <span>04</span><b>Noche estrellada</b><em>↗</em>
+    </button>
+  </div>
+</section>
+
+<section id="mirada" class="statement">
+  <div class="statement-number">02</div>
+  <div class="statement-text">
+    <p class="kicker">LA MIRADA</p>
+    <h2>Una obra no termina<br>cuando la <i>pintan.</i></h2>
+    <p>Termina —o comienza— cuando alguien la observa. Esta colección propone detenerse en la atmósfera, el gesto, la luz y aquello que una imagen deja fuera del cuadro. Observar arte con calma es también una forma de leer: cada trazo, cada color y cada silencio dentro de la composición cuentan una parte de la historia.</p>
+  </div>
+  <div class="statement-symbol">✦</div>
+</section>
+
+<section class="feature">
+  <div class="feature-photo"><img src="assets/arte/arte-1.jpg" alt="Paisaje artístico"></div>
+  <div class="feature-copy">
+    <p class="kicker">03 / CONTEMPLACIÓN</p>
+    <h2>La noche<br><i>también pinta.</i></h2>
+    <p>Hay imágenes que no necesitan explicar su historia. Su fuerza está en la sensación que producen: silencio, misterio, nostalgia o asombro. Aprender a mirar una obra sin apuro —fijándose en la luz, el color y la composición— es el primer paso para entender por qué una pintura sigue emocionando siglos después de haber sido creada.</p>
+    <div class="line"></div>
+    <span>OBSERVAR · INTERPRETAR · SENTIR</span>
+  </div>
+</section>
+
+<section id="multimedia-arte" class="media-zone multimedia-section" style="--media-accent:#e77b2f">
+  <div class="media-head">
+    <div><span class="media-badge" style="position:static;display:inline-block;margin-bottom:10px">EXPERIENCIA INTERACTIVA</span><h2>Art Studio Live</h2></div>
+    <p>Una galería que se mueve: mira, crea y juega con el color.</p>
+  </div>
+  <div class="media-grid" style="grid-template-columns:1fr">
+    <article class="media-card wide">
+      <div class="media-video-wrap">
+        <span class="media-badge">MOTION VIDEO</span>
+        <iframe class="media-video" style="min-height:420px;border:0" src="https://www.youtube.com/embed/qz1vrmk1Tp8" title="Cronología y resumen de la historia del arte" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="media-body">
+        <h3>🎬 Un recorrido por la historia del arte</h3>
+        <p>Video educativo con los principales movimientos y obras que marcaron la historia del arte occidental.</p>
+      </div>
+    </article>
+  </div>
+  <div class="media-card" style="margin-top:18px">
+    <div class="game-shell">
+      <span class="media-badge" style="position:static;display:inline-block;margin-bottom:10px">MINIJUEGO</span>
+      <h3>🎮 ART STUDIO LIVE — reto interactivo</h3>
+      <div id="game-arte"></div>
+    </div>
+  </div>
+
+</section>
+
+<section id="lecturas" class="lu-lecturas">
+  <div class="lu-lect-head-wrap">
+    <p class="lu-kicker">ARCHIVO VISUAL / TEXTOS</p>
+    <h2 class="lu-lect-title">Textos, autores<br><i>y preguntas.</i></h2>
+    <p class="lu-lect-lead">Contexto, biografía del autor y preguntas de comprensión para cada obra de la colección.</p>
+  </div>
+  <div class="lu-lect-tabs" role="tablist">
+    <button type="button" class="lu-lect-tab active" data-target="arte-1">01</button>
+<button type="button" class="lu-lect-tab" data-target="arte-2">02</button>
+<button type="button" class="lu-lect-tab" data-target="arte-3">03</button>
+<button type="button" class="lu-lect-tab" data-target="arte-4">04</button>
+  </div>
+  <div class="lu-lect-panels">
+    <article class="lu-lect-panel active" id="arte-1" role="tabpanel" data-lect="arte-1">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">01</span>
+    <div>
+      <h4>La muerte tocando el violín</h4>
+      <span class="lu-lect-autor">Autor: Arnold Böcklin</span>
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><h5>Concepto</h5>
+<p>La muerte tocando el violín es una obra representativa del simbolismo que muestra a un artista mientras la muerte aparece detrás de él tocando un violín. La escena no representa un hecho real, sino una idea: que la muerte siempre acompaña la vida y puede llegar en cualquier momento. El violín simboliza el paso del tiempo y el destino inevitable de todos los seres humanos.</p>
+<p>La pintura también invita a reflexionar sobre la creatividad y la existencia. El artista continúa con su trabajo mientras la muerte permanece a su lado, recordando que, aunque la vida es limitada, el arte puede permanecer a través del tiempo. Por esta razón, la obra es considerada una representación de la relación entre la vida, la muerte y la inspiración artística.</p>
+<h5>Biografía del autor</h5>
+<p>Arnold Böcklin (1827-1901) fue un pintor suizo reconocido como uno de los principales representantes del simbolismo europeo. Estudió arte en Alemania y desarrolló un estilo caracterizado por representar escenas mitológicas, paisajes fantásticos y temas relacionados con la muerte, la espiritualidad y la naturaleza. Sus obras influyeron en numerosos artistas de finales del siglo XIX y principios del siglo XX gracias a su capacidad para expresar emociones mediante símbolos.</p></div>
+  <div class="lu-lect-text" data-lang="en"><h5>Concept</h5>
+<p>Death Playing the Violin is a Symbolist painting that shows an artist while Death appears behind him playing a violin. The scene does not represent a real event but rather an idea: death is always present in human life and can arrive at any moment. The violin symbolizes the passage of time and the inevitable destiny of every human being.</p>
+<p>The painting also invites viewers to reflect on creativity and existence. The artist continues working while Death remains beside him, reminding us that although life is limited, art can endure through time. For this reason, the painting is considered a representation of the relationship between life, death, and artistic inspiration.</p>
+<h5>Author's Biography</h5>
+<p>Arnold Böcklin (1827–1901) was a Swiss painter recognized as one of the leading representatives of European Symbolism. He studied art in Germany and developed a style characterized by mythological scenes, fantastic landscapes, and themes related to death, spirituality, and nature. His paintings influenced many artists of the late nineteenth and early twentieth centuries because of their powerful symbolic meaning.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Qué simboliza principalmente el violín en la obra?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. La alegría de vivir.</button><button type="button" class="lu-q-opt" data-opt="B">B. El paso del tiempo y la presencia inevitable de la muerte.</button><button type="button" class="lu-q-opt" data-opt="C">C. La riqueza del artista.</button><button type="button" class="lu-q-opt" data-opt="D">D. La importancia de la música clásica.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. ¿Cuál es el mensaje principal de la pintura?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. El arte puede evitar la muerte.</button><button type="button" class="lu-q-opt" data-opt="B">B. La vida es limitada y el arte puede trascender el paso del tiempo.</button><button type="button" class="lu-q-opt" data-opt="C">C. La música es más importante que la pintura.</button><button type="button" class="lu-q-opt" data-opt="D">D. Los artistas siempre trabajan solos.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) What is the main idea of Death Playing the Violin?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Music is more important than painting.</button><button type="button" class="lu-q-opt" data-opt="B">B. Death is an inevitable part of life.</button><button type="button" class="lu-q-opt" data-opt="C">C. Artists should stop creating art.</button><button type="button" class="lu-q-opt" data-opt="D">D. The violin is the most important instrument.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">4. ¿A qué corriente o estilo artístico se asocia esta obra?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Simbolismo</button><button type="button" class="lu-q-opt" data-opt="B">B. Cubismo</button><button type="button" class="lu-q-opt" data-opt="C">C. Impresionismo</button><button type="button" class="lu-q-opt" data-opt="D">D. Pop art</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">5. ¿Qué sentimiento busca transmitir principalmente la presencia de la muerte en la escena?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Alegría y celebración</button><button type="button" class="lu-q-opt" data-opt="B">B. La fragilidad de la vida y la cercanía constante de la muerte</button><button type="button" class="lu-q-opt" data-opt="C">C. Indiferencia total</button><button type="button" class="lu-q-opt" data-opt="D">D. Optimismo tecnológico</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+<article class="lu-lect-panel" id="arte-2" role="tabpanel" data-lect="arte-2">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">02</span>
+    <div>
+      <h4>Jugadores de ajedrez</h4>
+      <span class="lu-lect-autor">Autor: Thomas Eakins</span>
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><h5>Concepto</h5>
+<p>Jugadores de ajedrez representa a varias personas concentradas en una partida de ajedrez, mostrando un ambiente de tranquilidad y reflexión. Más que retratar un simple juego, la obra simboliza la inteligencia, la estrategia y la importancia de pensar antes de actuar. Cada movimiento del tablero representa una decisión que puede cambiar el resultado de la partida, al igual que ocurre en la vida cotidiana.</p>
+<p>El artista presta especial atención a las expresiones de los personajes y a los detalles del entorno para transmitir realismo. La pintura demuestra que las actividades diarias también pueden convertirse en arte cuando reflejan las emociones, el pensamiento y las relaciones humanas.</p>
+<h5>Biografía del autor</h5>
+<p>Thomas Eakins (1844-1916) fue un pintor, escultor y fotógrafo estadounidense, considerado uno de los artistas más importantes del realismo en Estados Unidos. Se destacó por representar escenas de la vida cotidiana, retratos y actividades deportivas con gran precisión anatómica y técnica. Además de pintar, fue profesor de arte y promovió el estudio del cuerpo humano como base para lograr obras más realistas.</p></div>
+  <div class="lu-lect-text" data-lang="en"><h5>Concept</h5>
+<p>Chess Players portrays several people deeply focused on a game of chess in a calm and thoughtful atmosphere. More than simply showing a game, the painting symbolizes intelligence, strategy, and the importance of thinking carefully before making decisions. Every move on the chessboard represents a choice that can change the outcome of the game, just as decisions shape people's lives.</p>
+<p>The artist pays close attention to the expressions of the players and the details of the setting to create a realistic scene. The painting demonstrates that everyday activities can become meaningful works of art when they capture human emotions, thought, and relationships.</p>
+<h5>Author's Biography</h5>
+<p>Thomas Eakins (1844–1916) was an American painter, sculptor, and photographer, considered one of the greatest Realist artists in the United States. He became well known for his realistic portraits, scenes of everyday life, and sports paintings. As an art teacher, he emphasized the study of human anatomy to achieve greater accuracy and realism in painting.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Qué representa la partida de ajedrez en la obra?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Una competencia deportiva.</button><button type="button" class="lu-q-opt" data-opt="B">B. La estrategia, la inteligencia y la toma de decisiones.</button><button type="button" class="lu-q-opt" data-opt="C">C. Una celebración familiar.</button><button type="button" class="lu-q-opt" data-opt="D">D. Una actividad sin importancia.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. ¿Qué aspecto destaca Thomas Eakins en los personajes?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Su fuerza física.</button><button type="button" class="lu-q-opt" data-opt="B">B. Sus expresiones, concentración y realismo.</button><button type="button" class="lu-q-opt" data-opt="C">C. Su riqueza.</button><button type="button" class="lu-q-opt" data-opt="D">D. Su forma de vestir.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) What does the chess game mainly symbolize?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Luck.</button><button type="button" class="lu-q-opt" data-opt="B">B. Strategy and intelligence.</button><button type="button" class="lu-q-opt" data-opt="C">C. Entertainment only.</button><button type="button" class="lu-q-opt" data-opt="D">D. Physical strength.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">4. ¿Qué estilo artístico caracteriza principalmente la obra de Thomas Eakins?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Realismo</button><button type="button" class="lu-q-opt" data-opt="B">B. Surrealismo</button><button type="button" class="lu-q-opt" data-opt="C">C. Fauvismo</button><button type="button" class="lu-q-opt" data-opt="D">D. Arte abstracto</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">5. ¿Qué elemento de la pintura refuerza la sensación de concentración de los personajes?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Los colores brillantes y saturados</button><button type="button" class="lu-q-opt" data-opt="B">B. La postura, la mirada fija y el ambiente silencioso e íntimo</button><button type="button" class="lu-q-opt" data-opt="C">C. El uso de formas geométricas exageradas</button><button type="button" class="lu-q-opt" data-opt="D">D. La ausencia total de figuras humanas</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+<article class="lu-lect-panel" id="arte-3" role="tabpanel" data-lect="arte-3">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">03</span>
+    <div>
+      <h4>Noche estrellada</h4>
+      <span class="lu-lect-autor">Autor: Vincent van Gogh</span>
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><h5>Concepto</h5>
+<p>Noche estrellada es una de las pinturas más famosas de la historia del arte. Fue realizada en 1889 mientras Vincent van Gogh permanecía en un hospital de Francia. La obra representa un cielo nocturno lleno de estrellas brillantes y remolinos sobre un pequeño pueblo, utilizando colores intensos y pinceladas dinámicas que transmiten movimiento y emoción.</p>
+<p>Más que mostrar un paisaje real, la pintura expresa el estado emocional del artista y su manera de interpretar el mundo. Actualmente es considerada un símbolo de creatividad, sensibilidad y libertad artística, siendo una de las obras más admiradas y estudiadas del arte universal.</p>
+<h5>Biografía del autor</h5>
+<p>Vincent van Gogh (1853-1890) fue un pintor neerlandés considerado uno de los artistas más importantes del postimpresionismo. Durante su vida realizó más de dos mil obras entre pinturas y dibujos, aunque solo vendió una mientras vivía. Su uso del color, las pinceladas expresivas y la intensidad de sus emociones transformaron la historia del arte. Después de su muerte alcanzó reconocimiento mundial y hoy sus obras se encuentran entre las más valiosas e influyentes del mundo.</p></div>
+  <div class="lu-lect-text" data-lang="en"><h5>Concept</h5>
+<p>The Starry Night is one of the most famous paintings in the history of art. It was created in 1889 while Vincent van Gogh was staying in a hospital in France. The painting depicts a night sky filled with bright stars and swirling clouds above a small village, using vivid colors and expressive brushstrokes that create a strong sense of movement and emotion.</p>
+<p>Rather than presenting a realistic landscape, the painting expresses the artist's emotions and his personal vision of the world. Today it is considered a symbol of creativity, sensitivity, and artistic freedom, making it one of the most admired and studied masterpieces in the world.</p>
+<h5>Author's Biography</h5>
+<p>Vincent van Gogh (1853–1890) was a Dutch painter and one of the most influential artists of the Post-Impressionist movement. During his lifetime he created more than 2,000 paintings and drawings, although he sold only one painting while he was alive. His bold use of color and expressive brushwork transformed the history of art. After his death, he became internationally recognized, and today his works are among the most famous and valuable in the world.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Qué caracteriza principalmente la pintura Noche estrellada?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. El uso de colores apagados y líneas rectas.</button><button type="button" class="lu-q-opt" data-opt="B">B. El uso de colores intensos y pinceladas con movimiento para expresar emociones.</button><button type="button" class="lu-q-opt" data-opt="C">C. La representación exacta de un paisaje urbano.</button><button type="button" class="lu-q-opt" data-opt="D">D. La ausencia de estrellas.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. ¿Por qué esta obra es considerada una de las más importantes de la historia del arte?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Porque representa una batalla histórica.</button><button type="button" class="lu-q-opt" data-opt="B">B. Porque expresa emociones profundas e influyó en generaciones de artistas.</button><button type="button" class="lu-q-opt" data-opt="C">C. Porque fue la primera pintura al óleo.</button><button type="button" class="lu-q-opt" data-opt="D">D. Porque fue realizada por varios artistas.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">3. (English) Which element is most characteristic of The Starry Night?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Bright colors and expressive brushstrokes.</button><button type="button" class="lu-q-opt" data-opt="B">B. Black and white tones only.</button><button type="button" class="lu-q-opt" data-opt="C">C. Perfect geometric shapes.</button><button type="button" class="lu-q-opt" data-opt="D">D. A realistic city map.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">4. ¿Quién pintó Noche estrellada?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Pablo Picasso</button><button type="button" class="lu-q-opt" data-opt="B">B. Vincent van Gogh</button><button type="button" class="lu-q-opt" data-opt="C">C. Claude Monet</button><button type="button" class="lu-q-opt" data-opt="D">D. Salvador Dalí</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">5. ¿A qué movimiento artístico pertenece esta obra?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Postimpresionismo</button><button type="button" class="lu-q-opt" data-opt="B">B. Renacimiento</button><button type="button" class="lu-q-opt" data-opt="C">C. Barroco</button><button type="button" class="lu-q-opt" data-opt="D">D. Arte gótico</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+<article class="lu-lect-panel" id="arte-4" role="tabpanel" data-lect="arte-4">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">04</span>
+    <div>
+      <h4>El payaso triste</h4>
+      <span class="lu-lect-autor">Autor: Bernard Buffet</span>
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><h5>Concepto</h5>
+<p>El payaso triste representa a un personaje vestido como artista de circo, pero con una expresión llena de tristeza y soledad. La pintura transmite la idea de que muchas personas esconden sus verdaderos sentimientos detrás de una sonrisa o de una apariencia alegre. El contraste entre el maquillaje del payaso y su rostro melancólico invita a reflexionar sobre las emociones humanas y la importancia de comprender lo que sienten los demás.</p>
+<p>La obra también simboliza la soledad, el sacrificio y la dificultad de mantener una imagen de felicidad cuando en realidad existen preocupaciones o sufrimiento. Por ello, es una pintura que continúa siendo interpretada desde diferentes perspectivas psicológicas y artísticas.</p>
+<h5>Biografía del autor</h5>
+<p>Bernard Buffet (1928-1999) fue un pintor francés reconocido por su estilo expresionista y por el uso de líneas fuertes, figuras alargadas y colores sobrios. Desde muy joven obtuvo reconocimiento internacional gracias a sus obras, que abordaban temas como la soledad, la tristeza y la condición humana. Su trabajo se convirtió en una de las expresiones artísticas más representativas de la Francia del siglo XX.</p></div>
+  <div class="lu-lect-text" data-lang="en"><h5>Concept</h5>
+<p>The Sad Clown portrays a circus performer with a deeply sad and lonely expression. The painting conveys the idea that many people hide their true feelings behind a smile or a cheerful appearance. The contrast between the clown's colorful makeup and his melancholy face encourages viewers to reflect on human emotions and the importance of understanding what others may be experiencing.</p>
+<p>The artwork also symbolizes loneliness, sacrifice, and the difficulty of appearing happy while carrying emotional pain. Because of these themes, it continues to be interpreted from both artistic and psychological perspectives.</p>
+<h5>Author's Biography</h5>
+<p>Bernard Buffet (1928–1999) was a French painter known for his Expressionist style, strong lines, elongated figures, and muted colors. He gained international recognition at a young age through artworks that explored themes such as loneliness, sadness, and the human condition. His paintings made him one of the most important French artists of the twentieth century.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Qué simboliza principalmente la figura del payaso?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. La diversión permanente.</button><button type="button" class="lu-q-opt" data-opt="B">B. La tristeza que puede ocultarse detrás de una apariencia alegre.</button><button type="button" class="lu-q-opt" data-opt="C">C. La riqueza del circo.</button><button type="button" class="lu-q-opt" data-opt="D">D. El éxito profesional.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. ¿Qué reflexión busca transmitir la obra?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Que todas las personas muestran siempre sus emociones.</button><button type="button" class="lu-q-opt" data-opt="B">B. Que las apariencias no siempre reflejan los verdaderos sentimientos.</button><button type="button" class="lu-q-opt" data-opt="C">C. Que los payasos nunca sienten tristeza.</button><button type="button" class="lu-q-opt" data-opt="D">D. Que el circo es el mejor lugar para vivir.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) What does The Sad Clown mainly represent?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Happiness without problems.</button><button type="button" class="lu-q-opt" data-opt="B">B. Hidden sadness behind a cheerful appearance.</button><button type="button" class="lu-q-opt" data-opt="C">C. A circus performance.</button><button type="button" class="lu-q-opt" data-opt="D">D. A comedy show.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">4. ¿Qué recurso utiliza el artista para transmitir tristeza a través del payaso?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. El uso de colores muy alegres y brillantes</button><button type="button" class="lu-q-opt" data-opt="B">B. La expresión del rostro y la postura melancólica del personaje</button><button type="button" class="lu-q-opt" data-opt="C">C. Un fondo lleno de fuegos artificiales</button><button type="button" class="lu-q-opt" data-opt="D">D. La ausencia total de rostro</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">5. ¿Qué crítica suele representarse mediante la figura del payaso triste?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. El contraste entre la apariencia alegre mostrada al público y el sufrimiento interior</button><button type="button" class="lu-q-opt" data-opt="B">B. La superioridad tecnológica</button><button type="button" class="lu-q-opt" data-opt="C">C. El avance de la ciencia moderna</button><button type="button" class="lu-q-opt" data-opt="D">D. La vida en el campo</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>ATELIER · NOCTURNO</span>
+  <small>ARCHIVO DIGITAL DE ARTE</small>
+  <a href="#inicio">↑ ARRIBA</a>
+  <a class="lu-universe-link" href="index.html">✦ VOLVER AL UNIVERSO</a>
+</footer>
+
+<div class="modal" id="modal">
+  <button id="close">×</button>
+  <div class="modal-image"><img id="modalImg" src="" alt=""></div>
+  <div class="modal-copy">
+    <small id="modalNum"></small>
+    <h2 id="modalTitle"></h2>
+    <p id="modalDesc"></p>
+    <div class="modal-rule"></div>
+    <span>ABRIR · CONTEMPLAR · INTERPRETAR</span>
+  </div>
+</div>
+
+<script src="assets/arte.js"></script>
+<script>
+    const luArrival = document.getElementById('arrival-layer');
+    if (luArrival) luArrival.addEventListener('animationend', () => luArrival.remove());
+</script>
+<script src="assets/site.js"></script>
+<script>
+    LiteraryUniverse.initChrome({ activeUrl: 'arte.html', rootFreq: 110, chordRatios: [1, 1.26, 1.5, 2] });
+</script>
+
+<script>
+
+(function(){
+  var section = document.getElementById('lecturas');
+  if(!section) return;
+  var tabs = section.querySelectorAll('.lu-lect-tab');
+  var panels = section.querySelectorAll('.lu-lect-panel');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.classList.remove('active'); });
+      panels.forEach(function(p){ p.classList.remove('active'); });
+      tab.classList.add('active');
+      var target = document.getElementById(tab.dataset.target);
+      if(target) target.classList.add('active');
+    });
+  });
+  section.querySelectorAll('.lu-lang-toggle').forEach(function(toggle){
+    var panel = toggle.closest('.lu-lect-panel');
+    var btns = toggle.querySelectorAll('.lu-lang-btn');
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        btns.forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        panel.querySelectorAll('.lu-lect-text').forEach(function(t){
+          t.classList.toggle('active', t.dataset.lang === btn.dataset.lang);
+        });
+      });
+    });
+  });
+  // Preguntas: manejadas por assets/quiz-kahoot.js (orden de respuestas aleatorio)
+})();
+
+</script>
+
+<script src="assets/arte-experience.js"></script>
+<script src="assets/experience-router.js"></script>
+<script src="assets/arte-mini-game.js"></script>
+<script src="assets/multimedia-interactions.js"></script>
+<script src="assets/quiz-kahoot.js"></script>
+</body>
+</html>

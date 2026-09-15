@@ -1,0 +1,100 @@
+/* =====================================================
+   QUIZ ESTILO KAHOOT — fichas de color, orden aleatorio,
+   animaciones de acierto/error. Se aplica encima de los
+   estilos base .lu-quiz / .lu-q / .lu-q-opt de cada página.
+===================================================== */
+
+.lu-q-opts.kh-opts{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+@media (max-width: 560px){
+    .lu-q-opts.kh-opts{ grid-template-columns: 1fr; }
+}
+
+button.kh-opt{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    cursor: pointer;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 16px 14px 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: #fff;
+    overflow: hidden;
+    transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+    box-shadow: 0 6px 0 -1px rgba(0,0,0,.35), 0 8px 16px rgba(0,0,0,.25);
+}
+button.kh-opt:hover{ transform: translateY(-2px); filter: brightness(1.08); }
+button.kh-opt:active{ transform: translateY(1px); }
+
+.kh-opt .kh-shape{
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,.35));
+}
+.kh-opt .kh-label{ flex: 1; }
+
+/* Paleta clásica tipo Kahoot, en el orden en que se dibujan las 4 fichas */
+button.kh-opt[data-kh-slot="0"]{ background: linear-gradient(160deg,#e94057,#c81e39); }
+button.kh-opt[data-kh-slot="1"]{ background: linear-gradient(160deg,#2f7bf6,#1657c2); }
+button.kh-opt[data-kh-slot="2"]{ background: linear-gradient(160deg,#f2b705,#d99400); }
+button.kh-opt[data-kh-slot="3"]{ background: linear-gradient(160deg,#22b573,#159157); }
+
+button.kh-opt[disabled]{ cursor: default; }
+button.kh-opt[disabled]:hover{ transform: none; filter: none; }
+
+button.kh-opt.kh-correct{
+    animation: khPulse .5s ease;
+    box-shadow: 0 0 0 3px #fff, 0 10px 22px rgba(0,0,0,.35);
+}
+button.kh-opt.kh-incorrect{
+    opacity: .45;
+    filter: grayscale(.4);
+}
+.kh-opt .kh-mark{
+    margin-left: auto;
+    flex-shrink: 0;
+    font-size: 15px;
+}
+
+@keyframes khPulse{
+    0%{ transform: scale(1); }
+    45%{ transform: scale(1.045); }
+    100%{ transform: scale(1); }
+}
+
+.lu-quiz.kh-ready .lu-q-feedback{
+    font-weight: 700;
+    letter-spacing: .3px;
+}
+
+.kh-shuffle-btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 10px 0 0;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.25);
+    background: rgba(255,255,255,.06);
+    color: inherit;
+    font: 600 10.5px 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, background .2s ease;
+}
+.kh-shuffle-btn.kh-visible{ opacity: 1; pointer-events: auto; }
+.kh-shuffle-btn:hover{ background: rgba(255,255,255,.14); }

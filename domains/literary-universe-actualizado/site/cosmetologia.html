@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="theme-color" content="#063c31">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosmetología · Literary Universe</title>
+<meta name="description" content="Cosmetología · Literary Universe: LILACÉ, un estudio de belleza premium donde la tecnología, el cuidado y el bienestar se encuentran.">
+<link rel="icon" type="image/png" href="star.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/cosmetologia.css">
+<link rel="stylesheet" href="assets/experience-system.css">
+<link rel="stylesheet" href="assets/cosmetologia-experience.css">
+<style>
+    /* ============ INTEGRACIÓN CON EL UNIVERSO ============ */
+    #arrival-layer {
+        position: fixed; inset: 0; z-index: 99999;
+        background: radial-gradient(circle, #3fae7d 0%, #7fffd4 45%, #000 100%);
+        animation: lu-arrival 0.9s ease forwards;
+        pointer-events: none;
+    }
+    @keyframes lu-arrival {
+        0% { opacity: 1; transform: scale(1); }
+        60% { opacity: 1; transform: scale(1.5); }
+        100% { opacity: 0; transform: scale(2.2); }
+    }
+    .lu-back {
+        display: inline-flex !important; align-items: center; gap: 7px;
+        color: #3fae7d !important;
+    }
+    .lu-universe-link {
+        display: inline-flex; align-items: center; gap: 6px;
+        text-decoration: none; color: #3fae7d;
+        border: 1px solid #3fae7d55; border-radius: 999px;
+        padding: 7px 16px; font-size: 10px; letter-spacing: 0.14em;
+        transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+        white-space: nowrap;
+    }
+    .lu-universe-link:hover { border-color: #3fae7d; background: #3fae7d1a; }
+
+/* ============ LECTURAS Y PREGUNTAS ============ */
+.lu-lecturas{position:relative;z-index:2;padding:96px 7vw 110px;background:#17121d;color:#f4eef7;font-family:Montserrat,sans-serif;}
+.lu-lect-head-wrap{max-width:1200px;margin:0 auto 46px}
+.lu-kicker{font-size:10px;letter-spacing:4px;color:#d8c1ed;margin:0 0 16px;text-transform:uppercase}
+.lu-lect-title{font-family:"Montserrat",sans-serif;font-weight:600;font-size:clamp(32px,4.4vw,54px);line-height:1.08;margin:0 0 18px;color:#f4eef7}
+.lu-lect-title i,.lu-lect-title em{font-style:italic;color:#d8c1ed}
+.lu-lect-lead{font-size:16px;line-height:1.8;color:#bcb2c4;max-width:600px}
+.lu-lect-tabs{display:flex;flex-wrap:wrap;gap:10px;margin:0 auto 40px;max-width:1200px}
+.lu-lect-tab{cursor:pointer;border:1px solid #2c2635;background:transparent;color:#bcb2c4;font:600 12px Montserrat,sans-serif;letter-spacing:1px;padding:10px 18px;border-radius:999px;transition:.25s}
+.lu-lect-tab:hover{border-color:#d8c1ed;color:#f4eef7}
+.lu-lect-tab.active{background:#d8c1ed;border-color:#d8c1ed;color:#17121d}
+.lu-lect-panels{position:relative;max-width:1200px;margin:0 auto}
+.lu-lect-panel{display:none;border:1px solid #2c2635;border-radius:14px;padding:34px clamp(24px,3.5vw,42px);background:#1d1826}
+.lu-lect-panel.active{display:block}
+.lu-lect-head{display:flex;gap:20px;align-items:flex-start;margin-bottom:26px;border-bottom:1px solid #2c2635;padding-bottom:22px}
+.lu-lect-num{font:600 30px "Montserrat",sans-serif;color:#d8c1ed;line-height:1}
+.lu-lect-head h4{font:600 22px "Montserrat",sans-serif;margin:0 0 6px;color:#f4eef7;line-height:1.25}
+.lu-lect-autor{font-size:12px;letter-spacing:1.5px;color:#bcb2c4;text-transform:uppercase}
+.lu-lang-toggle{display:flex;gap:8px;margin-bottom:22px}
+.lu-lang-btn{cursor:pointer;border:1px solid #2c2635;background:transparent;color:#bcb2c4;font:600 10px Montserrat,sans-serif;letter-spacing:1.5px;padding:7px 16px;border-radius:6px}
+.lu-lang-btn.active{background:#d8c1ed22;border-color:#d8c1ed;color:#d8c1ed}
+.lu-lect-text{display:none;color:#ece5f2;font-size:17px;line-height:1.9;max-width:700px}
+.lu-lect-text.active{display:block}
+.lu-lect-text h5{font:600 13px Montserrat,sans-serif;letter-spacing:1.5px;text-transform:uppercase;color:#d8c1ed;margin:22px 0 10px}
+.lu-lect-text h5:first-child{margin-top:0}
+.lu-lect-text p{margin:0 0 14px}
+.lu-quiz{margin-top:34px;padding-top:30px;border-top:1px solid #2c2635;margin-left:calc(-1 * clamp(24px,3.5vw,42px));margin-right:calc(-1 * clamp(24px,3.5vw,42px))}
+.lu-quiz-title{font:600 13px Montserrat,sans-serif;letter-spacing:2px;text-transform:uppercase;color:#d8c1ed;margin:0 0 20px}
+.lu-q{margin-bottom:22px;padding-bottom:22px;border-bottom:1px dashed #2c2635}
+.lu-q:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.lu-q-text{font:500 16px Montserrat,sans-serif;color:#f4eef7;margin:0 0 12px;line-height:1.65;font-weight:600}
+.lu-q-opts{display:grid;gap:8px}
+.lu-q-opt{text-align:left;cursor:pointer;border:1px solid #2c2635;background:#231d2d;color:#ece5f2;font:500 15px Montserrat,sans-serif;padding:14px 16px;border-radius:8px;transition:.2s;line-height:1.6}
+.lu-q-opt:hover{border-color:#d8c1ed}
+.lu-q-opt.correct{border-color:#3fae7d;background:#3fae7d22;color:#f4eef7}
+.lu-q-opt.incorrect{border-color:#e05656;background:#e0565622;color:#f4eef7}
+.lu-q-opt[disabled]{cursor:default}
+.lu-q-feedback{font-size:12px;letter-spacing:.5px;margin:10px 0 0;min-height:16px;color:#d8c1ed}
+@media(max-width:760px){.lu-lecturas{padding:70px 6vw 80px}.lu-lect-panel{padding:24px 18px}.lu-quiz{margin-left:-18px;margin-right:-18px}.lu-lect-head{flex-direction:column;gap:6px}.lu-lect-text{font-size:15.5px;max-width:100%}.lu-q-text{font-size:15px}.lu-q-opt{font-size:14px;padding:12px 14px}.lu-lect-title{font-size:clamp(28px,7vw,40px)}}
+
+/* ============ RUTINA Y GUÍA DE PIEL ============ */
+.routine-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.routine-step{border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px 16px;background:rgba(255,255,255,.03);transition:.3s}
+.routine-step:hover{border-color:#16d6a0;background:rgba(22,214,160,.06);transform:translateY(-4px)}
+.routine-num{display:inline-block;font:600 12px Montserrat,sans-serif;color:#16d6a0;letter-spacing:2px;margin-bottom:10px}
+.routine-step h4{margin:0 0 8px;font:600 15px "Montserrat",sans-serif;font-size:20px;color:#f4eef7}
+.routine-step p{margin:0;font-size:12px;line-height:1.7;opacity:.75}
+.skin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.skin-card{border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px;background:rgba(255,255,255,.03);transition:.3s}
+.skin-card:hover{border-color:#16d6a0;background:rgba(22,214,160,.06)}
+.skin-card h4{margin:0 0 8px;font:600 18px "Montserrat",sans-serif;color:#16d6a0}
+.skin-card p{margin:0;font-size:12px;line-height:1.7;opacity:.75}
+@media(max-width:900px){.routine-steps{grid-template-columns:repeat(2,1fr)}.skin-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.routine-steps{grid-template-columns:1fr}.skin-grid{grid-template-columns:1fr}}
+
+</style>
+<link rel="stylesheet" href="assets/multimedia-experience.css">
+<link rel="stylesheet" href="assets/quiz-kahoot.css">
+<link rel="stylesheet" href="assets/scroll-animations.css">
+<link rel="stylesheet" href="assets/projector-readability.css">
+</head>
+<body>
+
+<div id="arrival-layer"></div>
+
+<header><a class="logo" href="#inicio">✦ LILACÉ <small>ESTUDIO DE COSMETOLOGÍA</small></a><nav><a href="index.html" class="lu-back">← Universo</a> <a href="#inicio">Inicio</a><a href="#experiencia">Experiencia</a><a href="#galeria">Galería</a><a href="#aprender">Aprender</a><a href="#lecturas">Lecturas</a></nav><a class="appointment" href="#contacto">DESCUBRIR ↗</a></header>
+<main>
+<section id="inicio" class="hero"><div class="hero-copy"><p class="eyebrow">COSMETOLOGÍA · CUIDADO · BIENESTAR</p><h1>El arte de<br><i>cuidar.</i></h1><p class="lead">Un espacio de belleza premium donde la tecnología, el cuidado y la experiencia se encuentran en una atmósfera de calma.</p><a class="scroll" href="#experiencia">EXPLORAR ↓</a></div><div class="hero-visual"><img id="heroImg" src="assets/cosmetologia/ritual.jpg" alt="Cosmetología premium"><div class="hero-card"><span>01</span><strong>RITUAL</strong><small>PRECISIÓN · CALMA · DETALLE</small></div></div><div class="side-note">LILACÉ / 2026</div></section>
+<section id="experiencia" class="experience"><div><p class="eyebrow">01 / EXPERIENCIA</p><h2>Una nueva<br><i>forma de belleza.</i></h2></div><div class="exp-intro">La cosmetología combina conocimiento, técnica y cuidado para crear experiencias personalizadas. Cada detalle está pensado para transmitir serenidad. Detrás de cada ritual hay un proceso profesional: análisis del tipo de piel, elección de productos adecuados y protocolos de higiene que garantizan resultados seguros y duraderos.</div><div class="features"><article><span>01</span><h3>RITUALES</h3><p>Protocolos de cuidado diseñados para una experiencia relajante y personalizada.</p></article><article><span>02</span><h3>TECNOLOGÍA</h3><p>Herramientas profesionales integradas en un entorno limpio y sofisticado.</p></article><article><span>03</span><h3>BIENESTAR</h3><p>Un enfoque que prioriza el confort, la higiene y el acompañamiento profesional.</p></article></div></section>
+<section id="galeria" class="gallery-section"><div class="gallery-title"><p class="eyebrow">02 / GALERÍA</p><h2>El espacio<br><i>también cuida.</i></h2></div><div class="mosaic"><button class="photo p1" data-title="El ritual" data-text="Herramientas y detalles que representan precisión y cuidado."><img src="assets/cosmetologia/ritual.jpg" alt="Productos de cosmetología"><span>01 · EL RITUAL ↗</span></button><button class="photo p2" data-title="El tratamiento" data-text="Un momento de relajación dentro de una experiencia de cuidado facial profesional."><img src="assets/cosmetologia/tratamiento.jpg" alt="Tratamiento facial"><span>02 · EL TRATAMIENTO ↗</span></button><button class="photo p3" data-title="El estudio" data-text="Tecnología, organización y diseño se unen en un espacio profesional."><img src="assets/cosmetologia/clinica.jpg" alt="Estudio de cosmetología"><span>03 · EL ESTUDIO ↗</span></button></div></section>
+<section id="aprender" class="learn"><div><p class="eyebrow">03 / APRENDER</p><div class="big-number">03</div><h2>Conoce<br><i>tu ritual.</i></h2></div><div><p class="intro-dark">Aprender sobre cuidado cosmético también significa entender la importancia de la higiene, la constancia y la orientación profesional.</p><div class="accordion"><details open><summary>01 &nbsp; ¿Qué hace la cosmetología?</summary><p>La cosmetología reúne prácticas de cuidado estético, higiene y bienestar. Los procedimientos deben adaptarse a cada persona.</p></details><details><summary>02 &nbsp; ¿Por qué importa la higiene?</summary><p>La limpieza y desinfección son esenciales para mantener un entorno seguro durante los servicios cosméticos.</p></details><details><summary>03 &nbsp; ¿Qué es un cuidado personalizado?</summary><p>Considera las características y necesidades de cada persona antes de elegir una rutina o servicio.</p></details><details><summary>04 &nbsp; ¿Por qué es importante la formación profesional?</summary><p>Un cosmetólogo capacitado conoce los equipos, los productos y las contraindicaciones de cada tratamiento, lo que reduce riesgos y mejora los resultados para el cliente.</p></details></div></div></section>
+<section class="quote"><h2>La belleza está<br>en el <i>detalle.</i></h2><p class="quote-extra">Cada textura, cada aroma y cada gesto de cuidado forman parte de un proceso pensado para el bienestar de la piel y la confianza de quien la recibe.</p><p>LILACÉ · COSMETOLOGÍA PREMIUM</p></section>
+<section id="contacto" class="contact"><div><p class="eyebrow">04 / LILACÉ</p><h2>Tu espacio<br><i>de bienestar.</i></h2></div><div class="contact-box">Explora la experiencia, descubre los rituales y conoce el universo de la cosmetología: desde la limpieza facial y los tratamientos corporales hasta la bioseguridad y los equipos que hacen posible un cuidado profesional y seguro.<br><a href="#inicio">VOLVER AL INICIO ↗</a></div></section>
+<section id="multimedia-cosmetologia" class="media-zone multimedia-section" style="--media-accent:#16d6a0">
+  <div class="media-head">
+    <div><span class="media-badge" style="position:static;display:inline-block;margin-bottom:10px">EXPERIENCIA INTERACTIVA</span><h2>Beauty Lab</h2></div>
+    <p>Ciencia, cuidado y estética en una experiencia visual, limpia y dinámica.</p>
+  </div>
+  <div class="media-grid" style="grid-template-columns:1fr">
+    <article class="media-card wide">
+      <div class="media-video-wrap">
+        <span class="media-badge">MOTION VIDEO</span>
+        <video class="media-video" controls muted loop playsinline preload="metadata">
+          <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="media-body">
+        <h3>🎬 Laboratorio audiovisual</h3>
+        <p>Activa el video, explora los controles y usa esta zona como referencia visual de la temática.</p>
+      </div>
+    </article>
+  </div>
+  <div class="media-card" style="margin-top:18px;padding:clamp(24px,4vw,44px)">
+    <span class="media-badge" style="position:static;display:inline-block;margin-bottom:16px">RUTINA GUIADA</span>
+    <h3 style="margin:0 0 8px">Tu ritual, paso a paso</h3>
+    <p style="margin:0 0 28px;color:#9aa0a6;max-width:640px">Cinco pasos que ordenan cualquier protocolo de cuidado facial profesional, del más simple al más completo.</p>
+    <div class="routine-steps">
+      <article class="routine-step"><span class="routine-num">01</span><h4>Limpieza</h4><p>Retira impurezas, maquillaje y exceso de sebo sin alterar la barrera cutánea.</p></article>
+      <article class="routine-step"><span class="routine-num">02</span><h4>Tónico</h4><p>Equilibra el pH de la piel y prepara la superficie para absorber mejor los siguientes pasos.</p></article>
+      <article class="routine-step"><span class="routine-num">03</span><h4>Sérum</h4><p>Concentrado de activos específicos: hidratación profunda, luminosidad o control según cada piel.</p></article>
+      <article class="routine-step"><span class="routine-num">04</span><h4>Hidratación</h4><p>Sella el agua en la piel y mantiene la elasticidad durante todo el día.</p></article>
+      <article class="routine-step"><span class="routine-num">05</span><h4>Protección solar</h4><p>El paso que más previene el envejecimiento: ningún ritual está completo sin él.</p></article>
+    </div>
+  </div>
+  <div class="media-card" style="margin-top:18px;padding:clamp(24px,4vw,44px)">
+    <span class="media-badge" style="position:static;display:inline-block;margin-bottom:16px">GUÍA RÁPIDA</span>
+    <h3 style="margin:0 0 20px">Tipos de piel y qué necesitan</h3>
+    <div class="skin-grid">
+      <article class="skin-card"><h4>Piel seca</h4><p>Tiende a la tirantez y descamación. Necesita hidratación intensa y evitar limpiadores agresivos.</p></article>
+      <article class="skin-card"><h4>Piel grasa</h4><p>Produce exceso de sebo y brillo. Se beneficia de fórmulas ligeras y limpieza constante sin resecar.</p></article>
+      <article class="skin-card"><h4>Piel mixta</h4><p>Combina zonas grasas (zona T) y secas. Requiere cuidado diferenciado por área del rostro.</p></article>
+      <article class="skin-card"><h4>Piel sensible</h4><p>Reacciona con facilidad a productos nuevos. Prioriza fórmulas hipoalergénicas y sin fragancia.</p></article>
+    </div>
+  </div>
+
+</section>
+
+<section id="lecturas" class="lu-lecturas">
+  <div class="lu-lect-head-wrap">
+    <p class="lu-kicker">04 / TEXTOS Y PREGUNTAS</p>
+    <h2 class="lu-lect-title">Fichas de<br><i>estudio.</i></h2>
+    <p class="lu-lect-lead">Textos bilingües sobre tratamientos, equipos y bioseguridad, con preguntas de comprensión.</p>
+  </div>
+  <div class="lu-lect-tabs" role="tablist">
+    <button type="button" class="lu-lect-tab active" data-target="cos-1">01</button>
+<button type="button" class="lu-lect-tab" data-target="cos-2">02</button>
+<button type="button" class="lu-lect-tab" data-target="cos-3">03</button>
+<button type="button" class="lu-lect-tab" data-target="cos-4">04</button>
+  </div>
+  <div class="lu-lect-panels">
+    <article class="lu-lect-panel active" id="cos-1" role="tabpanel" data-lect="cos-1">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">01</span>
+    <div>
+      <h4>Limpieza facial profunda</h4>
+      
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><h5>Español</h5>
+<p>La limpieza facial profunda es uno de los tratamientos más importantes en cosmetología y cosmiatría, ya que ayuda a mantener la piel sana y libre de impurezas. Su objetivo es eliminar células muertas, exceso de grasa, residuos de maquillaje y contaminantes acumulados en los poros.</p>
+<p>El procedimiento suele comenzar con la desmaquillada y la limpieza de la piel. Luego se realiza una exfoliación para retirar las células muertas, seguida de vapor o productos emolientes que facilitan la extracción de comedones (puntos negros y blancos). Finalmente, se aplican mascarillas, tónicos, sueros y protector solar para hidratar, calmar y proteger la piel.</p>
+<p>La limpieza facial profunda mejora la textura de la piel, previene la aparición de acné y favorece la absorción de los productos cosméticos. Para conservar sus beneficios, se recomienda realizar este procedimiento de forma periódica según el tipo de piel de cada persona.</p></div>
+  <div class="lu-lect-text" data-lang="en"><h5>English</h5>
+<p>Deep facial cleansing is one of the most important treatments in cosmetology and cosmiatry because it helps keep the skin healthy and free of impurities. Its main purpose is to remove dead skin cells, excess oil, makeup residue, and pollutants trapped in the pores.</p>
+<p>The procedure usually begins with cleansing the skin and removing makeup. This is followed by exfoliation to eliminate dead skin cells, steam or softening products to facilitate blackhead extraction, and finally the application of masks, toners, serums, and sunscreen to hydrate, soothe, and protect the skin.</p>
+<p>Deep facial cleansing improves skin texture, helps prevent acne, and enhances the absorption of cosmetic products. To maintain its benefits, the treatment should be performed regularly according to each person's skin type.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Cuál es el principal objetivo de una limpieza facial profunda?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Cambiar el color de la piel.</button><button type="button" class="lu-q-opt" data-opt="B">B. Eliminar impurezas, células muertas y exceso de grasa para mantener la piel saludable.</button><button type="button" class="lu-q-opt" data-opt="C">C. Aumentar la temperatura corporal.</button><button type="button" class="lu-q-opt" data-opt="D">D. Reemplazar el uso de protector solar.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. ¿Por qué se realiza una exfoliación durante la limpieza facial?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Para aumentar la producción de maquillaje.</button><button type="button" class="lu-q-opt" data-opt="B">B. Para eliminar las células muertas y favorecer la renovación de la piel.</button><button type="button" class="lu-q-opt" data-opt="C">C. Para disminuir la circulación sanguínea.</button><button type="button" class="lu-q-opt" data-opt="D">D. Para endurecer la piel.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) What is the main purpose of a deep facial cleansing?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. To change the skin color.</button><button type="button" class="lu-q-opt" data-opt="B">B. To remove impurities and keep the skin healthy.</button><button type="button" class="lu-q-opt" data-opt="C">C. To replace sunscreen.</button><button type="button" class="lu-q-opt" data-opt="D">D. To increase body temperature.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">4. ¿Qué tipo de piel requiere mayor cuidado al elegir los productos de limpieza?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. La piel sensible o con alteraciones</button><button type="button" class="lu-q-opt" data-opt="B">B. Ninguna piel requiere cuidado especial</button><button type="button" class="lu-q-opt" data-opt="C">C. Solo la piel grasa</button><button type="button" class="lu-q-opt" data-opt="D">D. Solo la piel masculina</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">5. ¿Cuál es un beneficio de realizar limpiezas faciales de forma regular?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Prevenir la obstrucción de los poros y mejorar la salud de la piel</button><button type="button" class="lu-q-opt" data-opt="B">B. Aumentar la producción de grasa en la piel</button><button type="button" class="lu-q-opt" data-opt="C">C. Eliminar por completo la necesidad de hidratación</button><button type="button" class="lu-q-opt" data-opt="D">D. Causar mayor sensibilidad permanente</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+<article class="lu-lect-panel" id="cos-2" role="tabpanel" data-lect="cos-2">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">02</span>
+    <div>
+      <h4>Tratamientos corporales estéticos</h4>
+      
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><h5>Español</h5>
+<p>Los tratamientos corporales son procedimientos destinados a mejorar la apariencia y el bienestar de la piel y los tejidos del cuerpo. Entre los más utilizados se encuentran la exfoliación corporal, los masajes reductores, los drenajes linfáticos, las envolturas con productos cosméticos y los tratamientos reafirmantes.</p>
+<p>Estos procedimientos buscan estimular la circulación sanguínea, favorecer la eliminación de líquidos retenidos, mejorar la elasticidad de la piel y complementar hábitos saludables como una alimentación equilibrada y la actividad física. Es importante recordar que los tratamientos estéticos no sustituyen un estilo de vida saludable, sino que actúan como un apoyo para mejorar los resultados.</p>
+<p>Antes de realizar cualquier tratamiento corporal, el profesional debe evaluar el estado de salud del paciente, identificar posibles contraindicaciones y seleccionar el procedimiento más adecuado para sus necesidades.</p></div>
+  <div class="lu-lect-text" data-lang="en"><h5>English</h5>
+<p>Body aesthetic treatments are procedures designed to improve the appearance and health of the skin and body tissues. The most common treatments include body exfoliation, reducing massages, lymphatic drainage, body wraps, and firming therapies.</p>
+<p>These procedures aim to stimulate blood circulation, reduce fluid retention, improve skin elasticity, and complement healthy habits such as balanced nutrition and regular exercise. It is important to remember that aesthetic treatments do not replace a healthy lifestyle but rather support better results.</p>
+<p>Before performing any body treatment, the professional must evaluate the client's health condition, identify possible contraindications, and choose the most appropriate procedure.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Cuál es el objetivo principal de los tratamientos corporales?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Sustituir una alimentación saludable.</button><button type="button" class="lu-q-opt" data-opt="B">B. Mejorar la apariencia y el bienestar de la piel y los tejidos corporales.</button><button type="button" class="lu-q-opt" data-opt="C">C. Curar todas las enfermedades.</button><button type="button" class="lu-q-opt" data-opt="D">D. Aumentar únicamente la masa muscular.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. Antes de realizar un tratamiento corporal, el profesional debe:</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Aplicar cualquier procedimiento sin valoración previa.</button><button type="button" class="lu-q-opt" data-opt="B">B. Evaluar el estado de salud del paciente e identificar posibles contraindicaciones.</button><button type="button" class="lu-q-opt" data-opt="C">C. Elegir el tratamiento más costoso.</button><button type="button" class="lu-q-opt" data-opt="D">D. Evitar preguntar por antecedentes médicos.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) What should a professional do before performing a body treatment?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Ignore the client's health condition.</button><button type="button" class="lu-q-opt" data-opt="B">B. Evaluate the client's health and possible contraindications.</button><button type="button" class="lu-q-opt" data-opt="C">C. Start the treatment immediately.</button><button type="button" class="lu-q-opt" data-opt="D">D. Use the same treatment for every client.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">4. ¿Por qué es importante conocer el historial de salud del cliente antes de un tratamiento corporal?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Para evitar riesgos y contraindicaciones</button><button type="button" class="lu-q-opt" data-opt="B">B. Para cobrar un precio más alto</button><button type="button" class="lu-q-opt" data-opt="C">C. No es necesario conocerlo</button><button type="button" class="lu-q-opt" data-opt="D">D. Solo se pregunta por curiosidad</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">5. ¿Qué objetivo tienen la mayoría de los tratamientos corporales estéticos?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Mejorar la apariencia y firmeza de la piel del cuerpo</button><button type="button" class="lu-q-opt" data-opt="B">B. Cambiar permanentemente la estructura ósea</button><button type="button" class="lu-q-opt" data-opt="C">C. Sustituir la actividad física</button><button type="button" class="lu-q-opt" data-opt="D">D. Eliminar la necesidad de una alimentación balanceada</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+<article class="lu-lect-panel" id="cos-3" role="tabpanel" data-lect="cos-3">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">03</span>
+    <div>
+      <h4>Equipos y maquinaria en estética</h4>
+      
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><h5>Español</h5>
+<p>La tecnología ha transformado la cosmetología y la cosmiatría mediante el uso de equipos especializados que permiten realizar tratamientos más precisos y seguros. Entre los equipos más utilizados se encuentran la alta frecuencia, el ultrasonido, la radiofrecuencia, la microdermoabrasión, la luz LED y la corriente galvánica.</p>
+<p>Cada equipo tiene una función específica. La alta frecuencia ayuda a controlar bacterias y mejorar la oxigenación de la piel; el ultrasonido favorece la penetración de principios activos; la radiofrecuencia estimula la producción de colágeno y elastina; mientras que la microdermoabrasión elimina células muertas y mejora la textura cutánea.</p>
+<p>El uso de esta maquinaria requiere capacitación profesional, ya que una aplicación incorrecta puede provocar irritaciones, quemaduras o resultados no deseados. Además, siempre deben respetarse las normas de bioseguridad y las indicaciones del fabricante.</p></div>
+  <div class="lu-lect-text" data-lang="en"><h5>English</h5>
+<p>Technology has transformed cosmetology and cosmiatry through the use of specialized equipment that allows treatments to be more accurate and effective. The most commonly used devices include high-frequency machines, ultrasound, radiofrequency, microdermabrasion, LED light therapy, and galvanic current.</p>
+<p>Each device has a specific purpose. High frequency helps reduce bacteria and improve skin oxygenation; ultrasound enhances the absorption of active ingredients; radiofrequency stimulates collagen and elastin production; and microdermabrasion removes dead skin cells and improves skin texture.</p>
+<p>These machines must be operated by trained professionals because incorrect use may cause irritation, burns, or unwanted results. Safety protocols and manufacturer instructions should always be followed.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Qué función cumple la radiofrecuencia entre los equipos de estética?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Aumenta el peso corporal.</button><button type="button" class="lu-q-opt" data-opt="B">B. Estimula la producción de colágeno y elastina.</button><button type="button" class="lu-q-opt" data-opt="C">C. Elimina el uso de otros equipos.</button><button type="button" class="lu-q-opt" data-opt="D">D. Sustituye la limpieza facial.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. ¿Por qué el uso de esta maquinaria requiere capacitación profesional?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Porque los equipos son decorativos.</button><button type="button" class="lu-q-opt" data-opt="B">B. Porque una aplicación incorrecta puede causar irritaciones, quemaduras o resultados no deseados.</button><button type="button" class="lu-q-opt" data-opt="C">C. Porque son de uso exclusivo doméstico.</button><button type="button" class="lu-q-opt" data-opt="D">D. Porque no requieren mantenimiento.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) What is the purpose of ultrasound in aesthetic equipment?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. To reduce bacteria only.</button><button type="button" class="lu-q-opt" data-opt="B">B. To enhance the absorption of active ingredients.</button><button type="button" class="lu-q-opt" data-opt="C">C. To remove sunscreen.</button><button type="button" class="lu-q-opt" data-opt="D">D. To increase muscle mass.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">4. ¿Qué precaución debe tenerse al utilizar equipos de estética sobre la piel?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Verificar contraindicaciones y ajustar los parámetros según el tipo de piel</button><button type="button" class="lu-q-opt" data-opt="B">B. Usar siempre la intensidad máxima</button><button type="button" class="lu-q-opt" data-opt="C">C. No es necesario revisar el estado de la piel</button><button type="button" class="lu-q-opt" data-opt="D">D. Aplicar el equipo sin capacitación previa</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">5. ¿Cuál es el propósito principal de mantener los equipos correctamente calibrados?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Garantizar resultados seguros y efectivos para el cliente</button><button type="button" class="lu-q-opt" data-opt="B">B. Aumentar el ruido del equipo</button><button type="button" class="lu-q-opt" data-opt="C">C. Reducir la vida útil de la máquina</button><button type="button" class="lu-q-opt" data-opt="D">D. Ninguno, no influye en el tratamiento</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+<article class="lu-lect-panel" id="cos-4" role="tabpanel" data-lect="cos-4">
+  <header class="lu-lect-head">
+    <span class="lu-lect-num">04</span>
+    <div>
+      <h4>Bioseguridad en cosmetología y cosmiatría</h4>
+      
+    </div>
+  </header>
+  <div class="lu-lang-toggle" role="tablist">
+    <button type="button" class="lu-lang-btn active" data-lang="es">ES</button>
+    <button type="button" class="lu-lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="lu-lect-text active" data-lang="es"><h5>Español</h5>
+<p>La bioseguridad es un conjunto de normas y procedimientos destinados a proteger tanto al profesional como al paciente durante la realización de tratamientos estéticos. Su objetivo es prevenir infecciones, contaminación cruzada y otros riesgos relacionados con la práctica de la cosmetología y la cosmiatría.</p>
+<p>Entre las medidas más importantes se encuentran el lavado correcto de manos, el uso de guantes cuando sea necesario, la desinfección y esterilización del instrumental, la limpieza de las superficies de trabajo y la correcta eliminación de residuos biológicos. También es indispensable realizar una valoración previa del paciente para identificar alergias, enfermedades de la piel o contraindicaciones.</p>
+<p>El cumplimiento de las normas de bioseguridad garantiza tratamientos más seguros, protege la salud de todas las personas involucradas y fortalece la confianza entre el profesional y el paciente.</p></div>
+  <div class="lu-lect-text" data-lang="en"><h5>English</h5>
+<p>Biosafety is a set of rules and procedures designed to protect both the professional and the client during aesthetic treatments. Its purpose is to prevent infections, cross-contamination, and other risks associated with cosmetology and cosmiatry.</p>
+<p>The most important measures include proper hand washing, wearing gloves when necessary, disinfecting and sterilizing instruments, cleaning work surfaces, and correctly disposing of biological waste. It is also essential to evaluate the client beforehand to identify allergies, skin conditions, or contraindications.</p>
+<p>Following biosafety standards ensures safer treatments, protects everyone's health, and strengthens trust between the professional and the client.</p></div>
+  <div class="lu-quiz">
+    <h5 class="lu-quiz-title">Preguntas</h5>
+    <div class="lu-q" data-correct="B">
+  <p class="lu-q-text">1. ¿Cuál es el principal objetivo de la bioseguridad en cosmetología?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Reducir el costo de los tratamientos.</button><button type="button" class="lu-q-opt" data-opt="B">B. Proteger al profesional y al paciente, previniendo infecciones y contaminación cruzada.</button><button type="button" class="lu-q-opt" data-opt="C">C. Disminuir el tiempo de atención.</button><button type="button" class="lu-q-opt" data-opt="D">D. Mejorar únicamente la apariencia del consultorio.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">2. ¿Cuál de las siguientes acciones forma parte de las normas de bioseguridad?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Reutilizar instrumentos sin desinfectarlos.</button><button type="button" class="lu-q-opt" data-opt="B">B. Esterilizar el instrumental y realizar una correcta higiene de manos.</button><button type="button" class="lu-q-opt" data-opt="C">C. Compartir materiales entre pacientes sin limpieza.</button><button type="button" class="lu-q-opt" data-opt="D">D. Omitir la valoración del paciente.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="B">
+  <p class="lu-q-text">3. (English) What is the main purpose of biosafety in cosmetology?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. To reduce treatment costs.</button><button type="button" class="lu-q-opt" data-opt="B">B. To prevent infections and protect both the professional and the client.</button><button type="button" class="lu-q-opt" data-opt="C">C. To shorten the treatment time.</button><button type="button" class="lu-q-opt" data-opt="D">D. To improve only the appearance of the clinic.</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">4. ¿Por qué es importante la esterilización de los materiales entre cada cliente?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Para evitar la transmisión de infecciones</button><button type="button" class="lu-q-opt" data-opt="B">B. Para que los materiales se vean más nuevos</button><button type="button" class="lu-q-opt" data-opt="C">C. No es un procedimiento necesario</button><button type="button" class="lu-q-opt" data-opt="D">D. Solo se hace por estética del lugar</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div><div class="lu-q" data-correct="A">
+  <p class="lu-q-text">5. ¿Qué elemento de protección personal es indispensable durante los procedimientos?</p>
+  <div class="lu-q-opts"><button type="button" class="lu-q-opt" data-opt="A">A. Guantes y demás elementos de bioseguridad</button><button type="button" class="lu-q-opt" data-opt="B">B. Ropa de calle</button><button type="button" class="lu-q-opt" data-opt="C">C. Ningún elemento es necesario</button><button type="button" class="lu-q-opt" data-opt="D">D. Solo gafas de sol</button></div>
+  <p class="lu-q-feedback" aria-live="polite"></p>
+</div>
+  </div>
+</article>
+  </div>
+</section></main>
+<footer><b>LILACÉ</b><span>ESTUDIO DE COSMETOLOGÍA · CUIDADO · BIENESTAR</span><a class="lu-universe-link" href="index.html">✦ VOLVER AL UNIVERSO</a><span>© 2026</span></footer>
+<div class="modal" id="modal"><button id="close">×</button><img id="modalImg" src="" alt=""><div><small id="modalNum"></small><h2 id="modalTitle"></h2><p id="modalText"></p></div></div>
+
+<script src="assets/cosmetologia.js"></script>
+<script>
+    const luArrival = document.getElementById('arrival-layer');
+    if (luArrival) luArrival.addEventListener('animationend', () => luArrival.remove());
+</script>
+<script src="assets/site.js"></script>
+<script>
+    LiteraryUniverse.initChrome({ activeUrl: 'cosmetologia.html', rootFreq: 130, chordRatios: [1, 1.5, 2, 3] });
+</script>
+
+<script>
+
+(function(){
+  var section = document.getElementById('lecturas');
+  if(!section) return;
+  var tabs = section.querySelectorAll('.lu-lect-tab');
+  var panels = section.querySelectorAll('.lu-lect-panel');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.classList.remove('active'); });
+      panels.forEach(function(p){ p.classList.remove('active'); });
+      tab.classList.add('active');
+      var target = document.getElementById(tab.dataset.target);
+      if(target) target.classList.add('active');
+    });
+  });
+  section.querySelectorAll('.lu-lang-toggle').forEach(function(toggle){
+    var panel = toggle.closest('.lu-lect-panel');
+    var btns = toggle.querySelectorAll('.lu-lang-btn');
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        btns.forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        panel.querySelectorAll('.lu-lect-text').forEach(function(t){
+          t.classList.toggle('active', t.dataset.lang === btn.dataset.lang);
+        });
+      });
+    });
+  });
+  // Preguntas: manejadas por assets/quiz-kahoot.js (orden de respuestas aleatorio)
+})();
+
+</script>
+
+<script src="assets/cosmetologia-experience.js"></script>
+<script src="assets/experience-router.js"></script>
+<script src="assets/multimedia-interactions.js"></script>
+<script src="assets/quiz-kahoot.js"></script>
+<script src="assets/scroll-animations.js" defer></script>
+</body>
+</html>

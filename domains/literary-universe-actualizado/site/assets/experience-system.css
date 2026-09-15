@@ -1,0 +1,8 @@
+
+/* ===== EXPERIENCE SYSTEM · Literary Universe ===== */
+:root{--exp-accent:#fff;--exp-glow:rgba(255,255,255,.18)}
+.exp-progress{position:fixed;top:0;left:0;width:100%;height:3px;z-index:99999;background:transparent}
+.exp-progress i{display:block;width:0;height:100%;background:var(--exp-accent);box-shadow:0 0 18px var(--exp-accent);transition:width .15s}
+.exp-reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.exp-reveal.is-visible{opacity:1;transform:none}
+.exp-cursor{position:fixed;width:8px;height:8px;border:1px solid var(--exp-accent);border-radius:50%;pointer-events:none;z-index:100000;transform:translate(-50%,-50%);mix-blend-mode:difference}

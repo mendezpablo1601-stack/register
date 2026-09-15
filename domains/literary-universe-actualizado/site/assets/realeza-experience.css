@@ -1,0 +1,5 @@
+
+/* ===== REALEZA · CORTE REAL ===== */
+.royal-aura{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 50% 15%,rgba(184,137,255,.18),transparent 28%),radial-gradient(circle at 10% 80%,rgba(93,45,130,.16),transparent 35%)}
+.royal-seal{position:fixed;top:18px;left:22px;z-index:9997;width:34px;height:34px;border:1px solid #b889ff88;border-radius:50%;display:grid;place-items:center;color:#d9c1ff;background:#120c1a;box-shadow:0 0 25px #8d5bd444;font-size:15px}
+.royal-frame{transition:transform .6s ease,box-shadow .6s ease}.royal-frame:hover{transform:translateY(-4px);box-shadow:0 25px 70px rgba(91,45,130,.25)}

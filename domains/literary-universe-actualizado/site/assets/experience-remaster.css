@@ -1,0 +1,7 @@
+
+/* EXPERIENCE REMASTER — navegación y microinteracciones */
+:root{scroll-behavior:smooth}
+.xp-top{position:fixed;left:0;top:0;height:3px;width:0;z-index:10000;transition:width .1s}
+.xp-reveal{opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}
+.xp-reveal.xp-visible{opacity:1;transform:none}
+body.xp-focus section{scroll-margin-top:80px}
